@@ -151,16 +151,7 @@ export default function ContactPage() {
 									Servicios de Interés
 								</label>
 								<div className="space-y-2">
-									<label className="flex items-center space-x-2">
-										<input
-											type="checkbox"
-											name="serviceInterest"
-											value="digital-marketing"
-											onChange={handleServiceChange}
-											className="form-checkbox text-purple-500"
-										/>
-										<span className="text-violet-200">Marketing Digital</span>
-									</label>
+									{/* Desarrollo Web */}
 									<label className="flex items-center space-x-2">
 										<input
 											type="checkbox"
@@ -169,7 +160,7 @@ export default function ContactPage() {
 											onChange={handleServiceChange}
 											className="form-checkbox text-purple-500"
 										/>
-										<span className="text-violet-200">Desarrollo Web</span>
+										<span className="text-violet-200">Desarrollo Web Profesional</span>
 									</label>
 									<label className="flex items-center space-x-2">
 										<input
@@ -180,6 +171,92 @@ export default function ContactPage() {
 											className="form-checkbox text-purple-500"
 										/>
 										<span className="text-violet-200">E-commerce</span>
+									</label>
+									<label className="flex items-center space-x-2">
+										<input
+											type="checkbox"
+											name="serviceInterest"
+											value="wordpress"
+											onChange={handleServiceChange}
+											className="form-checkbox text-purple-500"
+										/>
+										<span className="text-violet-200">WordPress</span>
+									</label>
+
+									{/* Software & Cloud */}
+									<label className="flex items-center space-x-2">
+										<input
+											type="checkbox"
+											name="serviceInterest"
+											value="custom-software"
+											onChange={handleServiceChange}
+											className="form-checkbox text-purple-500"
+										/>
+										<span className="text-violet-200">Software a Medida</span>
+									</label>
+									<label className="flex items-center space-x-2">
+										<input
+											type="checkbox"
+											name="serviceInterest"
+											value="cloud-development"
+											onChange={handleServiceChange}
+											className="form-checkbox text-purple-500"
+										/>
+										<span className="text-violet-200">Cloud Computing</span>
+									</label>
+									<label className="flex items-center space-x-2">
+										<input
+											type="checkbox"
+											name="serviceInterest"
+											value="database-development"
+											onChange={handleServiceChange}
+											className="form-checkbox text-purple-500"
+										/>
+										<span className="text-violet-200">Bases de Datos</span>
+									</label>
+
+									{/* Móvil & SaaS */}
+									<label className="flex items-center space-x-2">
+										<input
+											type="checkbox"
+											name="serviceInterest"
+											value="mobile-development"
+											onChange={handleServiceChange}
+											className="form-checkbox text-purple-500"
+										/>
+										<span className="text-violet-200">Apps Móviles</span>
+									</label>
+									<label className="flex items-center space-x-2">
+										<input
+											type="checkbox"
+											name="serviceInterest"
+											value="saas-development"
+											onChange={handleServiceChange}
+											className="form-checkbox text-purple-500"
+										/>
+										<span className="text-violet-200">Desarrollo SaaS</span>
+									</label>
+
+									{/* Servicios Avanzados */}
+									<label className="flex items-center space-x-2">
+										<input
+											type="checkbox"
+											name="serviceInterest"
+											value="technical-support"
+											onChange={handleServiceChange}
+											className="form-checkbox text-purple-500"
+										/>
+										<span className="text-violet-200">Soporte Técnico</span>
+									</label>
+									<label className="flex items-center space-x-2">
+										<input
+											type="checkbox"
+											name="serviceInterest"
+											value="ai-services"
+											onChange={handleServiceChange}
+											className="form-checkbox text-purple-500"
+										/>
+										<span className="text-violet-200">Servicios de IA</span>
 									</label>
 								</div>
 							</div>
@@ -258,7 +335,7 @@ export default function ContactPage() {
 							transition={{ delay: 0.4 }}
 							className="mt-12 space-y-8"
 						>
-							<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+							{/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 								<div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6">
 									<h3 className="text-white font-semibold mb-4">Marketing Digital</h3>
 									<p className="text-violet-200 mb-2">Optimización SEO</p>
@@ -280,7 +357,7 @@ export default function ContactPage() {
 									<p className="text-violet-200">Gestión de Inventario</p>
 									<a href="mailto:ecommerce@ailive.com" className="text-purple-400 hover:text-purple-300 mt-4 block">ecommerce@ailive.com</a>
 								</div>
-							</div>
+							</div> */}
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
 								<div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6">
 									<h3 className="text-white font-semibold mb-2">{t('contact_phone_label')}</h3>

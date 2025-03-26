@@ -193,11 +193,11 @@ export default function PricingPage() {
       price_yearly: 0,
       billing_cycle: 'monthly',
       features: [
-        currentLanguage === 'es' ? 'Análisis SEO básico' : 'Basic SEO Analysis',
-        currentLanguage === 'es' ? 'Landing page simple' : 'Simple Landing Page',
-        currentLanguage === 'es' ? 'Tienda básica Shopify' : 'Basic Shopify Store',
-        currentLanguage === 'es' ? 'Soporte por email' : 'Email Support',
-        currentLanguage === 'es' ? 'Tiempo de respuesta: 24h' : 'Response Time: 24h'
+        currentLanguage === 'es' ? 'Desarrollo web básico' : 'Basic Web Development',
+        currentLanguage === 'es' ? 'Despliegue en la nube' : 'Cloud Deployment',
+        currentLanguage === 'es' ? 'Aplicación móvil básica' : 'Basic Mobile App',
+        currentLanguage === 'es' ? 'Integración de IA básica' : 'Basic AI Integration',
+        currentLanguage === 'es' ? 'Soporte técnico 24/7' : '24/7 Technical Support'
       ],
       popular: false,
     },
@@ -209,12 +209,12 @@ export default function PricingPage() {
       price_yearly: 99.99,
       billing_cycle: 'monthly',
       features: [
-        currentLanguage === 'es' ? 'Estrategia SEO/SEM completa' : 'Complete SEO/SEM Strategy',
-        currentLanguage === 'es' ? 'Desarrollo WordPress profesional' : 'Professional WordPress Development',
-        currentLanguage === 'es' ? 'Tienda Shopify optimizada' : 'Optimized Shopify Store',
-        currentLanguage === 'es' ? 'Gestión de redes sociales' : 'Social Media Management',
-        currentLanguage === 'es' ? 'Soporte prioritario' : 'Priority Support',
-        currentLanguage === 'es' ? 'Tiempo de respuesta: 12h' : 'Response Time: 12h'
+        currentLanguage === 'es' ? 'Desarrollo web avanzado' : 'Advanced Web Development',
+        currentLanguage === 'es' ? 'Arquitectura cloud escalable' : 'Scalable Cloud Architecture',
+        currentLanguage === 'es' ? 'Aplicación móvil multiplataforma' : 'Cross-platform Mobile App',
+        currentLanguage === 'es' ? 'Modelos de IA personalizados' : 'Custom AI Models',
+        currentLanguage === 'es' ? 'Integración de APIs' : 'API Integration',
+        currentLanguage === 'es' ? 'Soporte técnico prioritario' : 'Priority Technical Support'
       ],
       popular: true,
     },
@@ -227,12 +227,12 @@ export default function PricingPage() {
       billing_cycle: 'monthly',
       features: [
         currentLanguage === 'es' ? 'Todas las funciones del plan Inicial' : 'All Starter Features',
-        currentLanguage === 'es' ? 'Campañas PPC avanzadas' : 'Advanced PPC Campaigns',
-        currentLanguage === 'es' ? 'Desarrollo web personalizado (SPA)' : 'Custom Web Development (SPA)',
-        currentLanguage === 'es' ? 'Tienda Shopify personalizada' : 'Custom Shopify Store',
-        currentLanguage === 'es' ? 'Automatización de marketing' : 'Marketing Automation',
-        currentLanguage === 'es' ? 'Análisis y reportes avanzados' : 'Advanced Analytics & Reports',
-        currentLanguage === 'es' ? 'Soporte premium 24/7' : '24/7 Premium Support'
+        currentLanguage === 'es' ? 'Desarrollo SaaS completo' : 'Full SaaS Development',
+        currentLanguage === 'es' ? 'Infraestructura cloud empresarial' : 'Enterprise Cloud Infrastructure',
+        currentLanguage === 'es' ? 'Aplicaciones móviles nativas' : 'Native Mobile Applications',
+        currentLanguage === 'es' ? 'Soluciones de IA avanzadas' : 'Advanced AI Solutions',
+        currentLanguage === 'es' ? 'DevOps y CI/CD' : 'DevOps & CI/CD',
+        currentLanguage === 'es' ? 'Soporte técnico dedicado 24/7' : '24/7 Dedicated Technical Support'
       ],
       popular: false,
     },
@@ -245,11 +245,11 @@ export default function PricingPage() {
       billing_cycle: 'monthly',
       features: [
         currentLanguage === 'es' ? 'Todas las funciones del plan Profesional' : 'All Professional Features',
-        currentLanguage === 'es' ? 'Estrategia digital integral' : 'Comprehensive Digital Strategy',
-        currentLanguage === 'es' ? 'Desarrollo web empresarial' : 'Enterprise Web Development',
-        currentLanguage === 'es' ? 'Soluciones e-commerce a medida' : 'Custom E-commerce Solutions',
-        currentLanguage === 'es' ? 'Integraciones personalizadas' : 'Custom Integrations',
-        currentLanguage === 'es' ? 'Equipo dedicado 24/7' : '24/7 Dedicated Team'
+        currentLanguage === 'es' ? 'Desarrollo de software personalizado' : 'Custom Software Development',
+        currentLanguage === 'es' ? 'Arquitectura cloud multinube' : 'Multi-cloud Architecture',
+        currentLanguage === 'es' ? 'Suite completa de aplicaciones móviles' : 'Complete Mobile App Suite',
+        currentLanguage === 'es' ? 'IA y Machine Learning avanzado' : 'Advanced AI & Machine Learning',
+        currentLanguage === 'es' ? 'Equipo de desarrollo dedicado' : 'Dedicated Development Team'
       ],
       popular: false,
     },
@@ -751,27 +751,27 @@ export default function PricingPage() {
               <div className="grid gap-8">
                 <div>
                   <h3 className="text-xl font-semibold text-[var(--theme-text-primary)] mb-2">
-                    {currentLanguage === 'es' ? '¿Qué incluye el servicio de Marketing Digital?' : 'What does the Digital Marketing service include?'}
+                    {currentLanguage === 'es' ? '¿Qué incluyen los servicios de desarrollo de software?' : 'What do the software development services include?'}
                   </h3>
-                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Nuestro servicio de Marketing Digital incluye estrategias SEO/SEM personalizadas, gestión de redes sociales, análisis de datos y campañas de publicidad optimizadas. Trabajamos con objetivos medibles y reportes mensuales de resultados.' : 'Our Digital Marketing service includes customized SEO/SEM strategies, social media management, data analytics, and optimized advertising campaigns. We work with measurable goals and monthly performance reports.'}</p>
+                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Nuestros servicios de desarrollo incluyen soluciones web personalizadas, aplicaciones cloud nativas, desarrollo móvil multiplataforma y soluciones de IA avanzadas. Trabajamos con metodologías ágiles y las últimas tecnologías.' : 'Our development services include custom web solutions, cloud-native applications, cross-platform mobile development, and advanced AI solutions. We work with agile methodologies and the latest technologies.'}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[var(--theme-text-primary)] mb-2">
-                    {currentLanguage === 'es' ? '¿Cómo funciona el desarrollo web con WordPress?' : 'How does WordPress web development work?'}
+                    {currentLanguage === 'es' ? '¿Cómo funcionan los servicios cloud?' : 'How do cloud services work?'}
                   </h3>
-                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Desarrollamos sitios web profesionales con WordPress, incluyendo diseño personalizado, optimización SEO, integración con WooCommerce y plugins premium. El proceso incluye planificación, diseño, desarrollo y capacitación para gestionar tu sitio.' : 'We develop professional WordPress websites including custom design, SEO optimization, WooCommerce integration, and premium plugins. The process includes planning, design, development, and training to manage your site.'}</p>
+                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Ofrecemos servicios cloud completos que incluyen arquitectura, implementación y gestión de infraestructura. Utilizamos prácticas DevOps, contenedores y microservicios para garantizar escalabilidad y eficiencia.' : 'We offer comprehensive cloud services including architecture, implementation, and infrastructure management. We use DevOps practices, containers, and microservices to ensure scalability and efficiency.'}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[var(--theme-text-primary)] mb-2">
-                    {currentLanguage === 'es' ? '¿Qué beneficios ofrece la solución E-commerce?' : 'What benefits does the E-commerce solution offer?'}
+                    {currentLanguage === 'es' ? '¿Qué ofrecen los servicios de IA?' : 'What do AI services offer?'}
                   </h3>
-                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Nuestra solución E-commerce con Shopify incluye configuración completa de la tienda, diseño personalizado, integración de métodos de pago, gestión de inventario y estrategias de conversión. Garantizamos una experiencia de compra optimizada y soporte continuo.' : 'Our Shopify E-commerce solution includes complete store setup, custom design, payment gateway integration, inventory management, and conversion strategies. We ensure an optimized shopping experience and ongoing support.'}</p>
+                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Nuestros servicios de IA incluyen desarrollo de modelos personalizados, fine-tuning de LLMs, implementación de agentes inteligentes y soluciones de machine learning. Garantizamos resultados medibles y optimización continua.' : 'Our AI services include custom model development, LLM fine-tuning, intelligent agent implementation, and machine learning solutions. We ensure measurable results and continuous optimization.'}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[var(--theme-text-primary)] mb-2">
-                    {currentLanguage === 'es' ? '¿Cuál es el proceso de implementación?' : 'What is the implementation process?'}
+                    {currentLanguage === 'es' ? '¿Cómo es el proceso de desarrollo?' : 'What is the development process?'}
                   </h3>
-                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Iniciamos con una consulta detallada para entender tus objetivos, desarrollamos una estrategia personalizada, implementamos las soluciones y proporcionamos seguimiento continuo. Cada servicio incluye soporte técnico prioritario y actualizaciones regulares.' : 'We start with a detailed consultation to understand your goals, develop a customized strategy, implement solutions, and provide ongoing monitoring. Each service includes priority technical support and regular updates.'}</p>
+                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Seguimos una metodología ágil que incluye análisis de requisitos, diseño de arquitectura, desarrollo iterativo, pruebas continuas y despliegue automatizado. Cada proyecto incluye gestión de calidad y soporte post-implementación.' : 'We follow an agile methodology that includes requirements analysis, architecture design, iterative development, continuous testing, and automated deployment. Each project includes quality management and post-implementation support.'}</p>
                 </div>
               </div>
             </div>
