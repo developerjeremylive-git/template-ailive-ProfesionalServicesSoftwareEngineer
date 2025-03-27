@@ -45,6 +45,7 @@ import TechnicalSupportPage from './pages/TechnicalSupportPage'
 import AiServicesPage from './pages/AiServicesPage'
 import EcommercePage from './pages/EcommercePage'
 import WordPressPage from './pages/WordPressPage'
+import TiendaPage from './pages/TiendaPage'
 
 // Protected route component for user account and settings pages
 const ProtectedRoute = ({ children }) => {
@@ -311,6 +312,7 @@ function AppContent() {
         } />
 
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/tienda" element={<TiendaPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />

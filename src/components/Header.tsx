@@ -193,45 +193,45 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 						<div className="flex items-center space-x-6">
 							{/* Navigation Links */}
 							<nav className="hidden md:flex items-center space-x-6">
-							{/* Desarrollo Web */}
-							<div className="relative group">
-								<button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
-									{t('Desarrollo Web')}
-									<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-								</button>
-								<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-									<Link to="/web-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Desarrollo Web Profesional')}</Link>
-									<Link to="/ecommerce" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{'Comercio Electrónico'}</Link>
-									<Link to="/wordpress" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('WordPress')}</Link>
+								{/* Desarrollo Web */}
+								<div className="relative group">
+									<button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
+										{t('Desarrollo Web')}
+										<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+									</button>
+									<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+										<Link to="/web-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Desarrollo Web Profesional')}</Link>
+										<Link to="/ecommerce" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{'Comercio Electrónico'}</Link>
+										<Link to="/wordpress" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('WordPress')}</Link>
+									</div>
 								</div>
-							</div>
 
-							{/* Software & Cloud */}
-							<div className="relative group">
-								<button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
-									{t('Software & Cloud')}
-									<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-								</button>
-								<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-									<Link to="/custom-software" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Software a Medida')}</Link>
-									<Link to="/cloud-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{'Computación en la Nube'}</Link>
-									<Link to="/database-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Bases de Datos')}</Link>
+								{/* Software & Cloud */}
+								<div className="relative group">
+									<button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
+										{t('Software & Cloud')}
+										<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+									</button>
+									<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+										<Link to="/custom-software" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Software a Medida')}</Link>
+										<Link to="/cloud-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{'Computación en la Nube'}</Link>
+										<Link to="/database-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Bases de Datos')}</Link>
+									</div>
 								</div>
-							</div>
 
-							{/* Servicios Avanzados */}
-							<div className="relative group">
-								<button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
-									{t('Servicios Avanzados')}
-									<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-								</button>
-								<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-									{/* <Link to="/technical-support" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Soporte Técnico')}</Link> */}
-									<Link to="/mobile-app-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{'Desarrollo Móvil'}</Link>
-									<Link to="/saas-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Desarrollo SaaS')}</Link>
-									<Link to="/ai-services" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Servicios de IA')}</Link>
+								{/* Servicios Avanzados */}
+								<div className="relative group">
+									<button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
+										{t('Servicios Avanzados')}
+										<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+									</button>
+									<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+										{/* <Link to="/technical-support" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Soporte Técnico')}</Link> */}
+										<Link to="/mobile-app-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{'Desarrollo Móvil'}</Link>
+										<Link to="/saas-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Desarrollo SaaS')}</Link>
+										<Link to="/ai-services" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Servicios de IA')}</Link>
+									</div>
 								</div>
-							</div>						
 							</nav>
 							<nav className="hidden md:flex items-center space-x-6">
 								<Link
@@ -245,6 +245,22 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 										hover:transform hover:scale-105`}
 								>
 									{'Precios'}
+								</Link>
+							</nav>
+							<nav className="hidden md:flex items-center space-x-6">
+								<Link
+									to="/tienda"
+									className={
+										`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 
+										${location.pathname === '/tienda'
+											? 'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30'
+											: 'text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10'
+										}
+										before:absolute before:inset-0 before:rounded-lg before:transition-transform before:duration-300
+										hover:transform hover:scale-105`
+									}
+								>
+									{'Tienda'}
 								</Link>
 							</nav>
 
