@@ -323,7 +323,14 @@ const TiendaPage: React.FC = () => {
         {/* Carrusel de Productos Avanzados */}
         <section className="mb-16">
           <h2 className="text-2xl font-semibold text-white mb-8">Soluciones Avanzadas</h2>
-          <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200">
+          <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200"
+          onWheel={(e) => {
+            if (e.deltaY !== 0) {
+              e.preventDefault();
+              e.currentTarget.scrollLeft += e.deltaY;
+            }
+          }}
+          >
             <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
               {products
                 .filter(product => product.category === 'advanced')
@@ -338,7 +345,14 @@ const TiendaPage: React.FC = () => {
         {/* Carrusel de Productos Básicos */}
         <section>
           <h2 className="text-2xl font-semibold text-white mb-8">Plantillas y Productos Básicos</h2>
-          <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200">
+          <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200"
+          onWheel={(e) => {
+            if (e.deltaY !== 0) {
+              e.preventDefault();
+              e.currentTarget.scrollLeft += e.deltaY;
+            }
+          }}
+          >
             <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
               {products
                 .filter(product => product.category === 'basic')
