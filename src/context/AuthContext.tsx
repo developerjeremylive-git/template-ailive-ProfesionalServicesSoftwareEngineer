@@ -92,6 +92,7 @@ export type AuthContextType = {
   createStripeCustomer: (email: string, name?: string) => Promise<string>;
   createPaypalCustomer: (email: string, name?: string) => Promise<{ id: string } | undefined>;
   redirectToPaypal: (customerId: string) => Promise<string | undefined>;
+  insertContactSubmission: (data: { name: string; email: string; company: string; phone: string; service_interest: string[]; message: string; budget: string; timeframe: string; }) => Promise<{ error: any | null }>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -1015,6 +1016,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  const insertContactSubmission = async (data: { name: string; email: string; company: string; phone: string; service_interest: string[]; message: string; budget: string; timeframe: string; }) => {
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([{
+          name: data.name,
+          email: data.email,
+          company: data.company,
+          phone: data.phone,
+          service_interest: data.service_interest,
+          budget: data.budget,
+          timeframe: data.timeframe,
+          message: data.message,
+          user_id: user?.id
+        }]);
+      return { error };
+    } catch (error) {
+      console.error('Error inserting contact submission:', error);
+      return { error };
+    }
+  };
+
   const value = {
     user,
     profile,
@@ -1046,7 +1069,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsLoginOpen,
     createStripeCustomer,
     createPaypalCustomer,
-    redirectToPaypal
+    redirectToPaypal,
+    insertContactSubmission
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

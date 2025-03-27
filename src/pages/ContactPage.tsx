@@ -1,25 +1,70 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
+import { useAuth } from '../context/AuthContext'
 import Header from '../components/Header'
 import AnimatedFooter from '../components/AnimatedFooter'
 
 export default function ContactPage() {
 	const { t } = useLanguage()
+	const { insertContactSubmission } = useAuth()
+	const [isSubmitting, setIsSubmitting] = useState(false)
+	const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+	const [errorMessage, setErrorMessage] = useState('')
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
 		company: '',
 		phone: '',
 		modelInterest: '',
+		budget: '',
+		timeframe: '',
 		message: '',
 		serviceInterest: [] as string[],
 	})
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
-		// Handle form submission
-		console.log(formData)
+		setIsSubmitting(true)
+		setSubmitStatus('idle')
+		setErrorMessage('')
+
+		try {
+			const { error } = await insertContactSubmission({
+				name: formData.name,
+				email: formData.email,
+				company: formData.company,
+				phone: formData.phone,
+				service_interest: formData.serviceInterest,
+				message: formData.message,
+				budget: formData.budget,
+				timeframe: formData.timeframe,
+			})
+
+			if (error) {
+				throw error
+			}
+
+			setSubmitStatus('success')
+			// Reset form
+			setFormData({
+				name: '',
+				email: '',
+				company: '',
+				phone: '',
+				modelInterest: '',
+				budget: '',
+				timeframe: '',
+				message: '',
+				serviceInterest: []
+			})
+		} catch (error) {
+			setSubmitStatus('error')
+			setErrorMessage('Hubo un error al enviar el formulario. Por favor intenta nuevamente.')
+			console.error('Error submitting contact form:', error)
+		} finally {
+			setIsSubmitting(false)
+		}
 	}
 
 	const handleChange = (
@@ -362,10 +407,31 @@ export default function ContactPage() {
 								whileHover={{ scale: 1.02 }}
 								whileTap={{ scale: 0.98 }}
 								type="submit"
-								className="w-full py-3 px-6 rounded-full bg-purple-500 text-white font-medium hover:bg-purple-600 transition-colors"
+								disabled={isSubmitting}
+								className={`w-full py-3 px-6 rounded-full bg-purple-500 text-white font-medium transition-colors ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-purple-600'}`}
 							>
-								{t('contact_submit')}
+								{isSubmitting ? 'Enviando...' : t('contact_submit')}
 							</motion.button>
+
+							{submitStatus === 'success' && (
+								<motion.div
+									initial={{ opacity: 0, y: 10 }}
+									animate={{ opacity: 1, y: 0 }}
+									className="mt-4 p-4 bg-green-500 bg-opacity-20 border border-green-500 border-opacity-20 rounded-lg text-green-400 text-center"
+								>
+									¡Gracias por contactarnos! Te responderemos pronto.
+								</motion.div>
+							)}
+
+							{submitStatus === 'error' && (
+								<motion.div
+									initial={{ opacity: 0, y: 10 }}
+									animate={{ opacity: 1, y: 0 }}
+									className="mt-4 p-4 bg-red-500 bg-opacity-20 border border-red-500 border-opacity-20 rounded-lg text-red-400 text-center"
+								>
+									{errorMessage || 'Hubo un error al enviar el formulario. Por favor intenta nuevamente.'}
+								</motion.div>
+							)}
 						</form>
 
 						{/* Additional Contact Info */}
