@@ -12,6 +12,7 @@ interface Product {
   price: number;
   icon: React.ReactNode;
   category: 'basic' | 'advanced';
+  coming_soon?: boolean;
 }
 
 const products: Product[] = [
@@ -21,7 +22,7 @@ const products: Product[] = [
     name: 'Plantilla de Código para Aplicaciones Web de Página Única con Animaciones Suaves',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
     techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
-    price: 49.99,
+    price: 8.99,
     icon: <FiShoppingCart />,
     category: 'basic'
   },
@@ -30,7 +31,7 @@ const products: Product[] = [
     name: 'Plantilla de Código para Aplicaciones Web de Página Única con Elementos Informativos y Animaciones Suaves',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
     techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
-    price: 49.99,
+    price: 14.99,
     icon: <FiShoppingCart />,
     category: 'basic'
   },
@@ -113,7 +114,7 @@ const products: Product[] = [
     name: 'Plantilla Premium de Aplicación Multi-Página con Elementos Interactivos y Animaciones Dinámicas',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
     techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
-    price: 110.99,
+    price:  49.99,
     icon: <FiShoppingCart />,
     category: 'advanced'
   },
@@ -122,7 +123,7 @@ const products: Product[] = [
     name: 'Plantilla Premium de Aplicación Multi-Página Bilingüe con Elementos Interactivos y Animaciones Dinámicas',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
     techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
-    price: 199.99,
+    price: 89.99,
     icon: <FiShoppingCart />,
     category: 'advanced'
   },
@@ -178,7 +179,8 @@ const products: Product[] = [
     techStack: ['Python', 'TensorFlow', 'FastAPI', 'Redis'],
     price: 699.99,
     icon: <FiLayers />,
-    category: 'advanced'
+    category: 'advanced',
+    coming_soon: true
   },
   {
     id: 'advanced-7',
@@ -187,7 +189,8 @@ const products: Product[] = [
     techStack: ['Node.js', 'Docker', 'Kubernetes', 'gRPC'],
     price: 799.99,
     icon: <FiGlobe />,
-    category: 'advanced'
+    category: 'advanced',
+    coming_soon: true
   },
   {
     id: 'advanced-8',
@@ -196,7 +199,8 @@ const products: Product[] = [
     techStack: ['React Native', 'GraphQL', 'Firebase', 'Redux'],
     price: 899.99,
     icon: <FiSmartphone />,
-    category: 'advanced'
+    category: 'advanced',
+    coming_soon: true
   }
 ];
 
@@ -210,14 +214,19 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <>
       <motion.div
-        className="h-[420px] bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 cursor-pointer border border-purple-500/20 hover:border-purple-500/40 shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20 hover:shadow-xl transition-all duration-500 overflow-hidden group hover:translate-y-[-3px]"
-        whileHover={{ scale: 1.02, y: -3 }}
+        className={`h-[420px] bg-gradient-to-br ${product.coming_soon ? 'from-white/5 to-white/5' : 'from-white/5 to-white/10'} backdrop-blur-sm rounded-2xl p-8 ${product.coming_soon ? 'cursor-not-allowed' : 'cursor-pointer'} border border-purple-500/20 hover:border-purple-500/40 shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20 hover:shadow-xl transition-all duration-500 overflow-hidden group hover:translate-y-[-3px] relative`}
+        whileHover={!product.coming_soon ? { scale: 1.02, y: -3 } : {}}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        onClick={() => setIsModalOpen(true)}
+        onClick={() => !product.coming_soon && setIsModalOpen(true)}
       >
-        <div className="text-purple-400 text-4xl mb-4 group-hover:scale-110 transition-transform duration-500 ease-out">{product.icon}</div>
+        <div className={`text-purple-400 text-4xl mb-4 ${product.coming_soon ? 'opacity-50' : 'group-hover:scale-110'} transition-transform duration-500 ease-out`}>{product.icon}</div>
+        {product.coming_soon && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] rounded-2xl z-10">
+            <span className="text-white text-2xl font-bold tracking-wider animate-pulse">Próximamente</span>
+          </div>
+        )}
         <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3 group-hover:text-white transition-colors duration-300 line-clamp-4">{product.name}</h3>
         <p className="text-violet-200 text-sm mb-4 line-clamp-1 group-hover:text-violet-100 transition-colors duration-300">{product.description}</p>
         <div className="text-3xl font-bold text-white mb-4 flex items-center gap-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-500 transition-all duration-300">
