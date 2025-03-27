@@ -70,7 +70,7 @@ export default function ContactPage() {
 					>
 						<form
 							onSubmit={handleSubmit}
-							className="bg-white bg-opacity-5 backdrop-blur-sm rounded-2xl p-8"
+							className="bg-white bg-opacity-5 backdrop-blur-sm rounded-2xl p-8 transition-all duration-300 hover:bg-opacity-10"
 						>
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
 								<div>
@@ -146,118 +146,154 @@ export default function ContactPage() {
 								</div>
 							</div>
 
-							<div className="mb-6">
-								<label className="block text-violet-200 mb-2">
+							<div className="mb-12">
+								<label className="block text-violet-200 mb-6 font-medium text-xl">
 									Servicios de Interés
 								</label>
-								<div className="space-y-2">
+								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 									{/* Desarrollo Web */}
-									<label className="flex items-center space-x-2">
-										<input
-											type="checkbox"
-											name="serviceInterest"
-											value="web-development"
-											onChange={handleServiceChange}
-											className="form-checkbox text-purple-500"
-										/>
-										<span className="text-violet-200">Desarrollo Web Profesional</span>
-									</label>
-									<label className="flex items-center space-x-2">
-										<input
-											type="checkbox"
-											name="serviceInterest"
-											value="ecommerce"
-											onChange={handleServiceChange}
-											className="form-checkbox text-purple-500"
-										/>
-										<span className="text-violet-200">E-commerce</span>
-									</label>
-									<label className="flex items-center space-x-2">
-										<input
-											type="checkbox"
-											name="serviceInterest"
-											value="wordpress"
-											onChange={handleServiceChange}
-											className="form-checkbox text-purple-500"
-										/>
-										<span className="text-violet-200">WordPress</span>
-									</label>
+									<motion.div
+										className="p-6 rounded-xl bg-white bg-opacity-5 backdrop-blur-sm border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 group"
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.98 }}
+									>
+										<div className="flex items-center gap-3 mb-4">
+											<div className="p-3 rounded-lg bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors">
+												<svg className="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+												</svg>
+											</div>
+											<h3 className="text-violet-200 font-medium text-lg">Desarrollo Web</h3>
+										</div>
+										<div className="space-y-3">
+											<label className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group/item">
+												<input
+													type="checkbox"
+													name="serviceInterest"
+													value="web-development"
+													onChange={handleServiceChange}
+													className="form-checkbox text-purple-500 rounded border-purple-400/50 focus:ring-purple-500 focus:ring-offset-0 transition-all"
+												/>
+												<span className="text-violet-200 group-hover/item:text-white transition-colors">Desarrollo Web Profesional</span>
+											</label>
+											<label className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group/item">
+												<input
+													type="checkbox"
+													name="serviceInterest"
+													value="ecommerce"
+													onChange={handleServiceChange}
+													className="form-checkbox text-purple-500 rounded border-purple-400/50 focus:ring-purple-500 focus:ring-offset-0 transition-all"
+												/>
+												<span className="text-violet-200 group-hover/item:text-white transition-colors">Comercio Electrónico</span>
+											</label>
+											<label className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group/item">
+												<input
+													type="checkbox"
+													name="serviceInterest"
+													value="wordpress"
+													onChange={handleServiceChange}
+													className="form-checkbox text-purple-500 rounded border-purple-400/50 focus:ring-purple-500 focus:ring-offset-0 transition-all"
+												/>
+												<span className="text-violet-200 group-hover/item:text-white transition-colors">WordPress</span>
+											</label>
+										</div>
+									</motion.div>
 
-									{/* Software & Cloud */}
-									<label className="flex items-center space-x-2">
-										<input
-											type="checkbox"
-											name="serviceInterest"
-											value="custom-software"
-											onChange={handleServiceChange}
-											className="form-checkbox text-purple-500"
-										/>
-										<span className="text-violet-200">Software a Medida</span>
-									</label>
-									<label className="flex items-center space-x-2">
-										<input
-											type="checkbox"
-											name="serviceInterest"
-											value="cloud-development"
-											onChange={handleServiceChange}
-											className="form-checkbox text-purple-500"
-										/>
-										<span className="text-violet-200">Cloud Computing</span>
-									</label>
-									<label className="flex items-center space-x-2">
-										<input
-											type="checkbox"
-											name="serviceInterest"
-											value="database-development"
-											onChange={handleServiceChange}
-											className="form-checkbox text-purple-500"
-										/>
-										<span className="text-violet-200">Bases de Datos</span>
-									</label>
-
-									{/* Móvil & SaaS */}
-									<label className="flex items-center space-x-2">
-										<input
-											type="checkbox"
-											name="serviceInterest"
-											value="mobile-development"
-											onChange={handleServiceChange}
-											className="form-checkbox text-purple-500"
-										/>
-										<span className="text-violet-200">Apps Móviles</span>
-									</label>
-									<label className="flex items-center space-x-2">
-										<input
-											type="checkbox"
-											name="serviceInterest"
-											value="saas-development"
-											onChange={handleServiceChange}
-											className="form-checkbox text-purple-500"
-										/>
-										<span className="text-violet-200">Desarrollo SaaS</span>
-									</label>
+									{/* Software y Nube */}
+									<motion.div
+										className="p-6 rounded-xl bg-white bg-opacity-5 backdrop-blur-sm border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 group"
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.98 }}
+									>
+										<div className="flex items-center gap-3 mb-4">
+											<div className="p-3 rounded-lg bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors">
+												<svg className="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+												</svg>
+											</div>
+											<h3 className="text-violet-200 font-medium text-lg">Software y Nube</h3>
+										</div>
+										<div className="space-y-3">
+											<label className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group/item">
+												<input
+													type="checkbox"
+													name="serviceInterest"
+													value="custom-software"
+													onChange={handleServiceChange}
+													className="form-checkbox text-purple-500 rounded border-purple-400/50 focus:ring-purple-500 focus:ring-offset-0 transition-all"
+												/>
+												<span className="text-violet-200 group-hover/item:text-white transition-colors">Software a Medida</span>
+											</label>
+											<label className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group/item">
+												<input
+													type="checkbox"
+													name="serviceInterest"
+													value="cloud-development"
+													onChange={handleServiceChange}
+													className="form-checkbox text-purple-500 rounded border-purple-400/50 focus:ring-purple-500 focus:ring-offset-0 transition-all"
+												/>
+												<span className="text-violet-200 group-hover/item:text-white transition-colors">Computación en la Nube</span>
+											</label>
+											<label className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group/item">
+												<input
+													type="checkbox"
+													name="serviceInterest"
+													value="database-development"
+													onChange={handleServiceChange}
+													className="form-checkbox text-purple-500 rounded border-purple-400/50 focus:ring-purple-500 focus:ring-offset-0 transition-all"
+												/>
+												<span className="text-violet-200 group-hover/item:text-white transition-colors">Bases de Datos</span>
+											</label>
+										</div>
+									</motion.div>
 
 									{/* Servicios Avanzados */}
-									<label className="flex items-center space-x-2">
-										<input
-											type="checkbox"
-											name="serviceInterest"
-											value="technical-support"
-											onChange={handleServiceChange}
-											className="form-checkbox text-purple-500"
-										/>
-										<span className="text-violet-200">Soporte Técnico</span>
-									</label>
-									<label className="flex items-center space-x-2">
-										<input
-											type="checkbox"
-											name="serviceInterest"
-											value="ai-services"
-											onChange={handleServiceChange}
-											className="form-checkbox text-purple-500"
-										/>
-										<span className="text-violet-200">Servicios de IA</span>
-									</label>
+									<motion.div
+										className="p-6 rounded-xl bg-white bg-opacity-5 backdrop-blur-sm border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 group"
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.98 }}
+									>
+										<div className="flex items-center gap-3 mb-4">
+											<div className="p-3 rounded-lg bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors">
+												<svg className="w-6 h-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+													<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+												</svg>
+											</div>
+											<h3 className="text-violet-200 font-medium text-lg">Servicios Avanzados</h3>
+										</div>
+										<div className="space-y-3">
+											<label className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group/item">
+												<input
+													type="checkbox"
+													name="serviceInterest"
+													value="mobile-development"
+													onChange={handleServiceChange}
+													className="form-checkbox text-purple-500 rounded border-purple-400/50 focus:ring-purple-500 focus:ring-offset-0 transition-all"
+												/>
+												<span className="text-violet-200 group-hover/item:text-white transition-colors">Desarrollo Móvil</span>
+											</label>
+											<label className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group/item">
+												<input
+													type="checkbox"
+													name="serviceInterest"
+													value="saas-development"
+													onChange={handleServiceChange}
+													className="form-checkbox text-purple-500 rounded border-purple-400/50 focus:ring-purple-500 focus:ring-offset-0 transition-all"
+												/>
+												<span className="text-violet-200 group-hover/item:text-white transition-colors">Desarrollo SaaS</span>
+											</label>
+											<label className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer group/item">
+												<input
+													type="checkbox"
+													name="serviceInterest"
+													value="ai-services"
+													onChange={handleServiceChange}
+													className="form-checkbox text-purple-500 rounded border-purple-400/50 focus:ring-purple-500 focus:ring-offset-0 transition-all"
+												/>
+												<span className="text-violet-200 group-hover/item:text-white transition-colors">Servicios de IA</span>
+											</label>
+										</div>
+									</motion.div>
 								</div>
 							</div>
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -299,23 +335,27 @@ export default function ContactPage() {
 								</div>
 							</div>
 
-							<div className="mb-6">
+							<div className="mb-8">
 								<label
 									htmlFor="message"
-									className="block text-violet-200 mb-2"
+									className="block text-violet-200 mb-4 font-medium text-lg"
 								>
 									{t('contact_message')}
 								</label>
-								<textarea
-									id="message"
-									name="message"
-									value={formData.message}
-									onChange={handleChange}
-									rows={4}
-									className="w-full px-4 py-2 rounded-lg bg-white bg-opacity-10 border border-purple-700 text-white placeholder-violet-300 focus:outline-none focus:border-purple-500"
-									placeholder={t('contact_placeholder_message')}
-									required
-								></textarea>
+								<div className="relative">
+									<textarea
+										id="message"
+										name="message"
+										value={formData.message}
+										onChange={handleChange}
+										className="w-full h-40 px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-purple-700 text-white placeholder-violet-300 focus:outline-none focus:border-purple-500 transition-colors resize-none"
+										placeholder={t('contact_placeholder_message')}
+										required
+									/>
+									<div className="absolute bottom-3 right-3 text-violet-400 text-sm">
+										{formData.message.length}/500
+									</div>
+								</div>
 							</div>
 
 							<motion.button
@@ -335,29 +375,6 @@ export default function ContactPage() {
 							transition={{ delay: 0.4 }}
 							className="mt-12 space-y-8"
 						>
-							{/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-								<div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6">
-									<h3 className="text-white font-semibold mb-4">Marketing Digital</h3>
-									<p className="text-violet-200 mb-2">Optimización SEO</p>
-									<p className="text-violet-200 mb-2">Gestión de Redes Sociales</p>
-									<p className="text-violet-200">Publicidad Digital</p>
-									<a href="mailto:marketing@ailive.com" className="text-purple-400 hover:text-purple-300 mt-4 block">marketing@ailive.com</a>
-								</div>
-								<div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6">
-									<h3 className="text-white font-semibold mb-4">Desarrollo Web</h3>
-									<p className="text-violet-200 mb-2">Diseño Web Personalizado</p>
-									<p className="text-violet-200 mb-2">Desarrollo WordPress</p>
-									<p className="text-violet-200">Mantenimiento Web</p>
-									<a href="mailto:web@ailive.com" className="text-purple-400 hover:text-purple-300 mt-4 block">web@ailive.com</a>
-								</div>
-								<div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6">
-									<h3 className="text-white font-semibold mb-4">E-commerce</h3>
-									<p className="text-violet-200 mb-2">Tiendas Online</p>
-									<p className="text-violet-200 mb-2">Integración de Pagos</p>
-									<p className="text-violet-200">Gestión de Inventario</p>
-									<a href="mailto:ecommerce@ailive.com" className="text-purple-400 hover:text-purple-300 mt-4 block">ecommerce@ailive.com</a>
-								</div>
-							</div> */}
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
 								<div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6">
 									<h3 className="text-white font-semibold mb-2">{t('contact_phone_label')}</h3>
@@ -370,9 +387,9 @@ export default function ContactPage() {
 							</div>
 						</motion.div>
 					</motion.div>
-				</div>
-			</div>
+				</div >
+			</div >
 			<AnimatedFooter />
-		</div>
+		</div >
 	)
 }

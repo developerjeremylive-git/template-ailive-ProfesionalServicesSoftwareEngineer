@@ -201,7 +201,7 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 								</button>
 								<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
 									<Link to="/web-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Desarrollo Web Profesional')}</Link>
-									<Link to="/ecommerce" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{t('E-commerce')}</Link>
+									<Link to="/ecommerce" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{'Comercio Electrónico'}</Link>
 									<Link to="/wordpress" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('WordPress')}</Link>
 								</div>
 							</div>
@@ -214,20 +214,8 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 								</button>
 								<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
 									<Link to="/custom-software" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Software a Medida')}</Link>
-									<Link to="/cloud-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{t('Cloud Computing')}</Link>
+									<Link to="/cloud-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{'Computación en la Nube'}</Link>
 									<Link to="/database-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Bases de Datos')}</Link>
-								</div>
-							</div>
-
-							{/* Móvil & SaaS */}
-							<div className="relative group">
-								<button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
-									{t('Móvil & SaaS')}
-									<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-								</button>
-								<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-									<Link to="/mobile-app-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Apps Móviles')}</Link>
-									<Link to="/saas-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Desarrollo SaaS')}</Link>
 								</div>
 							</div>
 
@@ -238,7 +226,9 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 									<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
 								</button>
 								<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-									<Link to="/technical-support" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Soporte Técnico')}</Link>
+									{/* <Link to="/technical-support" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Soporte Técnico')}</Link> */}
+									<Link to="/mobile-app-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{'Desarrollo Móvil'}</Link>
+									<Link to="/saas-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Desarrollo SaaS')}</Link>
 									<Link to="/ai-services" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Servicios de IA')}</Link>
 								</div>
 							</div>						
