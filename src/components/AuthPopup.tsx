@@ -122,6 +122,15 @@ export default function AuthPopup({ triggerReason, onAuthComplete }: AuthPopupPr
     document.body.appendChild(popup);
   };
 
+  const handleRedirect = () => {
+    if (triggerReason === 'send_button') {
+      // Stay on the current page if triggered by send button
+      return;
+    }
+    // Default redirect to home page
+    navigate('/');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -184,7 +193,7 @@ export default function AuthPopup({ triggerReason, onAuthComplete }: AuthPopupPr
         // Registration mode
         const { error, user } = await signUp(email, password, username);
         if (error) {
-          setError(t('registration_error'));
+          setError(error?.message || t('registration_error'));
         } else {
           setIsLoginOpen(false);
           resetForm();
