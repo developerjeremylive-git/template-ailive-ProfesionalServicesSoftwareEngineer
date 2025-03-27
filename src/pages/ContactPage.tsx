@@ -444,7 +444,7 @@ export default function ContactPage() {
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
 								<div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6">
 									<h3 className="text-white font-semibold mb-2">{t('contact_phone_label')}</h3>
-									<p className="text-violet-200">+1 (555) 123-4567</p>
+									<p className="text-violet-200">+52 (477) 106-7545</p>
 								</div>
 								<div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6">
 									<h3 className="text-white font-semibold mb-2">{t('contact_hours_label')}</h3>
