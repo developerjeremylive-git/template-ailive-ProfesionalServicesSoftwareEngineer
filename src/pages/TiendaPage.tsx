@@ -42,7 +42,8 @@ const products: Product[] = [
     techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
     price: 49.99,
     icon: <FiShoppingCart />,
-    category: 'basic'
+    category: 'basic',
+    coming_soon: true
   },
   {
     id: 'basic-2',
@@ -51,7 +52,8 @@ const products: Product[] = [
     techStack: ['Next.js', 'Markdown', 'Vercel'],
     price: 29.99,
     icon: <FiCode />,
-    category: 'basic'
+    category: 'basic',
+    coming_soon: true
   },
   {
     id: 'basic-3',
@@ -60,7 +62,8 @@ const products: Product[] = [
     techStack: ['Vue.js', 'Chart.js', 'Firebase'],
     price: 39.99,
     icon: <FiDatabase />,
-    category: 'basic'
+    category: 'basic',
+    coming_soon: true
   },
   {
     id: 'basic-4',
@@ -69,7 +72,8 @@ const products: Product[] = [
     techStack: ['React', 'Styled Components', 'Netlify'],
     price: 24.99,
     icon: <FiGlobe />,
-    category: 'basic'
+    category: 'basic',
+    coming_soon: true
   },
   {
     id: 'basic-5',
@@ -78,7 +82,8 @@ const products: Product[] = [
     techStack: ['React', 'Framer Motion', 'TailwindCSS'],
     price: 34.99,
     icon: <FiLayers />,
-    category: 'basic'
+    category: 'basic',
+    coming_soon: true
   },
   {
     id: 'basic-6',
@@ -87,7 +92,8 @@ const products: Product[] = [
     techStack: ['Express.js', 'JWT', 'MongoDB'],
     price: 44.99,
     icon: <FiServer />,
-    category: 'basic'
+    category: 'basic',
+    coming_soon: true
   },
   {
     id: 'basic-7',
@@ -96,7 +102,8 @@ const products: Product[] = [
     techStack: ['React', 'Socket.io', 'Node.js'],
     price: 54.99,
     icon: <FiSmartphone />,
-    category: 'basic'
+    category: 'basic',
+    coming_soon: true
   },
   {
     id: 'basic-8',
@@ -105,7 +112,8 @@ const products: Product[] = [
     techStack: ['React', 'AWS S3', 'Express.js'],
     price: 49.99,
     icon: <FiCloud />,
-    category: 'basic'
+    category: 'basic',
+    coming_soon: true
   },
 
   // Productos Avanzados
@@ -134,7 +142,8 @@ const products: Product[] = [
     techStack: ['Next.js', 'GraphQL', 'PostgreSQL', 'Redis'],
     price: 299.99,
     icon: <FiShoppingCart />,
-    category: 'advanced'
+    category: 'advanced',
+    coming_soon: true
   },
   {
     id: 'advanced-2',
@@ -143,7 +152,8 @@ const products: Product[] = [
     techStack: ['React', 'Node.js', 'MongoDB', 'Redis'],
     price: 249.99,
     icon: <FiCode />,
-    category: 'advanced'
+    category: 'advanced',
+    coming_soon: true
   },
   {
     id: 'advanced-3',
@@ -152,7 +162,8 @@ const products: Product[] = [
     techStack: ['Vue.js', 'Python', 'TensorFlow', 'PostgreSQL'],
     price: 399.99,
     icon: <FiDatabase />,
-    category: 'advanced'
+    category: 'advanced',
+    coming_soon: true
   },
   {
     id: 'advanced-4',
@@ -161,7 +172,8 @@ const products: Product[] = [
     techStack: ['React', 'Node.js', 'Stripe', 'MongoDB'],
     price: 499.99,
     icon: <FiCloud />,
-    category: 'advanced'
+    category: 'advanced',
+    coming_soon: true
   },
   {
     id: 'advanced-5',
@@ -170,7 +182,8 @@ const products: Product[] = [
     techStack: ['React', 'Node.js', 'MQTT', 'InfluxDB'],
     price: 599.99,
     icon: <FiServer />,
-    category: 'advanced'
+    category: 'advanced',
+    coming_soon: true
   },
   {
     id: 'advanced-6',
