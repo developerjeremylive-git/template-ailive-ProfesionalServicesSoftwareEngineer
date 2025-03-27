@@ -210,7 +210,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <>
       <motion.div
-        className="h-[420px] bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 cursor-pointer border border-purple-500/20 hover:border-purple-500/40 shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20 hover:shadow-xl transition-all duration-500 overflow-hidden group"
+        className="h-[420px] bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 cursor-pointer border border-purple-500/20 hover:border-purple-500/40 shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20 hover:shadow-xl transition-all duration-500 overflow-hidden group hover:translate-y-[-3px]"
         whileHover={{ scale: 1.02, y: -3 }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -301,8 +301,8 @@ const TiendaPage: React.FC = () => {
         {/* Carrusel de Productos Básicos */}
         <section className="mb-16">
           <h2 className="text-2xl font-semibold text-white mb-8">Plantillas y Productos Básicos</h2>
-          <div className="overflow-x-auto pb-6">
-            <div className="flex gap-6" style={{ minWidth: 'max-content' }}>
+          <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200">
+            <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
               {products
                 .filter(product => product.category === 'basic')
                 .map(product => (
@@ -317,8 +317,8 @@ const TiendaPage: React.FC = () => {
         {/* Carrusel de Productos Avanzados */}
         <section>
           <h2 className="text-2xl font-semibold text-white mb-8">Soluciones Avanzadas</h2>
-          <div className="overflow-x-auto pb-6">
-            <div className="flex gap-6" style={{ minWidth: 'max-content' }}>
+          <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200">
+            <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
               {products
                 .filter(product => product.category === 'advanced')
                 .map(product => (
