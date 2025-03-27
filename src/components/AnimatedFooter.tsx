@@ -105,14 +105,14 @@ export default function AnimatedFooter() {
                     SaaS
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     to="/technical-support"
                     className="text-[var(--theme-text-secondary)] hover:text-[var(--theme-text-primary)] transition-colors"
                   >
                     Soporte Técnico
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link
                     to="/ai-services"
