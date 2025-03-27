@@ -45,7 +45,7 @@ export default function AnimatedFooter() {
                 </div>
                 <span className="text-2xl font-bold text-[var(--theme-text-primary)]">AILive</span>
               </Link>
-              <p className="text-[var(--theme-text-secondary)]">Somos una empresa líder en desarrollo de software profesional y servicios de IA. Ofrecemos soluciones tecnológicas innovadoras que abarcan desarrollo web, software personalizado, servicios cloud, desarrollo de bases de datos, aplicaciones móviles, soluciones SaaS y soporte técnico especializado. Nuestro equipo de expertos combina tecnologías de vanguardia con inteligencia artificial para transformar la visión de nuestros clientes en realidades digitales exitosas.</p>
+              <p className="text-[var(--theme-text-secondary)]">Como líderes en desarrollo de software y soluciones de IA, transformamos visiones en realidades digitales. Ofrecemos desarrollo web, software a medida, servicios cloud, aplicaciones móviles, SaaS y soporte técnico, impulsados por tecnología de vanguardia e inteligencia artificial. Nuestro equipo experto crea soluciones innovadoras que impulsan el crecimiento y la eficiencia de tus proyectos.</p>
               <div className="pt-2">
                 <AuthButton variant="footer" />
               </div>

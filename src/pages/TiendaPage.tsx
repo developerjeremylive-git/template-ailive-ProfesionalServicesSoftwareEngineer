@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiShoppingCart, FiCode, FiDatabase, FiCloud, FiServer, FiLayers, FiGlobe, FiSmartphone } from 'react-icons/fi';
 import Header from '../components/Header';
@@ -122,7 +122,7 @@ const products: Product[] = [
     name: 'Plantilla Premium de Aplicación Multi-Página con Elementos Interactivos y Animaciones Dinámicas',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
     techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
-    price:  49.99,
+    price: 49.99,
     icon: <FiShoppingCart />,
     category: 'advanced'
   },
@@ -307,6 +307,29 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 };
 
 const TiendaPage: React.FC = () => {
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    if (isScrolling) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isScrolling]);
+
+  const handleWheel = (e: React.WheelEvent) => {
+    if (e.deltaY !== 0) {
+      e.preventDefault();
+      e.currentTarget.scrollLeft += e.deltaY;
+      setIsScrolling(true);
+      clearTimeout(window.scrollTimeout);
+      window.scrollTimeout = setTimeout(() => setIsScrolling(false), 800);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-theme-gradient pt-20 relative">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
@@ -324,12 +347,7 @@ const TiendaPage: React.FC = () => {
         <section className="mb-16">
           <h2 className="text-2xl font-semibold text-white mb-8">Soluciones Avanzadas</h2>
           <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200"
-          onWheel={(e) => {
-            if (e.deltaY !== 0) {
-              e.preventDefault();
-              e.currentTarget.scrollLeft += e.deltaY;
-            }
-          }}
+            onWheel={handleWheel}
           >
             <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
               {products
@@ -346,12 +364,7 @@ const TiendaPage: React.FC = () => {
         <section>
           <h2 className="text-2xl font-semibold text-white mb-8">Plantillas y Productos Básicos</h2>
           <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200"
-          onWheel={(e) => {
-            if (e.deltaY !== 0) {
-              e.preventDefault();
-              e.currentTarget.scrollLeft += e.deltaY;
-            }
-          }}
+            onWheel={handleWheel}
           >
             <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
               {products
