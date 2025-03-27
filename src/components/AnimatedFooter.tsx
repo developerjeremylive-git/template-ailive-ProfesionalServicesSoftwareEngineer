@@ -151,7 +151,7 @@ export default function AnimatedFooter() {
                       try {
                         const { error } = await newsletterService.subscribe(email);
                         if (error) {
-                          setError(error);
+                          setError(typeof error === 'string' ? error : 'Error al suscribirse al newsletter');
                         } else {
                           setShowSuccess(true);
                           setEmail('');
