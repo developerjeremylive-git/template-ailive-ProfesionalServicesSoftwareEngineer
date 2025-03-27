@@ -18,7 +18,7 @@ const products: Product[] = [
   // Productos Básicos
   {
     id: 'spa-001',
-    name: 'Plantilla de Aplicación de Página Única',
+    name: 'Plantilla de Código para Aplicaciones Web de Página Única con Animaciones Suaves',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
     techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
     price: 49.99,
@@ -27,7 +27,7 @@ const products: Product[] = [
   },
   {
     id: 'spa-002',
-    name: 'Plantilla de Aplicación de Página Única con Popups informativos Integrados',
+    name: 'Plantilla de Código para Aplicaciones Web de Página Única con Elementos Informativos y Animaciones Suaves',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
     techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
     price: 49.99,
@@ -110,19 +110,19 @@ const products: Product[] = [
   // Productos Avanzados
   {
     id: 'multispa-001',
-    name: 'Plantilla de Aplicación Multi-Páginas con Popups informativos/interactivos Integrados y Animaciones',
+    name: 'Plantilla Premium de Aplicación Multi-Página con Elementos Interactivos y Animaciones Dinámicas',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
     techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
-    price: 49.99,
+    price: 110.99,
     icon: <FiShoppingCart />,
     category: 'advanced'
   },
   {
     id: 'multispa-002',
-    name: 'Plantilla de Aplicación Multi-Páginas con traducción al Inglés y Español, Popups informativos/interactivos Integrados y Animaciones',
+    name: 'Plantilla Premium de Aplicación Multi-Página Bilingüe con Elementos Interactivos y Animaciones Dinámicas',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
     techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
-    price: 49.99,
+    price: 199.99,
     icon: <FiShoppingCart />,
     category: 'advanced'
   },
@@ -218,8 +218,8 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         onClick={() => setIsModalOpen(true)}
       >
         <div className="text-purple-400 text-4xl mb-4 group-hover:scale-110 transition-transform duration-500 ease-out">{product.icon}</div>
-        <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3 line-clamp-2">{product.name}</h3>
-        <p className="text-violet-200 text-sm mb-4 line-clamp-3 group-hover:text-violet-100 transition-colors duration-300">{product.description}</p>
+        <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3 group-hover:text-white transition-colors duration-300 line-clamp-4">{product.name}</h3>
+        <p className="text-violet-200 text-sm mb-4 line-clamp-1 group-hover:text-violet-100 transition-colors duration-300">{product.description}</p>
         <div className="text-3xl font-bold text-white mb-4 flex items-center gap-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-500 transition-all duration-300">
           <span className="text-lg text-violet-300 group-hover:text-purple-400">$</span>
           {product.price}
@@ -289,17 +289,32 @@ const TiendaPage: React.FC = () => {
     <div className="min-h-screen bg-theme-gradient pt-20 relative">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
       <Header />
+      <motion.h1
+        className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 text-center mb-16"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        Tienda de Software
+      </motion.h1>
       <main className="container mx-auto px-4 py-16 relative z-10">
-        <motion.h1 
-          className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 text-center mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Tienda de Software
-        </motion.h1>
-        {/* Carrusel de Productos Básicos */}
+        {/* Carrusel de Productos Avanzados */}
         <section className="mb-16">
+          <h2 className="text-2xl font-semibold text-white mb-8">Soluciones Avanzadas</h2>
+          <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200">
+            <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
+              {products
+                .filter(product => product.category === 'advanced')
+                .map(product => (
+                  <div key={product.id} className="w-80 flex-shrink-0">
+                    <ProductCard product={product} />
+                  </div>
+                ))}
+            </div>
+          </div>
+        </section>
+        {/* Carrusel de Productos Básicos */}
+        <section>
           <h2 className="text-2xl font-semibold text-white mb-8">Plantillas y Productos Básicos</h2>
           <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200">
             <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
@@ -314,21 +329,6 @@ const TiendaPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Carrusel de Productos Avanzados */}
-        <section>
-          <h2 className="text-2xl font-semibold text-white mb-8">Soluciones Avanzadas</h2>
-          <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200">
-            <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
-              {products
-                .filter(product => product.category === 'advanced')
-                .map(product => (
-                  <div key={product.id} className="w-80 flex-shrink-0">
-                    <ProductCard product={product} />
-                  </div>
-                ))}
-            </div>
-          </div>
-        </section>
       </main>
       <AnimatedFooter />
     </div>
