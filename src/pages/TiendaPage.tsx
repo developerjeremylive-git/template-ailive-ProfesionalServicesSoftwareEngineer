@@ -221,7 +221,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handlePayPalCheckout = async () => {
-    window.open(`https://www.paypal.com/paypalme/yourAccount/${product.price}`, '_blank');
+    window.open(`https://www.paypal.com/paypalme/jeremylivegonzalez/${product.price}`, '_blank');
   };
 
   return (

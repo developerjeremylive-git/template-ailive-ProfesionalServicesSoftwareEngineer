@@ -499,7 +499,7 @@ export default function PricingPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center max-w-3xl mx-auto mb-10"
+              className="text-center max-w-3xl mx-auto mb-16"
             >
               <motion.h1
                 className="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 text-center mb-6 drop-shadow-[0_0_25px_rgba(168,85,247,0.35)] tracking-tight leading-none px-4 mt-8"
@@ -593,7 +593,7 @@ export default function PricingPage() {
                       scale: 1.03,
                       transition: { duration: 0.2 }
                     }}
-                    className={`pricing-card relative rounded-2xl p-6 backdrop-blur-sm
+                    className={`pricing-card relative rounded-2xl p-8 backdrop-blur-sm
                     border-2 transition-all duration-300 ease-in-out cursor-pointer
                     ${plan.popular ? `border-[${planColor.border}]` : `border-[${planColor.primary}]`}
                     ${planColor.hover}
@@ -666,7 +666,7 @@ export default function PricingPage() {
                       )}
                     </div>
 
-                    <ul className="space-y-4 mb-2 relative">
+                    <ul className="space-y-4 mb-8 relative">
                       {plan.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-start">
                           <span className={`w-5 h-5 mr-3 flex-shrink-0 mt-0.5 bg-gradient-to-r ${planColor.button} rounded-full flex items-center justify-center`}>
@@ -706,7 +706,7 @@ export default function PricingPage() {
                         </span>
                       </motion.button> */}
 
-                      <div>
+                      <div className="mt-4">
                         <motion.div
                           className="relative h-[52px] text-black font-medium"
                           whileHover={{ scale: 1.02 }}
