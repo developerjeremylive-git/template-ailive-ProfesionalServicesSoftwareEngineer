@@ -187,69 +187,69 @@ export default function PricingPage() {
   const fallbackPlans = [
     {
       id: 'free',
-      name: currentLanguage === 'es' ? 'Gratis' : 'Free',
-      description: currentLanguage === 'es' ? 'Funciones básicas para uso personal' : 'Basic features for personal use',
+      name: currentLanguage === 'es' ? 'Consulta Inicial' : 'Initial Consultation',
+      description: currentLanguage === 'es' ? 'Primera sesión de consultoría tecnológica' : 'First technology consultation session',
       price_monthly: 0,
       price_yearly: 0,
       billing_cycle: 'monthly',
       features: [
-        currentLanguage === 'es' ? 'Desarrollo web básico' : 'Basic Web Development',
-        currentLanguage === 'es' ? 'Despliegue en la nube' : 'Cloud Deployment',
-        currentLanguage === 'es' ? 'Aplicación móvil básica' : 'Basic Mobile App',
-        currentLanguage === 'es' ? 'Integración de IA básica' : 'Basic AI Integration',
-        currentLanguage === 'es' ? 'Soporte técnico 24/7' : '24/7 Technical Support'
+        currentLanguage === 'es' ? '30 minutos de consultoría gratuita' : '30 minutes free consultation',
+        currentLanguage === 'es' ? 'Evaluación de necesidades tecnológicas' : 'Technology needs assessment',
+        currentLanguage === 'es' ? 'Recomendaciones iniciales' : 'Initial recommendations',
+        currentLanguage === 'es' ? 'Plan de acción preliminar' : 'Preliminary action plan',
+        currentLanguage === 'es' ? 'Presupuesto estimado' : 'Estimated budget'
       ],
       popular: false,
     },
     {
       id: 'starter',
-      name: currentLanguage === 'es' ? 'Inicial' : 'Starter',
-      description: currentLanguage === 'es' ? 'Funciones mejoradas para equipos pequeños' : 'Enhanced features for small teams',
-      price_monthly: 9.99,
-      price_yearly: 99.99,
+      name: currentLanguage === 'es' ? 'Consultoría Básica' : 'Basic Consulting',
+      description: currentLanguage === 'es' ? 'Asesoramiento tecnológico esencial' : 'Essential technology consulting',
+      price_monthly: 199.99,
+      price_yearly: 1999.99,
       billing_cycle: 'monthly',
       features: [
-        currentLanguage === 'es' ? 'Desarrollo web avanzado' : 'Advanced Web Development',
-        currentLanguage === 'es' ? 'Arquitectura cloud escalable' : 'Scalable Cloud Architecture',
-        currentLanguage === 'es' ? 'Aplicación móvil multiplataforma' : 'Cross-platform Mobile App',
-        currentLanguage === 'es' ? 'Modelos de IA personalizados' : 'Custom AI Models',
-        currentLanguage === 'es' ? 'Integración de APIs' : 'API Integration',
-        currentLanguage === 'es' ? 'Soporte técnico prioritario' : 'Priority Technical Support'
+        currentLanguage === 'es' ? '10 horas mensuales de consultoría' : '10 monthly consulting hours',
+        currentLanguage === 'es' ? 'Análisis de infraestructura actual' : 'Current infrastructure analysis',
+        currentLanguage === 'es' ? 'Optimización de procesos técnicos' : 'Technical process optimization',
+        currentLanguage === 'es' ? 'Soporte por correo prioritario' : 'Priority email support',
+        currentLanguage === 'es' ? 'Informes mensuales de progreso' : 'Monthly progress reports',
+        currentLanguage === 'es' ? 'Acceso a recursos técnicos' : 'Access to technical resources'
       ],
       popular: true,
     },
     {
       id: 'pro',
-      name: currentLanguage === 'es' ? 'Profesional' : 'Professional',
-      description: currentLanguage === 'es' ? 'Funciones avanzadas para empresas' : 'Advanced features for businesses',
-      price_monthly: 19.99,
-      price_yearly: 199.99,
+      name: currentLanguage === 'es' ? 'Consultoría Profesional' : 'Professional Consulting',
+      description: currentLanguage === 'es' ? 'Asesoramiento tecnológico avanzado' : 'Advanced technology consulting',
+      price_monthly: 499.99,
+      price_yearly: 4999.99,
       billing_cycle: 'monthly',
       features: [
-        currentLanguage === 'es' ? 'Todas las funciones del plan Inicial' : 'All Starter Features',
-        currentLanguage === 'es' ? 'Desarrollo SaaS completo' : 'Full SaaS Development',
-        currentLanguage === 'es' ? 'Infraestructura cloud empresarial' : 'Enterprise Cloud Infrastructure',
-        currentLanguage === 'es' ? 'Aplicaciones móviles nativas' : 'Native Mobile Applications',
-        currentLanguage === 'es' ? 'Soluciones de IA avanzadas' : 'Advanced AI Solutions',
-        currentLanguage === 'es' ? 'DevOps y CI/CD' : 'DevOps & CI/CD',
-        currentLanguage === 'es' ? 'Soporte técnico dedicado 24/7' : '24/7 Dedicated Technical Support'
+        currentLanguage === 'es' ? 'Todas las funciones del plan Básico' : 'All Basic Plan Features',
+        currentLanguage === 'es' ? '25 horas mensuales de consultoría' : '25 monthly consulting hours',
+        currentLanguage === 'es' ? 'Arquitectura de soluciones personalizadas' : 'Custom solution architecture',
+        currentLanguage === 'es' ? 'Consultoría de transformación digital' : 'Digital transformation consulting',
+        currentLanguage === 'es' ? 'Soporte telefónico prioritario' : 'Priority phone support',
+        currentLanguage === 'es' ? 'Revisiones semanales de proyecto' : 'Weekly project reviews',
+        currentLanguage === 'es' ? 'Acceso a workshops exclusivos' : 'Access to exclusive workshops'
       ],
       popular: false,
     },
     {
       id: 'enterprise',
-      name: currentLanguage === 'es' ? 'Empresarial' : 'Enterprise',
-      description: currentLanguage === 'es' ? 'Acceso completo para grandes organizaciones' : 'Complete access for large organizations',
-      price_monthly: 99.99,
-      price_yearly: 999.99,
+      name: currentLanguage === 'es' ? 'Consultoría Empresarial' : 'Enterprise Consulting',
+      description: currentLanguage === 'es' ? 'Consultoría tecnológica integral' : 'Comprehensive technology consulting',
+      price_monthly: 999.99,
+      price_yearly: 9999.99,
       billing_cycle: 'monthly',
       features: [
         currentLanguage === 'es' ? 'Todas las funciones del plan Profesional' : 'All Professional Features',
-        currentLanguage === 'es' ? 'Desarrollo de software personalizado' : 'Custom Software Development',
-        currentLanguage === 'es' ? 'Arquitectura cloud multinube' : 'Multi-cloud Architecture',
-        currentLanguage === 'es' ? 'Suite completa de aplicaciones móviles' : 'Complete Mobile App Suite',
-        currentLanguage === 'es' ? 'IA y Machine Learning avanzado' : 'Advanced AI & Machine Learning',
-        currentLanguage === 'es' ? 'Equipo de desarrollo dedicado' : 'Dedicated Development Team'
+        currentLanguage === 'es' ? 'Horas ilimitadas de consultoría' : 'Unlimited consulting hours',
+        currentLanguage === 'es' ? 'Consultor tecnológico dedicado' : 'Dedicated technology consultant',
+        currentLanguage === 'es' ? 'Estrategia tecnológica personalizada' : 'Custom technology strategy',
+        currentLanguage === 'es' ? 'Soporte 24/7 con respuesta inmediata' : '24/7 immediate response support',
+        currentLanguage === 'es' ? 'Auditorías tecnológicas trimestrales' : 'Quarterly technology audits'
       ],
       popular: false,
     },
@@ -751,32 +751,32 @@ export default function PricingPage() {
             {/* FAQ Section */}
             <div className="mt-24 max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-center text-[var(--theme-text-primary)] mb-12">
-                {currentLanguage === 'es' ? 'Preguntas Frecuentes sobre Nuestros Servicios' : 'Frequently Asked Questions About Our Services'}
+                {currentLanguage === 'es' ? 'Preguntas Frecuentes sobre Nuestros Servicios Profesionales' : 'Frequently Asked Questions About Our Professional Services'}
               </h2>
               <div className="grid gap-8">
                 <div>
                   <h3 className="text-xl font-semibold text-[var(--theme-text-primary)] mb-2">
-                    {currentLanguage === 'es' ? '¿Qué incluyen los servicios de desarrollo de software?' : 'What do the software development services include?'}
+                    {currentLanguage === 'es' ? '¿Qué servicios profesionales ofrecen?' : 'What professional services do you offer?'}
                   </h3>
-                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Nuestros servicios de desarrollo incluyen soluciones web personalizadas, aplicaciones cloud nativas, desarrollo móvil multiplataforma y soluciones de IA avanzadas. Trabajamos con metodologías ágiles y las últimas tecnologías.' : 'Our development services include custom web solutions, cloud-native applications, cross-platform mobile development, and advanced AI solutions. We work with agile methodologies and the latest technologies.'}</p>
+                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Ofrecemos servicios integrales de desarrollo de software personalizado, implementación de soluciones cloud, y desarrollo de aplicaciones de IA avanzadas. Nuestro equipo está especializado en crear soluciones empresariales escalables y eficientes.' : 'We offer comprehensive custom software development services, cloud solution implementation, and advanced AI application development. Our team specializes in creating scalable and efficient enterprise solutions.'}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[var(--theme-text-primary)] mb-2">
-                    {currentLanguage === 'es' ? '¿Cómo funcionan los servicios cloud?' : 'How do cloud services work?'}
+                    {currentLanguage === 'es' ? '¿Cómo garantizan la calidad del servicio?' : 'How do you ensure service quality?'}
                   </h3>
-                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Ofrecemos servicios cloud completos que incluyen arquitectura, implementación y gestión de infraestructura. Utilizamos prácticas DevOps, contenedores y microservicios para garantizar escalabilidad y eficiencia.' : 'We offer comprehensive cloud services including architecture, implementation, and infrastructure management. We use DevOps practices, containers, and microservices to ensure scalability and efficiency.'}</p>
+                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Implementamos metodologías ágiles con ciclos de retroalimentación constante, pruebas rigurosas y control de calidad en cada fase. Utilizamos las mejores prácticas de la industria y mantenemos una comunicación transparente durante todo el proyecto.' : 'We implement agile methodologies with constant feedback cycles, rigorous testing, and quality control at every phase. We use industry best practices and maintain transparent communication throughout the project.'}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[var(--theme-text-primary)] mb-2">
-                    {currentLanguage === 'es' ? '¿Qué ofrecen los servicios de IA?' : 'What do AI services offer?'}
+                    {currentLanguage === 'es' ? '¿Qué tecnologías y herramientas utilizan?' : 'What technologies and tools do you use?'}
                   </h3>
-                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Nuestros servicios de IA incluyen desarrollo de modelos personalizados, fine-tuning de LLMs, implementación de agentes inteligentes y soluciones de machine learning. Garantizamos resultados medibles y optimización continua.' : 'Our AI services include custom model development, LLM fine-tuning, intelligent agent implementation, and machine learning solutions. We ensure measurable results and continuous optimization.'}</p>
+                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Trabajamos con las últimas tecnologías en desarrollo web, cloud computing y machine learning. Utilizamos frameworks modernos, herramientas de IA avanzadas y plataformas cloud líderes para entregar soluciones robustas y escalables.' : 'We work with the latest technologies in web development, cloud computing, and machine learning. We use modern frameworks, advanced AI tools, and leading cloud platforms to deliver robust and scalable solutions.'}</p>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[var(--theme-text-primary)] mb-2">
-                    {currentLanguage === 'es' ? '¿Cómo es el proceso de desarrollo?' : 'What is the development process?'}
+                    {currentLanguage === 'es' ? '¿Cómo manejan el soporte y mantenimiento?' : 'How do you handle support and maintenance?'}
                   </h3>
-                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Seguimos una metodología ágil que incluye análisis de requisitos, diseño de arquitectura, desarrollo iterativo, pruebas continuas y despliegue automatizado. Cada proyecto incluye gestión de calidad y soporte post-implementación.' : 'We follow an agile methodology that includes requirements analysis, architecture design, iterative development, continuous testing, and automated deployment. Each project includes quality management and post-implementation support.'}</p>
+                  <p className="text-[var(--theme-text-secondary)]">{currentLanguage === 'es' ? 'Ofrecemos soporte técnico continuo, monitoreo proactivo y mantenimiento regular de todas las soluciones implementadas. Nuestro equipo está disponible para resolver problemas y realizar actualizaciones según sea necesario.' : 'We provide ongoing technical support, proactive monitoring, and regular maintenance of all implemented solutions. Our team is available to resolve issues and perform updates as needed.'}</p>
                 </div>
               </div>
             </div>

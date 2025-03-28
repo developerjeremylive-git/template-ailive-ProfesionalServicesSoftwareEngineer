@@ -351,10 +351,10 @@ const TiendaPage: React.FC = () => {
       >
         Tienda de Software
       </motion.h1>
-      <main className="container mx-auto px-4 relative z-10"
+      <main className="container mx-auto px-4 relative z-10 mb-11"
       >
         {/* Carrusel de Productos Avanzados */}
-        <section className="mb-16">
+        <section className="mb-14">
           <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3">Soluciones Avanzadas</h2>
           <div className="relative">
             <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200 scroll-smooth"
@@ -370,7 +370,7 @@ const TiendaPage: React.FC = () => {
                   ))}
               </div>
             </div>
-            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 flex gap-1 py-2">
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 flex gap-1">
               {Array.from({ length: 10 }).map((_, i) => (
                 <div
                   key={i}
@@ -404,7 +404,7 @@ const TiendaPage: React.FC = () => {
                   ))}
               </div>
             </div>
-            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 flex gap-1 py-2">
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 flex gap-1">
               {Array.from({ length: 10 }).map((_, i) => (
                 <div
                   key={i}
