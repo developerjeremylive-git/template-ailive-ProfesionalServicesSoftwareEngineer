@@ -499,7 +499,7 @@ export default function PricingPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center max-w-3xl mx-auto mb-16"
+              className="text-center max-w-3xl mx-auto mb-10"
             >
               <motion.h1
                 className="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 text-center mb-6 drop-shadow-[0_0_25px_rgba(168,85,247,0.35)] tracking-tight leading-none px-4 mt-8"
@@ -593,7 +593,7 @@ export default function PricingPage() {
                       scale: 1.03,
                       transition: { duration: 0.2 }
                     }}
-                    className={`pricing-card relative rounded-2xl p-8 backdrop-blur-sm
+                    className={`pricing-card relative rounded-2xl p-6 backdrop-blur-sm
                     border-2 transition-all duration-300 ease-in-out cursor-pointer
                     ${plan.popular ? `border-[${planColor.border}]` : `border-[${planColor.primary}]`}
                     ${planColor.hover}
@@ -666,7 +666,7 @@ export default function PricingPage() {
                       )}
                     </div>
 
-                    <ul className="space-y-4 mb-8 relative">
+                    <ul className="space-y-4 mb-2 relative">
                       {plan.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-start">
                           <span className={`w-5 h-5 mr-3 flex-shrink-0 mt-0.5 bg-gradient-to-r ${planColor.button} rounded-full flex items-center justify-center`}>
@@ -678,7 +678,7 @@ export default function PricingPage() {
                     </ul>
 
                     <div className="space-y-6 p-4">
-                      <motion.button
+                      {/* <motion.button
                         whileHover={{ scale: 1.02, boxShadow: '0 8px 16px rgba(123, 43, 249, 0.2)' }}
                         whileTap={{ scale: 0.98 }}
                         style={{
@@ -704,9 +704,9 @@ export default function PricingPage() {
                             <div className="ml-2 animate-spin rounded-full h-5 w-5 border-t-2 border-white"></div>
                           )}
                         </span>
-                      </motion.button>
+                      </motion.button> */}
 
-                      <div className="mt-4">
+                      <div>
                         <motion.div
                           className="relative h-[52px] text-black font-medium"
                           whileHover={{ scale: 1.02 }}
