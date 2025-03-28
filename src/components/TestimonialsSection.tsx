@@ -198,6 +198,21 @@ export default function TestimonialsSection() {
 
 				{/* Testimonials Carousel */}
 				<div className="relative max-w-7xl mx-auto mb-32 px-12">
+					{/* Scroll Indicator */}
+					<div className="flex justify-center mb-8 gap-1">
+						{testimonials.map((_, index) => (
+							<motion.div
+								key={index}
+								className="h-1 w-8 rounded-full bg-purple-500"
+								initial={{ opacity: 0.3 }}
+								animate={{
+									opacity: Math.abs(currentIndex - index) < 3 ? 1 : 0.3,
+									backgroundColor: Math.abs(currentIndex - index) < 3 ? '#8B5CF6' : '#4B5563'
+								}}
+								transition={{ duration: 0.5 }}
+							/>
+						))}
+					</div>
 					<div className="overflow-hidden">
 						<motion.div
 							className="flex"

@@ -501,10 +501,15 @@ export default function PricingPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-center max-w-3xl mx-auto mb-16"
             >
-              <h1 className="text-4xl md:text-5xl font-bold text-[var(--theme-text-primary)] mb-6">
+              <motion.h1
+                className="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 text-center mb-6 drop-shadow-[0_0_25px_rgba(168,85,247,0.35)] tracking-tight leading-none px-4 mt-8"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+              >
                 {currentLanguage === 'es' ? 'Precios Simples y Transparentes' : 'Simple, Transparent Pricing'}
-              </h1>
-              <p className="text-lg text-[var(--theme-text-secondary)]">
+              </motion.h1>
+              <p className="text-xl text-[var(--theme-text-secondary)] max-w-3xl mx-auto leading-relaxed">
                 {currentLanguage === 'es' ? 'Elige el plan que mejor se adapte a tus necesidades' : 'Choose the plan that best fits your needs'}
               </p>
 

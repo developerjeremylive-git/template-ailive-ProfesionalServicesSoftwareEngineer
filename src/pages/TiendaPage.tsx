@@ -231,7 +231,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         whileHover={!product.coming_soon ? { scale: 1.02, y: -3 } : {}}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: 'easeOut' }}
+        transition={{ duration: 0.1, ease: 'easeOut' }}
         onClick={() => !product.coming_soon && setIsModalOpen(true)}
       >
         <div className={`text-purple-400 text-4xl mb-4 ${product.coming_soon ? 'opacity-50' : 'group-hover:scale-110'} transition-transform duration-500 ease-out`}>{product.icon}</div>
@@ -325,62 +325,103 @@ const TiendaPage: React.FC = () => {
       e.preventDefault();
       e.currentTarget.scrollLeft += e.deltaY;
       setIsScrolling(true);
-      clearTimeout(window.scrollTimeout);
-      window.scrollTimeout = setTimeout(() => setIsScrolling(false), 800);
+      clearTimeout((window as any).scrollTimeout);
+      (window as any).scrollTimeout = setTimeout(() => setIsScrolling(false), 800);
     }
   };
 
   return (
-    <div className="min-h-screen bg-theme-gradient pt-20 relative">
+    <div className="min-h-screen bg-theme-gradient pt-32 relative overflow-y-scroll scrollbar-none" style={{ msOverflowStyle: 'none', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+      <style>{`
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+`}</style>
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
       <Header />
       <motion.h1
-        className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 text-center mb-16"
+        className="text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600 text-center mb-20 drop-shadow-[0_0_25px_rgba(168,85,247,0.35)] tracking-tight leading-none px-4"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
       >
         Tienda de Software
       </motion.h1>
-      <main className="container mx-auto px-4 py-16 relative z-10">
+      <main className="container mx-auto px-4 relative z-10"
+      >
         {/* Carrusel de Productos Avanzados */}
         <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-white mb-8">Soluciones Avanzadas</h2>
-          <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200"
-            onWheel={handleWheel}
-          >
-            <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
-              {products
-                .filter(product => product.category === 'advanced')
-                .map(product => (
-                  <div key={product.id} className="w-80 flex-shrink-0">
-                    <ProductCard product={product} />
-                  </div>
-                ))}
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3">Soluciones Avanzadas</h2>
+          <div className="relative">
+            <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200 scroll-smooth"
+              onWheel={handleWheel}
+            >
+              <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
+                {products
+                  .filter(product => product.category === 'advanced')
+                  .map(product => (
+                    <div key={product.id} className="w-80 flex-shrink-0">
+                      <ProductCard product={product} />
+                    </div>
+                  ))}
+              </div>
+            </div>
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 flex gap-1 py-2">
+              {Array.from({ length: 10 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="w-8 h-1 bg-purple-500/30 rounded-full transition-all duration-300"
+                  style={{
+                    transform: `scaleX(${i === Math.floor((document.querySelector('.overflow-x-auto')?.scrollLeft || 0) / 200) ? 1.5 : 1})`,
+                    opacity: i === Math.floor((document.querySelector('.overflow-x-auto')?.scrollLeft || 0) / 200) ? 1 : 0.3
+                  }}
+                />
+              ))}
             </div>
           </div>
         </section>
         {/* Carrusel de Productos Básicos */}
         <section>
-          <h2 className="text-2xl font-semibold text-white mb-8">Plantillas y Productos Básicos</h2>
-          <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200"
-            onWheel={handleWheel}
-          >
-            <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
-              {products
-                .filter(product => product.category === 'basic')
-                .map(product => (
-                  <div key={product.id} className="w-80 flex-shrink-0">
-                    <ProductCard product={product} />
-                  </div>
-                ))}
+          <div className="mb-6">
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3">Plantillas y Productos Básicos</h2>
+          <p className="text-violet-200 text-lg">Comienza rápidamente con nuestras plantillas optimizadas y productos esenciales</p>
+          </div>
+          <div className="relative">
+            <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200 scroll-smooth"
+              onWheel={handleWheel}
+            >
+              <div className="flex gap-6" style={{ minWidth: 'max-content', paddingTop: '3px', paddingBottom: '3px' }}>
+                {products
+                  .filter(product => product.category === 'basic')
+                  .map(product => (
+                    <div key={product.id} className="w-80 flex-shrink-0">
+                      <ProductCard product={product} />
+                    </div>
+                  ))}
+              </div>
+            </div>
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 flex gap-1 py-2">
+              {Array.from({ length: 10 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="w-8 h-1 bg-purple-500/30 rounded-full transition-all duration-300"
+                  style={{
+                    transform: `scaleX(${i === Math.floor((document.querySelector('.overflow-x-auto:last-child')?.scrollLeft || 0) / 200) ? 1.5 : 1})`,
+                    opacity: i === Math.floor((document.querySelector('.overflow-x-auto:last-child')?.scrollLeft || 0) / 200) ? 1 : 0.3
+                  }}
+                />
+              ))}
             </div>
           </div>
         </section>
 
       </main>
       <AnimatedFooter />
-    </div>
+    </div >
   );
 };
 
