@@ -233,7 +233,7 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 									</div>
 								</div>
 							</nav>
-							<nav className="hidden md:flex items-center space-x-6">
+							{/* <nav className="hidden md:flex items-center space-x-6">
 								<Link
 									to="/pricing"
 									className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 
@@ -246,7 +246,7 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 								>
 									{'Precios'}
 								</Link>
-							</nav>
+							</nav> */}
 							<nav className="hidden md:flex items-center space-x-6">
 								<Link
 									to="/tienda"
@@ -432,7 +432,7 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 									</div>
 								</div>
 
-								<Link
+								{/* <Link
 									to="/pricing"
 									className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-300 
 										${location.pathname === '/pricing'
@@ -442,7 +442,7 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 									onClick={() => setIsMenuOpen(false)}
 								>
 									{'Precios'}
-								</Link>
+								</Link> */}
 
 								<Link
 									to="/tienda"

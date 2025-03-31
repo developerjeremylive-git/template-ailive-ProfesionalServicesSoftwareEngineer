@@ -382,7 +382,7 @@ export default function PricingPage() {
         return;
       }
 
-      const stripe = new Stripe(import.meta.env.VITE_STRIPE_SECRET_KEY as string);
+      const stripe = new Stripe((import.meta as any).env.VITE_STRIPE_SECRET_KEY as string);
 
       if (customerId) {
         try {
@@ -485,7 +485,8 @@ export default function PricingPage() {
   return (
     <PayPalScriptProvider
       options={{
-        "client-id": import.meta.env ? import.meta.env.VITE_PAYPAL_CLIENT_ID || "" : "",
+        clientId: (import.meta as any).env ? (import.meta as any).env.VITE_PAYPAL_CLIENT_ID || "" : "",
+        "client-id": (import.meta as any).env ? (import.meta as any).env.VITE_PAYPAL_CLIENT_ID || "" : "",
         currency: "USD",
         vault: true,
         locale: currentLanguage === 'es' ? 'es_MX' : 'en_US'

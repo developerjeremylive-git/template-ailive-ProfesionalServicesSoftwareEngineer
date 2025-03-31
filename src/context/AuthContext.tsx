@@ -99,9 +99,9 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 async function getPayPalAccessToken(): Promise<string> {
   try {
-    const PAYPAL_API_URL = import.meta.env.VITE_PAYPAL_API_URL || 'https://api-m.sandbox.paypal.com';
-    const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID;
-    const PAYPAL_SECRET = import.meta.env.VITE_PAYPAL_CLIENT_SECRET;
+    const PAYPAL_API_URL = (import.meta as any).env.VITE_PAYPAL_API_URL || 'https://api-m.paypal.com';
+    const PAYPAL_CLIENT_ID = (import.meta as any).env.VITE_PAYPAL_CLIENT_ID;
+    const PAYPAL_SECRET = (import.meta as any).env.VITE_PAYPAL_CLIENT_SECRET;
 
     if (!PAYPAL_CLIENT_ID || !PAYPAL_SECRET) {
       throw new Error('PayPal client ID or secret not found in environment variables');
@@ -853,9 +853,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Get PayPal access token
   async function getPayPalAccessToken(): Promise<string> {
     try {
-      const clientId = import.meta.env.VITE_PAYPAL_CLIENT_ID;
-      const clientSecret = import.meta.env.VITE_PAYPAL_CLIENT_SECRET;
-      const apiUrl = import.meta.env.VITE_PAYPAL_API_URL;
+      const clientId = (import.meta as any).env.VITE_PAYPAL_CLIENT_ID;
+      const clientSecret = (import.meta as any).env.VITE_PAYPAL_CLIENT_SECRET;
+      const apiUrl = (import.meta as any).env.VITE_PAYPAL_API_URL;
 
       if (!clientId || !clientSecret) {
         throw new Error('PayPal credentials are not properly configured');
@@ -897,7 +897,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   async function createPaypalCustomer(email: string, name?: string): Promise<{ id: string } | undefined> {
     try {
       const accessToken = await getPayPalAccessToken();
-      const PAYPAL_API_URL = import.meta.env.VITE_PAYPAL_API_URL || 'https://api-m.sandbox.paypal.com';
+      const PAYPAL_API_URL = (import.meta as any).env.VITE_PAYPAL_API_URL || 'https://api-m.paypal.com';
 
       // Create a subscription directly instead of creating a customer
       const response = await fetch(`${PAYPAL_API_URL}/v1/billing/subscriptions`, {
@@ -908,7 +908,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           'Prefer': 'return=representation'
         },
         body: JSON.stringify({
-          plan_id: import.meta.env.VITE_PAYPAL_PLAN_ID || 'P-5ML4271532192UIU2',
+          plan_id: (import.meta as any).env.VITE_PAYPAL_PLAN_ID || 'P-5ML4271532192UIU2',
           start_time: new Date(Date.now() + 5 * 60 * 1000).toISOString(),
           quantity: "1",
           application_context: {
@@ -954,7 +954,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   async function redirectToPaypal(customerId: string): Promise<string | undefined> {
     try {
       const accessToken = await getPayPalAccessToken();
-      const PAYPAL_API_URL = import.meta.env.VITE_PAYPAL_API_URL || 'https://api-m.sandbox.paypal.com';
+      const PAYPAL_API_URL = (import.meta as any).env.VITE_PAYPAL_API_URL || 'https://api-m.paypal.com';
 
       const response = await fetch(`${PAYPAL_API_URL}/v1/billing/subscriptions`, {
         method: 'POST',
