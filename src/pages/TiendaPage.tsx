@@ -416,7 +416,23 @@ const products: Product[] = [
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeepseekEnabled, setIsDeepseekEnabled] = useState(false);
+  const [selectedSupportPlan, setSelectedSupportPlan] = useState<'3' | '6' | '12' | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const deepseekPrice = 29.99;
+  const supportPlanPrices = {
+    '3': 49.99,
+    '6': 89.99,
+    '12': 159.99
+  };
+
+  const calculateTotalPrice = () => {
+    let total = product.price;
+    if (isDeepseekEnabled) total += deepseekPrice;
+    if (selectedSupportPlan) total += supportPlanPrices[selectedSupportPlan];
+    return total.toFixed(2);
+  };
 
   useEffect(() => {
     if (!isModalOpen && videoRef.current) {
@@ -438,7 +454,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   }, [isModalOpen]);
 
   const handlePayPalCheckout = async () => {
-    window.open(`https://www.paypal.com/paypalme/jeremylivegonzalez/${product.price}`, '_blank');
+    window.open(`https://www.paypal.com/paypalme/jeremylivegonzalez/${calculateTotalPrice()}`, '_blank');
   };
 
   return (
@@ -467,7 +483,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           {product.previewStack?.map((tech, index) => (
             <span
               key={index}
-              className="px-3 py-1.5 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium backdrop-blur-sm border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/30 hover:text-white transform hover:scale-105 transition-all duration-300 ease-out"
+              className="px-3 py-1.5 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium backdrop-blur-md border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/30 hover:text-white hover:shadow-[0_0_10px_rgba(139,92,246,0.3)] transform hover:scale-105 transition-all duration-300 ease-out"
             >
               {tech}
             </span>
@@ -476,17 +492,18 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       </motion.div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 overflow-y-auto py-8" onClick={() => setIsModalOpen(false)}>
+        <div className="fixed inset-0 bg-black/75 backdrop-blur-md flex items-center justify-center z-50 overflow-y-auto py-8" onClick={() => setIsModalOpen(false)}>
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.95, opacity: 0, y: -20 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 max-w-4xl w-full mx-auto my-auto relative border border-purple-500/30 shadow-xl shadow-purple-500/20"
+            className="bg-gradient-to-br from-gray-900/95 via-gray-800/95 to-purple-900/95 rounded-3xl p-8 max-w-4xl w-full mx-auto my-auto relative border border-purple-500/40 shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:shadow-[0_0_40px_rgba(139,92,246,0.4)] transition-shadow duration-500"
           >
             <div className="flex flex-col gap-8">
               {product.price === 89.99 && (
-                <div className="w-full rounded-xl overflow-hidden">
+                <div className="w-full rounded-xl overflow-hidden ring-2 ring-purple-500/30 shadow-lg shadow-purple-500/20">
                   <video
                     ref={videoRef}
                     className="w-full h-[400px] object-cover"
@@ -501,7 +518,14 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
               )}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-6">{product.name}</h2>
+                  <h2
+                    className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-purple-400 to-pink-500 mb-6 relative group/tooltip animate-gradient-x"
+                  >
+                    {product.name}
+                    <div className="absolute bottom-full left-0 mb-2 w-72 p-4 bg-gray-800/95 backdrop-blur-md rounded-xl shadow-[0_0_20px_rgba(139,92,246,0.2)] border border-purple-500/30 opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-300 z-50">
+                      <p className="text-violet-200 text-sm">{product.description}</p>
+                    </div>
+                  </h2>
 
                   <div className="mb-8 group relative">
                     <h3 className="text-xl font-semibold text-white mb-4">Stack Tecnológico:</h3>
@@ -511,7 +535,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                           {product.techStack.map((tech, index) => (
                             <span
                               key={index}
-                              className="px-3 py-1.5 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium backdrop-blur-sm border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/30 hover:text-white transform hover:scale-105 transition-all duration-300 ease-out"
+                              className="px-3 py-1.5 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium backdrop-blur-md border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/30 hover:text-white hover:shadow-[0_0_10px_rgba(139,92,246,0.3)] transform hover:scale-105 transition-all duration-300 ease-out"
                             >
                               {tech.name}
                             </span>
@@ -528,10 +552,10 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                               <div className="flex flex-wrap gap-2">
                                 {category.technologies.map((tech, techIndex) => (
                                   <div key={techIndex} className="group/tech relative">
-                                    <span className="px-3 py-1.5 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium backdrop-blur-sm border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/30 hover:text-white transform hover:scale-105 transition-all duration-300 ease-out">
+                                    <span className="px-3 py-1.5 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium backdrop-blur-md border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/30 hover:text-white hover:shadow-[0_0_10px_rgba(139,92,246,0.3)] transform hover:scale-105 transition-all duration-300 ease-out">
                                       {tech.name}
                                     </span>
-                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-4 bg-gray-800/95 backdrop-blur-sm rounded-xl shadow-xl opacity-0 invisible group-hover/tech:opacity-100 group-hover/tech:visible transition-all duration-200 z-10">
+                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-4 bg-gray-800/95 backdrop-blur-md rounded-xl shadow-[0_0_20px_rgba(139,92,246,0.2)] border border-purple-500/30 opacity-0 invisible group-hover/tech:opacity-100 group-hover/tech:visible transition-all duration-200 z-10">
                                       <div className="text-sm text-violet-200">{tech.description}</div>
                                       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 transform rotate-45 w-2 h-2 bg-gray-800/95"></div>
                                     </div>
@@ -543,15 +567,15 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                         </div>
                       )}
                     </div>
-                    <div className="absolute -translate-x-[calc(20%)] w-[calc(100%+69rem)] bg-gray-800/95 backdrop-blur-sm rounded-xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform -translate-y-[740px] transition-all duration-300 ease-out z-20 shadow-xl border border-purple-500/30">
+                    <div className="absolute -translate-x-[calc(17%)] w-[calc(100%+50rem)] bg-gray-800/95 backdrop-blur-md rounded-xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform -translate-y-[500px] transition-all duration-300 ease-out z-20 shadow-[0_0_30px_rgba(139,92,246,0.3)] border border-purple-500/40">
                       <h4 className="text-xl font-semibold text-white mb-4">Stack Tecnológico Completo</h4>
-                      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-                        <div className="space-y-4">
+                      <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
+                        <div className="space-y-4 w-[calc(100%+12.3rem)]" style={{ gridColumn: 'span 1.5' }}>
                           <h5 className="text-lg font-semibold text-purple-300">Frontend</h5>
                           <div className="space-y-2">
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-3 gap-4">
                               {product.techStack.find(cat => cat.name === 'Frontend')?.technologies.map((tech, techIndex) => (
-                                <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+                                <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)] hover:shadow-[0_0_15px_rgba(139,92,246,0.2)]">
                                   <div className="font-medium text-white mb-1">{tech.name}</div>
                                   <div className="text-sm text-violet-200">{tech.description}</div>
                                 </div>
@@ -560,10 +584,13 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                           </div>
                         </div>
                         <div className="space-y-4">
+
+                        </div>
+                        <div className="space-y-4">
                           <h5 className="text-lg font-semibold text-purple-300">Backend/Serverless</h5>
                           <div className="space-y-2">
                             {product.techStack.find(cat => cat.name === 'Backend/Serverless')?.technologies.map((tech, techIndex) => (
-                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)] hover:shadow-[0_0_15px_rgba(139,92,246,0.2)]">
                                 <div className="font-medium text-white mb-1">{tech.name}</div>
                                 <div className="text-sm text-violet-200">{tech.description}</div>
                               </div>
@@ -574,7 +601,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                           <h5 className="text-lg font-semibold text-purple-300">Base de datos y Autenticación</h5>
                           <div className="space-y-2">
                             {product.techStack.find(cat => cat.name === 'Base de datos y Autenticación')?.technologies.map((tech, techIndex) => (
-                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)] hover:shadow-[0_0_15px_rgba(139,92,246,0.2)]">
                                 <div className="font-medium text-white mb-1">{tech.name}</div>
                                 <div className="text-sm text-violet-200">{tech.description}</div>
                               </div>
@@ -585,7 +612,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                           <h5 className="text-lg font-semibold text-purple-300">Pagos</h5>
                           <div className="space-y-2">
                             {product.techStack.find(cat => cat.name === 'Pagos')?.technologies.map((tech, techIndex) => (
-                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)] hover:shadow-[0_0_15px_rgba(139,92,246,0.2)]">
                                 <div className="font-medium text-white mb-1">{tech.name}</div>
                                 <div className="text-sm text-violet-200">{tech.description}</div>
                               </div>
@@ -596,7 +623,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                           <h5 className="text-lg font-semibold text-purple-300">Herramientas de Desarrollo</h5>
                           <div className="space-y-2">
                             {product.techStack.find(cat => cat.name === 'Herramientas de Desarrollo')?.technologies.map((tech, techIndex) => (
-                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)] hover:shadow-[0_0_15px_rgba(139,92,246,0.2)]">
                                 <div className="font-medium text-white mb-1">{tech.name}</div>
                                 <div className="text-sm text-violet-200">{tech.description}</div>
                               </div>
@@ -606,24 +633,91 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                       </div>
                     </div>
                   </div>
+
+                  {/* 
+                  Crea dos extra para el producto, son checkbox, deben tener un hover que muestre la info de cada uno, tu colocale el precio, el precio se suma al precio del producto.:
+                  - Deepseek: Worker AI of cloudflare that give access to the model DeepSeek-R1-Distill-Qwen-32B dialy with 10K tokens
+                  - Deepseek/cualquier otro LLM + Soporte tecnico (3/6/12 meses)
+
+                estos extra van hacer checkBox que al estar activados se va a cambiar el boton de "Pagar con Paypal" y el numero del precio por el producto + el extra que se haya seleccionado.              
+                */}
+
                 </div>
                 <div>
                   <div className="sticky top-8">
-                    <p className="text-violet-200 text-lg mb-8">{product.description}</p>
+                    {/* <p className="text-violet-200 text-lg mb-8">{product.description}</p> */}
+
+                    <div className="mb-8">
+                      <h3 className="text-xl font-semibold text-white mb-4">Extras Disponibles:</h3>
+                      <div className="space-y-4 mb-8">
+                        <div className="relative group/deepseek">
+                          <label className="flex items-center space-x-3 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={isDeepseekEnabled}
+                              onChange={(e) => setIsDeepseekEnabled(e.target.checked)}
+                              className="form-checkbox h-5 w-5 text-purple-500 rounded border-purple-500/30 bg-purple-500/10 focus:ring-purple-500 focus:ring-offset-0"
+                            />
+                            <span className="text-white">Deepseek AI Worker</span>
+                            <span className="text-purple-400 font-medium">${deepseekPrice}/mes</span>
+                          </label>
+                          <div className="absolute bottom-full left-0 mb-2 w-72 p-4 bg-gray-800/95 backdrop-blur-sm rounded-xl shadow-xl opacity-0 invisible group-hover/deepseek:opacity-100 group-hover/deepseek:visible transition-all duration-200 z-10">
+                            <div className="text-sm text-violet-200">Worker AI de Cloudflare que da acceso al modelo DeepSeek-R1-Distill-Qwen-32B con 10K tokens diarios</div>
+                            <div className="absolute bottom-0 left-6 translate-y-1/2 transform rotate-45 w-2 h-2 bg-gray-800/95"></div>
+                          </div>
+                        </div>
+
+                        <div className="relative w-full max-w-xs">
+                          <select
+                            value={selectedSupportPlan || ''}
+                            onChange={(e) => setSelectedSupportPlan(e.target.value as '3' | '6' | '12' | null)}
+                            className="w-full px-4 py-3 bg-purple-500/10 text-white rounded-xl border border-purple-500/30 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none cursor-pointer transition-all duration-300 hover:bg-purple-500/20"
+                          >
+                            <option value="" className="bg-gray-900">Seleccionar plan de soporte</option>
+                            <option value="3" className="bg-gray-900">3 meses - Soporte básico (${supportPlanPrices['3']})</option>
+                            <option value="6" className="bg-gray-900">6 meses - Soporte prioritario (${supportPlanPrices['6']})</option>
+                            <option value="12" className="bg-gray-900">12 meses - Soporte premium (${supportPlanPrices['12']})</option>
+                          </select>
+                          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-8 flex items-center gap-2">
                       <span className="text-2xl text-violet-300">$</span>
-                      {product.price}
+                      {calculateTotalPrice()}
                     </div>
+                    {(isDeepseekEnabled || selectedSupportPlan) && (
+                      <div className="mb-6 space-y-2">
+                        <div className="text-sm text-violet-200">
+                          <span className="font-medium">Precio base:</span> ${product.price}
+                        </div>
+                        {isDeepseekEnabled && (
+                          <div className="text-sm text-violet-200">
+                            <span className="font-medium">Deepseek AI:</span> +${deepseekPrice}
+                          </div>
+                        )}
+                        {selectedSupportPlan && (
+                          <div className="text-sm text-violet-200">
+                            <span className="font-medium">Soporte ({selectedSupportPlan} meses):</span> +${supportPlanPrices[selectedSupportPlan]}
+                          </div>
+                        )}
+                      </div>
+                    )}
                     <div className="flex flex-col gap-4">
                       <button
                         onClick={handlePayPalCheckout}
-                        className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 px-6 rounded-xl font-medium hover:shadow-lg hover:shadow-purple-500/30 transform hover:scale-105 transition-all duration-300"
+                        className="w-full bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 text-white py-4 px-6 rounded-xl font-medium shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.4)] transform hover:scale-105 transition-all duration-300 animate-gradient-x"
                       >
                         Pagar con PayPal
                       </button>
                       <button
                         onClick={() => setIsModalOpen(false)}
-                        className="w-full bg-gray-700 text-white py-4 px-6 rounded-xl font-medium hover:bg-gray-600 transition-colors duration-300"
+                        className="w-full bg-gray-700/80 backdrop-blur-sm text-white py-4 px-6 rounded-xl font-medium border border-gray-600/30 hover:bg-gray-600/80 hover:border-gray-500/40 transition-all duration-300 shadow-lg"
                       >
                         Cerrar
                       </button>
