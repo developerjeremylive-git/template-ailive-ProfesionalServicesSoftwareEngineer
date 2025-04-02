@@ -1,14 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiShoppingCart, FiCode, FiDatabase, FiCloud, FiServer, FiLayers, FiGlobe, FiSmartphone } from 'react-icons/fi';
 import Header from '../components/Header';
 import AnimatedFooter from '../components/AnimatedFooter';
 
+interface TechCategory {
+  name: string;
+  technologies: {
+    name: string;
+    description: string;
+  }[];
+}
+
 interface Product {
   id: string;
   name: string;
   description: string;
-  techStack: string[];
+  techStack: TechCategory[];
+  previewStack?: string[];
   price: number;
   icon: React.ReactNode;
   category: 'basic' | 'advanced';
@@ -21,7 +30,15 @@ const products: Product[] = [
     id: 'spa-001',
     name: 'Plantilla de Código para Aplicaciones Web de Página Única con Animaciones Suaves',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
-    techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React', description: 'Framework de UI' },
+        { name: 'TailwindCSS', description: 'Framework CSS' },
+        { name: 'Node.js', description: 'Runtime de JavaScript' },
+        { name: 'MongoDB', description: 'Base de datos NoSQL' }
+      ]
+    }],
     price: 8.99,
     icon: <FiShoppingCart />,
     category: 'basic'
@@ -30,7 +47,15 @@ const products: Product[] = [
     id: 'spa-002',
     name: 'Plantilla de Código para Aplicaciones Web de Página Única con Elementos Informativos y Animaciones Suaves',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
-    techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React', description: 'Framework de UI' },
+        { name: 'TailwindCSS', description: 'Framework CSS' },
+        { name: 'Node.js', description: 'Runtime de JavaScript' },
+        { name: 'MongoDB', description: 'Base de datos NoSQL' }
+      ]
+    }],
     price: 14.99,
     icon: <FiShoppingCart />,
     category: 'basic'
@@ -39,7 +64,15 @@ const products: Product[] = [
     id: 'basic-1',
     name: 'Plantilla E-commerce Básico',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
-    techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React', description: 'Framework de UI' },
+        { name: 'TailwindCSS', description: 'Framework CSS' },
+        { name: 'Node.js', description: 'Runtime de JavaScript' },
+        { name: 'MongoDB', description: 'Base de datos NoSQL' }
+      ]
+    }],
     price: 49.99,
     icon: <FiShoppingCart />,
     category: 'basic',
@@ -49,7 +82,14 @@ const products: Product[] = [
     id: 'basic-2',
     name: 'Blog Personal Pro',
     description: 'Plantilla moderno para blog con sistema de gestión de contenidos.',
-    techStack: ['Next.js', 'Markdown', 'Vercel'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'Next.js', description: 'Framework React con SSR' },
+        { name: 'Markdown', description: 'Formato de contenido' },
+        { name: 'Vercel', description: 'Plataforma de despliegue' }
+      ]
+    }],
     price: 29.99,
     icon: <FiCode />,
     category: 'basic',
@@ -59,7 +99,14 @@ const products: Product[] = [
     id: 'basic-3',
     name: 'Dashboard Starter',
     description: 'Panel de control con gráficos y análisis básicos.',
-    techStack: ['Vue.js', 'Chart.js', 'Firebase'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'Vue.js', description: 'Framework progresivo de UI' },
+        { name: 'Chart.js', description: 'Biblioteca de gráficos' },
+        { name: 'Firebase', description: 'Plataforma de desarrollo' }
+      ]
+    }],
     price: 39.99,
     icon: <FiDatabase />,
     category: 'basic',
@@ -69,7 +116,14 @@ const products: Product[] = [
     id: 'basic-4',
     name: 'Landing Page Kit',
     description: 'Kit de inicio para landing pages con componentes reutilizables.',
-    techStack: ['React', 'Styled Components', 'Netlify'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React', description: 'Framework de UI' },
+        { name: 'Styled Components', description: 'CSS en JS' },
+        { name: 'Netlify', description: 'Plataforma de despliegue' }
+      ]
+    }],
     price: 24.99,
     icon: <FiGlobe />,
     category: 'basic',
@@ -79,7 +133,14 @@ const products: Product[] = [
     id: 'basic-5',
     name: 'Portfolio Plantilla',
     description: 'Plantilla para portfolio profesional con animaciones suaves.',
-    techStack: ['React', 'Framer Motion', 'TailwindCSS'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React', description: 'Framework de UI' },
+        { name: 'Framer Motion', description: 'Biblioteca de animaciones' },
+        { name: 'TailwindCSS', description: 'Framework CSS' }
+      ]
+    }],
     price: 34.99,
     icon: <FiLayers />,
     category: 'basic',
@@ -89,7 +150,14 @@ const products: Product[] = [
     id: 'basic-6',
     name: 'API Starter Kit',
     description: 'Kit de inicio para crear APIs RESTful con autenticación.',
-    techStack: ['Express.js', 'JWT', 'MongoDB'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'Express.js', description: 'Framework de Node.js' },
+        { name: 'JWT', description: 'Autenticación con tokens' },
+        { name: 'MongoDB', description: 'Base de datos NoSQL' }
+      ]
+    }],
     price: 44.99,
     icon: <FiServer />,
     category: 'basic',
@@ -99,7 +167,14 @@ const products: Product[] = [
     id: 'basic-7',
     name: 'Chat App Plantilla',
     description: 'Plantilla para aplicación de chat en tiempo real.',
-    techStack: ['React', 'Socket.io', 'Node.js'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React', description: 'Framework de UI' },
+        { name: 'Socket.io', description: 'Biblioteca para tiempo real' },
+        { name: 'Node.js', description: 'Runtime de JavaScript' }
+      ]
+    }],
     price: 54.99,
     icon: <FiSmartphone />,
     category: 'basic',
@@ -109,7 +184,14 @@ const products: Product[] = [
     id: 'basic-8',
     name: 'Cloud Storage App',
     description: 'Aplicación de almacenamiento en la nube con interfaz intuitiva.',
-    techStack: ['React', 'AWS S3', 'Express.js'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React', description: 'Framework de UI' },
+        { name: 'AWS S3', description: 'Almacenamiento en la nube' },
+        { name: 'Express.js', description: 'Framework de Node.js' }
+      ]
+    }],
     price: 49.99,
     icon: <FiCloud />,
     category: 'basic',
@@ -121,16 +203,67 @@ const products: Product[] = [
     id: 'multispa-001',
     name: 'Plantilla Premium de Aplicación Multi-Página con Elementos Interactivos y Animaciones Dinámicas',
     description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
-    techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React', description: 'Framework de UI' },
+        { name: 'TailwindCSS', description: 'Framework CSS' },
+        { name: 'Node.js', description: 'Runtime de JavaScript' },
+        { name: 'MongoDB', description: 'Base de datos NoSQL' }
+      ]
+    }],
     price: 49.99,
     icon: <FiShoppingCart />,
     category: 'advanced'
   },
   {
     id: 'multispa-002',
-    name: 'Plantilla Premium de Aplicación Multi-Página Bilingüe con Elementos Interactivos y Animaciones Dinámicas',
-    description: 'Plantilla responsive para tienda online con carrito de compras y pasarela de pago.',
-    techStack: ['React', 'TailwindCSS', 'Node.js', 'MongoDB'],
+    name: 'Suite Empresarial SaaS Premium: Plataforma Web Multi-Idioma con Sistema de Suscripciones',
+    description: 'Solución SaaS completa con sistema de suscripciones y pagos automatizados mediante PayPal y Stripe. Incluye formularios de contacto personalizables, seguimiento de suscriptores al boletín, autenticación robusta y panel de administración multilingüe.',
+    previewStack: ['React 18', 'TypeScript', 'Supabase', 'Cloudflare'],
+    techStack: [
+      {
+        name: 'Frontend',
+        technologies: [
+          { name: 'React 18', description: 'Framework principal para la interfaz de usuario' },
+          { name: 'TypeScript', description: 'Lenguaje con tipado estático para desarrollo robusto' },
+          { name: 'Vite', description: 'Bundler y herramienta de desarrollo moderna' },
+          { name: 'TailwindCSS', description: 'Framework CSS utilitario para estilos modernos' },
+          { name: 'Framer Motion', description: 'Biblioteca para animaciones fluidas' },
+          { name: 'React Router', description: 'Enrutamiento declarativo para React' },
+          { name: 'React Hot Toast', description: 'Sistema de notificaciones elegante' }
+        ]
+      },
+      {
+        name: 'Backend/Serverless',
+        technologies: [
+          { name: 'Cloudflare Workers', description: 'Plataforma serverless para computación en el edge' },
+          { name: 'Hono', description: 'Framework web ultraligero para Workers' },
+          { name: 'DeepSeek', description: 'Integración con modelos de IA avanzados' }
+        ]
+      },
+      {
+        name: 'Base de datos y Autenticación',
+        technologies: [
+          { name: 'Supabase', description: 'Plataforma backend-as-a-service con PostgreSQL y autenticación' }
+        ]
+      },
+      {
+        name: 'Pagos',
+        technologies: [
+          { name: 'Stripe', description: 'Procesamiento de pagos seguro y flexible' },
+          { name: 'PayPal', description: 'Método de pago alternativo internacional' }
+        ]
+      },
+      {
+        name: 'Herramientas de Desarrollo',
+        technologies: [
+          { name: 'ESLint', description: 'Herramienta de linting para código consistente' },
+          { name: 'Wrangler', description: 'CLI para desarrollo y deploy en Cloudflare' },
+          { name: 'Node.js v20', description: 'Entorno de ejecución JavaScript moderno' }
+        ]
+      }
+    ],
     price: 89.99,
     icon: <FiShoppingCart />,
     category: 'advanced'
@@ -139,7 +272,15 @@ const products: Product[] = [
     id: 'advanced-1',
     name: 'E-commerce Enterprise Suite',
     description: 'Solución completa de comercio electrónico con análisis avanzado y gestión de inventario.',
-    techStack: ['Next.js', 'GraphQL', 'PostgreSQL', 'Redis'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'Next.js', description: 'Framework React con SSR' },
+        { name: 'GraphQL', description: 'Lenguaje de consultas' },
+        { name: 'PostgreSQL', description: 'Base de datos SQL' },
+        { name: 'Redis', description: 'Base de datos en memoria' }
+      ]
+    }],
     price: 299.99,
     icon: <FiShoppingCart />,
     category: 'advanced',
@@ -149,7 +290,15 @@ const products: Product[] = [
     id: 'advanced-2',
     name: 'CMS Empresarial',
     description: 'Sistema de gestión de contenidos escalable con flujos de trabajo personalizables.',
-    techStack: ['React', 'Node.js', 'MongoDB', 'Redis'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React', description: 'Framework de UI' },
+        { name: 'Node.js', description: 'Runtime de JavaScript' },
+        { name: 'MongoDB', description: 'Base de datos NoSQL' },
+        { name: 'Redis', description: 'Base de datos en memoria' }
+      ]
+    }],
     price: 249.99,
     icon: <FiCode />,
     category: 'advanced',
@@ -159,7 +308,15 @@ const products: Product[] = [
     id: 'advanced-3',
     name: 'Analytics Dashboard Pro',
     description: 'Dashboard empresarial con análisis predictivo e IA.',
-    techStack: ['Vue.js', 'Python', 'TensorFlow', 'PostgreSQL'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'Vue.js', description: 'Framework progresivo de UI' },
+        { name: 'Python', description: 'Lenguaje de programación' },
+        { name: 'TensorFlow', description: 'Framework de ML' },
+        { name: 'PostgreSQL', description: 'Base de datos SQL' }
+      ]
+    }],
     price: 399.99,
     icon: <FiDatabase />,
     category: 'advanced',
@@ -169,7 +326,15 @@ const products: Product[] = [
     id: 'advanced-4',
     name: 'SaaS Starter Kit',
     description: 'Kit completo para crear aplicaciones SaaS con facturación y suscripciones.',
-    techStack: ['React', 'Node.js', 'Stripe', 'MongoDB'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React', description: 'Framework de UI' },
+        { name: 'Node.js', description: 'Runtime de JavaScript' },
+        { name: 'Stripe', description: 'Plataforma de pagos' },
+        { name: 'MongoDB', description: 'Base de datos NoSQL' }
+      ]
+    }],
     price: 499.99,
     icon: <FiCloud />,
     category: 'advanced',
@@ -179,7 +344,15 @@ const products: Product[] = [
     id: 'advanced-5',
     name: 'IoT Platform Plantilla',
     description: 'Plataforma para gestión de dispositivos IoT con análisis en tiempo real.',
-    techStack: ['React', 'Node.js', 'MQTT', 'InfluxDB'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React', description: 'Framework de UI' },
+        { name: 'Node.js', description: 'Runtime de JavaScript' },
+        { name: 'MQTT', description: 'Protocolo IoT' },
+        { name: 'InfluxDB', description: 'Base de datos de series temporales' }
+      ]
+    }],
     price: 599.99,
     icon: <FiServer />,
     category: 'advanced',
@@ -189,7 +362,15 @@ const products: Product[] = [
     id: 'advanced-6',
     name: 'AI Development Kit',
     description: 'Kit de desarrollo para integración de IA con modelos preentrenados.',
-    techStack: ['Python', 'TensorFlow', 'FastAPI', 'Redis'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'Python', description: 'Lenguaje de programación' },
+        { name: 'TensorFlow', description: 'Framework de ML' },
+        { name: 'FastAPI', description: 'Framework web de Python' },
+        { name: 'Redis', description: 'Base de datos en memoria' }
+      ]
+    }],
     price: 699.99,
     icon: <FiLayers />,
     category: 'advanced',
@@ -199,7 +380,15 @@ const products: Product[] = [
     id: 'advanced-7',
     name: 'Microservices Boilerplate',
     description: 'Plantilla para arquitectura de microservicios con orquestación.',
-    techStack: ['Node.js', 'Docker', 'Kubernetes', 'gRPC'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'Node.js', description: 'Runtime de JavaScript' },
+        { name: 'Docker', description: 'Plataforma de contenedores' },
+        { name: 'Kubernetes', description: 'Orquestación de contenedores' },
+        { name: 'gRPC', description: 'Framework RPC' }
+      ]
+    }],
     price: 799.99,
     icon: <FiGlobe />,
     category: 'advanced',
@@ -209,7 +398,15 @@ const products: Product[] = [
     id: 'advanced-8',
     name: 'Enterprise Mobile Suite',
     description: 'Suite completa para desarrollo de aplicaciones móviles empresariales.',
-    techStack: ['React Native', 'GraphQL', 'Firebase', 'Redux'],
+    techStack: [{
+      name: 'Stack Principal',
+      technologies: [
+        { name: 'React Native', description: 'Framework móvil' },
+        { name: 'GraphQL', description: 'Lenguaje de consultas' },
+        { name: 'Firebase', description: 'Plataforma de desarrollo' },
+        { name: 'Redux', description: 'Gestión de estado' }
+      ]
+    }],
     price: 899.99,
     icon: <FiSmartphone />,
     category: 'advanced',
@@ -219,6 +416,26 @@ const products: Product[] = [
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!isModalOpen && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1.6;
+      videoRef.current.onended = () => {
+        if (videoRef.current) {
+          videoRef.current.currentTime = 0;
+          videoRef.current.play();
+        }
+      };
+    }
+  }, [isModalOpen]);
 
   const handlePayPalCheckout = async () => {
     window.open(`https://www.paypal.com/paypalme/jeremylivegonzalez/${product.price}`, '_blank');
@@ -247,7 +464,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           {product.price}
         </div>
         <div className="flex flex-wrap gap-2 mt-auto">
-          {product.techStack.map((tech, index) => (
+          {product.previewStack?.map((tech, index) => (
             <span
               key={index}
               className="px-3 py-1.5 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium backdrop-blur-sm border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/30 hover:text-white transform hover:scale-105 transition-all duration-300 ease-out"
@@ -259,45 +476,161 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       </motion.div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 overflow-y-auto py-8" onClick={() => setIsModalOpen(false)}>
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 max-w-2xl w-full mx-4 border border-purple-500/30 shadow-xl shadow-purple-500/20"
+            onClick={(e) => e.stopPropagation()}
+            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 max-w-4xl w-full mx-auto my-auto relative border border-purple-500/30 shadow-xl shadow-purple-500/20"
           >
-            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-4 ">{product.name}</h2>
-            <p className="text-violet-200 text-lg mb-8">{product.description}</p>
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-white mb-4">Stack Tecnológico:</h3>
-              <div className="flex flex-wrap gap-3">
-                {product.techStack.map((tech, index) => (
-                  <span
-                    key={index}
-                    className="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium backdrop-blur-sm border border-purple-500/30"
+            <div className="flex flex-col gap-8">
+              {product.price === 89.99 && (
+                <div className="w-full rounded-xl overflow-hidden">
+                  <video
+                    ref={videoRef}
+                    className="w-full h-[400px] object-cover"
+                    controls
+                    autoPlay
+                    muted
                   >
-                    {tech}
-                  </span>
-                ))}
+                    <source src="/videos/pro89.mp4" type="video/mp4" />
+                    Tu navegador no soporta el elemento de video.
+                  </video>
+                </div>
+              )}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-6">{product.name}</h2>
+
+                  <div className="mb-8 group relative">
+                    <h3 className="text-xl font-semibold text-white mb-4">Stack Tecnológico:</h3>
+                    <div className="space-y-4">
+                      {Array.isArray(product.techStack[0]?.technologies) ? (
+                        <div className="flex flex-wrap gap-2">
+                          {product.techStack.map((tech, index) => (
+                            <span
+                              key={index}
+                              className="px-3 py-1.5 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium backdrop-blur-sm border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/30 hover:text-white transform hover:scale-105 transition-all duration-300 ease-out"
+                            >
+                              {tech.name}
+                            </span>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="space-y-6">
+                          {product.techStack.map((category, categoryIndex) => (
+                            <div key={categoryIndex} className="relative cursor-pointer">
+                              <div className="flex items-center gap-2 mb-2">
+                                <h4 className="text-lg font-semibold text-purple-300">{category.name}</h4>
+                                <span className="text-xs text-violet-400">(Hover para ver detalles)</span>
+                              </div>
+                              <div className="flex flex-wrap gap-2">
+                                {category.technologies.map((tech, techIndex) => (
+                                  <div key={techIndex} className="group/tech relative">
+                                    <span className="px-3 py-1.5 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium backdrop-blur-sm border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/30 hover:text-white transform hover:scale-105 transition-all duration-300 ease-out">
+                                      {tech.name}
+                                    </span>
+                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-4 bg-gray-800/95 backdrop-blur-sm rounded-xl shadow-xl opacity-0 invisible group-hover/tech:opacity-100 group-hover/tech:visible transition-all duration-200 z-10">
+                                      <div className="text-sm text-violet-200">{tech.description}</div>
+                                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 transform rotate-45 w-2 h-2 bg-gray-800/95"></div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <div className="absolute -translate-x-[calc(20%)] w-[calc(100%+69rem)] bg-gray-800/95 backdrop-blur-sm rounded-xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform -translate-y-[740px] transition-all duration-300 ease-out z-20 shadow-xl border border-purple-500/30">
+                      <h4 className="text-xl font-semibold text-white mb-4">Stack Tecnológico Completo</h4>
+                      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                        <div className="space-y-4">
+                          <h5 className="text-lg font-semibold text-purple-300">Frontend</h5>
+                          <div className="space-y-2">
+                            <div className="grid grid-cols-2 gap-4">
+                              {product.techStack.find(cat => cat.name === 'Frontend')?.technologies.map((tech, techIndex) => (
+                                <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+                                  <div className="font-medium text-white mb-1">{tech.name}</div>
+                                  <div className="text-sm text-violet-200">{tech.description}</div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <h5 className="text-lg font-semibold text-purple-300">Backend/Serverless</h5>
+                          <div className="space-y-2">
+                            {product.techStack.find(cat => cat.name === 'Backend/Serverless')?.technologies.map((tech, techIndex) => (
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+                                <div className="font-medium text-white mb-1">{tech.name}</div>
+                                <div className="text-sm text-violet-200">{tech.description}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <h5 className="text-lg font-semibold text-purple-300">Base de datos y Autenticación</h5>
+                          <div className="space-y-2">
+                            {product.techStack.find(cat => cat.name === 'Base de datos y Autenticación')?.technologies.map((tech, techIndex) => (
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+                                <div className="font-medium text-white mb-1">{tech.name}</div>
+                                <div className="text-sm text-violet-200">{tech.description}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <h5 className="text-lg font-semibold text-purple-300">Pagos</h5>
+                          <div className="space-y-2">
+                            {product.techStack.find(cat => cat.name === 'Pagos')?.technologies.map((tech, techIndex) => (
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+                                <div className="font-medium text-white mb-1">{tech.name}</div>
+                                <div className="text-sm text-violet-200">{tech.description}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <h5 className="text-lg font-semibold text-purple-300">Herramientas de Desarrollo</h5>
+                          <div className="space-y-2">
+                            {product.techStack.find(cat => cat.name === 'Herramientas de Desarrollo')?.technologies.map((tech, techIndex) => (
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+                                <div className="font-medium text-white mb-1">{tech.name}</div>
+                                <div className="text-sm text-violet-200">{tech.description}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="sticky top-8">
+                    <p className="text-violet-200 text-lg mb-8">{product.description}</p>
+                    <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-8 flex items-center gap-2">
+                      <span className="text-2xl text-violet-300">$</span>
+                      {product.price}
+                    </div>
+                    <div className="flex flex-col gap-4">
+                      <button
+                        onClick={handlePayPalCheckout}
+                        className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 px-6 rounded-xl font-medium hover:shadow-lg hover:shadow-purple-500/30 transform hover:scale-105 transition-all duration-300"
+                      >
+                        Pagar con PayPal
+                      </button>
+                      <button
+                        onClick={() => setIsModalOpen(false)}
+                        className="w-full bg-gray-700 text-white py-4 px-6 rounded-xl font-medium hover:bg-gray-600 transition-colors duration-300"
+                      >
+                        Cerrar
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-8 flex items-center gap-2">
-              <span className="text-2xl text-violet-300">$</span>
-              {product.price}
-            </div>
-            <div className="flex gap-4">
-              <button
-                onClick={handlePayPalCheckout}
-                className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 px-6 rounded-xl font-medium hover:shadow-lg hover:shadow-purple-500/30 transform hover:scale-105 transition-all duration-300"
-              >
-                Pagar con PayPal
-              </button>
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="flex-1 bg-gray-700 text-white py-4 px-6 rounded-xl font-medium hover:bg-gray-600 transition-colors duration-300"
-              >
-                Cerrar
-              </button>
             </div>
           </motion.div>
         </div>
@@ -387,8 +720,8 @@ const TiendaPage: React.FC = () => {
         {/* Carrusel de Productos Básicos */}
         <section>
           <div className="mb-6">
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3">Plantillas y Productos Básicos</h2>
-          <p className="text-violet-200 text-lg">Comienza rápidamente con nuestras plantillas optimizadas y productos esenciales</p>
+            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 mb-3">Plantillas y Productos Básicos</h2>
+            <p className="text-violet-200 text-lg">Comienza rápidamente con nuestras plantillas optimizadas y productos esenciales</p>
           </div>
           <div className="relative">
             <div className="overflow-x-auto pb-6 pt-3 px-3 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-purple-500/10 hover:scrollbar-thumb-purple-400 transition-colors duration-200 scroll-smooth"
