@@ -134,7 +134,7 @@ export default function AboutPage() {
 						className="mb-24"
 					>
 						<h2 className="text-3xl font-bold text-white text-center mb-12">
-							Experiencia en el Desarrollo de Software y Inteligencia Artificial
+							Áreas de Experticia
 						</h2>
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 							{expertise.map((exp, index) => (
