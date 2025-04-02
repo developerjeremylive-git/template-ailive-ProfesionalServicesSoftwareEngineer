@@ -567,15 +567,15 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                         </div>
                       )}
                     </div>
-                    <div className="absolute -translate-x-[calc(17%)] w-[calc(100%+50rem)] bg-gray-800/95 backdrop-blur-md rounded-xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform -translate-y-[500px] transition-all duration-300 ease-out z-20 shadow-[0_0_30px_rgba(139,92,246,0.3)] border border-purple-500/40">
+                    <div className="absolute -translate-x-[calc(17%)] w-[calc(100%+60rem)] bg-gray-800/95 backdrop-blur-md rounded-xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform -translate-y-[500px] transition-all duration-300 ease-out z-20 shadow-[0_0_30px_rgba(139,92,246,0.3)] border border-purple-500/40">
                       <h4 className="text-xl font-semibold text-white mb-4">Stack Tecnológico Completo</h4>
-                      <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
-                        <div className="space-y-4 w-[calc(100%+12.3rem)]" style={{ gridColumn: 'span 1.5' }}>
+                      <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
+                        <div className="space-y-4 w-[calc(100%+24rem)]" style={{ gridColumn: 'span 1.2' }}>
                           <h5 className="text-lg font-semibold text-purple-300">Frontend</h5>
                           <div className="space-y-2">
-                            <div className="grid grid-cols-3 gap-4">
+                            <div className="grid grid-cols-3 gap-2">
                               {product.techStack.find(cat => cat.name === 'Frontend')?.technologies.map((tech, techIndex) => (
-                                <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)] hover:shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                                <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)]">
                                   <div className="font-medium text-white mb-1">{tech.name}</div>
                                   <div className="text-sm text-violet-200">{tech.description}</div>
                                 </div>
@@ -587,10 +587,13 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
                         </div>
                         <div className="space-y-4">
+
+                        </div>
+                        <div className="space-y-4">
                           <h5 className="text-lg font-semibold text-purple-300">Backend/Serverless</h5>
                           <div className="space-y-2">
                             {product.techStack.find(cat => cat.name === 'Backend/Serverless')?.technologies.map((tech, techIndex) => (
-                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)] hover:shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)]">
                                 <div className="font-medium text-white mb-1">{tech.name}</div>
                                 <div className="text-sm text-violet-200">{tech.description}</div>
                               </div>
@@ -601,7 +604,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                           <h5 className="text-lg font-semibold text-purple-300">Base de datos y Autenticación</h5>
                           <div className="space-y-2">
                             {product.techStack.find(cat => cat.name === 'Base de datos y Autenticación')?.technologies.map((tech, techIndex) => (
-                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)] hover:shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)]">
                                 <div className="font-medium text-white mb-1">{tech.name}</div>
                                 <div className="text-sm text-violet-200">{tech.description}</div>
                               </div>
@@ -612,7 +615,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                           <h5 className="text-lg font-semibold text-purple-300">Pagos</h5>
                           <div className="space-y-2">
                             {product.techStack.find(cat => cat.name === 'Pagos')?.technologies.map((tech, techIndex) => (
-                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)] hover:shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)]">
                                 <div className="font-medium text-white mb-1">{tech.name}</div>
                                 <div className="text-sm text-violet-200">{tech.description}</div>
                               </div>
@@ -623,7 +626,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                           <h5 className="text-lg font-semibold text-purple-300">Herramientas de Desarrollo</h5>
                           <div className="space-y-2">
                             {product.techStack.find(cat => cat.name === 'Herramientas de Desarrollo')?.technologies.map((tech, techIndex) => (
-                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)] hover:shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                              <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)]">
                                 <div className="font-medium text-white mb-1">{tech.name}</div>
                                 <div className="text-sm text-violet-200">{tech.description}</div>
                               </div>
