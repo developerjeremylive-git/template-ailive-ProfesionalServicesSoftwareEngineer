@@ -39,7 +39,7 @@ export function Navigation() {
 								className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600"
 								whileHover={{ scale: 1.05 }}
 							>
-								AILive
+								Jeremy Live
 							</motion.div>
 						</Link>
 					</div>

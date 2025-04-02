@@ -90,7 +90,7 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 	}, [])
 
 	const getTitle = () => {
-		return 'AILive'
+		return 'Jeremy Live'
 	}
 
 	const headerVariants = {
@@ -167,7 +167,7 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 							to="/"
 							className="flex items-center gap-3 text-3xl font-extrabold text-[var(--theme-text-primary)] transition-all duration-300 hover:scale-105"
 						>
-							<div className="w-11 h-11 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 p-[2px] shadow-lg shadow-purple-500/30 transition-all duration-300 hover:shadow-pink-500/30">
+							{/* <div className="w-11 h-11 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 p-[2px] shadow-lg shadow-purple-500/30 transition-all duration-300 hover:shadow-pink-500/30">
 								<div className="w-full h-full rounded-xl bg-[var(--theme-background)] flex items-center justify-center">
 									<svg
 										viewBox="0 0 24 24"
@@ -184,7 +184,7 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 										/>
 									</svg>
 								</div>
-							</div>
+							</div> */}
 							<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 transition-all duration-300">
 								{getTitle()}
 							</span>

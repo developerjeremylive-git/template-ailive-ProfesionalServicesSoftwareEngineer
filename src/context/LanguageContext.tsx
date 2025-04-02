@@ -344,7 +344,7 @@ const translations = {
 		'api_reference': 'API Reference',
 		'examples': 'Examples',
 		'guides': 'Guides',
-		'install_ailive_sdk': 'Install the AILive SDK',
+		'install_ailive_sdk': 'Install the SDK',
 		'configure_api_key': 'Configure your API key',
 		'make_first_api_call': 'Make your first API call',
 		'authentication': 'Authentication',
@@ -358,13 +358,13 @@ const translations = {
 
 		// Testimonials Section
 		'testimonials_title': 'What Our Users Say',
-		'testimonials_subtitle': 'Discover how AILive is transforming businesses worldwide',
+		'testimonials_subtitle': 'Discover how Jeremy Live is transforming businesses worldwide',
 		'testimonial_1_name': 'Sarah Johnson',
 		'testimonial_1_role': 'CTO at TechCorp',
 		'testimonial_1_text': 'The platform has streamlined our AI integration process and significantly reduced our time to market.',
 		'testimonial_2_name': 'Michael Chen',
 		'testimonial_2_role': 'Lead Developer at InnovateLabs',
-		'testimonial_2_text': 'AILive has transformed our development workflow. The models are incredibly accurate and the API is a breeze to work with.',
+		'testimonial_2_text': 'Jeremy Live has transformed our development workflow. The models are incredibly accurate and the API is a breeze to work with.',
 		'testimonial_3_name': 'Emma Rodriguez',
 		'testimonial_3_role': 'AI Research Director',
 		'testimonial_3_text': 'The fine-tuning capabilities and model performance monitoring have exceeded our expectations. Highly recommended!',
@@ -530,15 +530,15 @@ const translations = {
 
 		// Carousel
 		'carousel_explore': 'Explore AI Models',
-		'carousel_why_choose': 'Why Choose AILive?',
+		'carousel_why_choose': 'Why Choose Jeremy Live?',
 		'carousel_close': 'Close',
 		'carousel_prev': 'Previous',
 		'carousel_next': 'Next',
 
 		// About Page
-		'about_title': 'About AILive',
+		'about_title': 'About Jeremy Live',
 		'about_subtitle': 'Empowering Innovation Through AI',
-		'about_description': 'AILive is a leading platform providing state-of-the-art AI models and solutions. Our mission is to make advanced AI technology accessible and practical for businesses of all sizes.',
+		'about_description': 'Jeremy Live is a leading Engineering platform providing state-of-the-art AI models and solutions. Our mission is to make advanced AI technology accessible and practical for businesses of all sizes.',
 		'about_vision': 'Our Vision',
 		'about_vision_text': 'To democratize AI technology and drive innovation across industries.',
 		'about_mission': 'Our Mission',
@@ -609,7 +609,7 @@ const translations = {
 		'privacy_rights_3': 'You may request deletion of your information.',
 		'privacy_rights_4': 'You can opt-out of certain data processing activities.',
 		'privacy_contact_1': 'For privacy-related inquiries, contact our Data Protection Officer.',
-		'privacy_contact_2': 'Email us at privacy@ailive.com',
+		'privacy_contact_2': 'Email us at jeremylive@live.com',
 		'privacy_contact_3': 'Response time: Within 48 hours',
 		'privacy_contact_4': 'We are committed to addressing your privacy concerns promptly.',
 
@@ -651,7 +651,7 @@ const translations = {
 		// Carousel Popups
 		'explore_models_title': 'Explore AI Models',
 		'explore_models_desc': 'Discover our comprehensive suite of state-of-the-art AI models ready for integration',
-		'why_choose_title': 'Why Choose AILive?',
+		'why_choose_title': 'Why Choose Jeremy Live?',
 		'why_choose_desc': 'Leading platform for AI integration with enterprise-grade reliability and support',
 
 		// Card Descriptions in Popups
@@ -666,7 +666,7 @@ const translations = {
 		'api_requests_daily': 'API Requests Daily',
 		'enterprise_clients': 'Enterprise Clients',
 		'uptime_sla': 'Uptime SLA',
-		'stats_title': 'AILive by the Numbers',
+		'stats_title': 'Jeremy Live by the Numbers',
 		'ready_to_transform': 'Ready to transform your AI development workflow?',
 
 		// Dashboard Metrics
@@ -856,7 +856,7 @@ const translations = {
 		'deepseek_demo_response': 'This is a simulated response from DeepSeek-R1-Distill-Qwen-32B. In a real implementation, this would be connected to the actual API.',
 	},
 	es: {
-		'install_ailive_sdk': 'Instalar el SDK de AILive',
+		'install_ailive_sdk': 'Instalar el SDK',
 		'configure_api_key': 'Configurar tu clave API',
 		'make_first_api_call': 'Hacer tu primera llamada a la API',
 		'authentication': 'Autenticación',
@@ -1315,13 +1315,13 @@ const translations = {
 
 		// Testimonials Section
 		'testimonials_title': 'Lo que Dicen Nuestros Usuarios',
-		'testimonials_subtitle': 'Descubre cómo AILive está transformando empresas en todo el mundo',
+		'testimonials_subtitle': 'Descubre cómo Jeremy Live está transformando empresas en todo el mundo',
 		'testimonial_1_name': 'Sarah Johnson',
 		'testimonial_1_role': 'CTO en TechCorp',
 		'testimonial_1_text': 'La plataforma ha optimizado nuestro proceso de integración de IA y reducido significativamente nuestro tiempo de llegada al mercado.',
 		'testimonial_2_name': 'Michael Chen',
 		'testimonial_2_role': 'Desarrollador Principal en InnovateLabs',
-		'testimonial_2_text': 'AILive ha transformado nuestro flujo de trabajo de desarrollo. Los modelos son increíblemente precisos y la API es muy fácil de usar.',
+		'testimonial_2_text': 'Jeremy Live ha transformado nuestro flujo de trabajo de desarrollo. Los modelos son increíblemente precisos y la API es muy fácil de usar.',
 		'testimonial_3_name': 'Emma Rodriguez',
 		'testimonial_3_role': 'Directora de Investigación en IA',
 		'testimonial_3_text': '¡Las capacidades de ajuste fino y el monitoreo del rendimiento del modelo han superado nuestras expectativas. Altamente recomendado!',
@@ -1458,15 +1458,15 @@ const translations = {
 
 		// Carousel
 		'carousel_explore': 'Explorar Modelos de IA',
-		'carousel_why_choose': '¿Por qué elegir AILive?',
+		'carousel_why_choose': '¿Por qué elegir a Jeremy Live?',
 		'carousel_close': 'Cerrar',
 		'carousel_prev': 'Anterior',
 		'carousel_next': 'Siguiente',
 
 		// About Page
-		'about_title': 'Sobre AILive',
+		'about_title': 'Sobre Jeremy Live',
 		'about_subtitle': 'Impulsando la Innovación a través de la IA',
-		'about_description': 'AILive es una plataforma líder que proporciona modelos y soluciones de IA de última generación. Nuestra misión es hacer que la tecnología de IA avanzada sea accesible y práctica para empresas de todos los tamaños.',
+		'about_description': ' Jeremy Live es un ingeniero de IA con una plataforma líder que proporciona modelos y soluciones de IA de última generación. Nuestra misión es hacer que la tecnología de IA avanzada sea accesible y práctica para empresas de todos los tamaños.',
 		'about_vision': 'Nuestra Visión',
 		'about_vision_text': 'Democratizar la tecnología de IA e impulsar la innovación en todas las industrias.',
 		'about_mission': 'Nuestra Misión',
@@ -1516,7 +1516,7 @@ const translations = {
 		'privacy_rights_3': 'Puedes solicitar la eliminación de tu información.',
 		'privacy_rights_4': 'Puedes optar por no participar en ciertas actividades de procesamiento de datos.',
 		'privacy_contact_1': 'Para consultas relacionadas con la privacidad, contacta a nuestro Oficial de Protección de Datos.',
-		'privacy_contact_2': 'Envíanos un correo a privacy@ailive.com',
+		'privacy_contact_2': 'Envíanos un correo a jeremylive@live.com',
 		'privacy_contact_3': 'Tiempo de respuesta: Dentro de 48 horas',
 		'privacy_contact_4': 'Estamos comprometidos a atender tus inquietudes de privacidad con prontitud.',
 
@@ -1558,7 +1558,7 @@ const translations = {
 		// Carousel Popups
 		'explore_models_title': 'Explorar Modelos de IA',
 		'explore_models_desc': 'Descubre nuestra completa suite de modelos de IA de última generación listos para integrar',
-		'why_choose_title': '¿Por qué elegir AILive?',
+		'why_choose_title': '¿Por qué elegir a Jeremy Live?',
 		'why_choose_desc': 'Plataforma líder para integración de IA con fiabilidad y soporte de nivel empresarial',
 
 		// Card Descriptions in Popups
@@ -1573,7 +1573,7 @@ const translations = {
 		'api_requests_daily': 'Peticiones API Diarias',
 		'enterprise_clients': 'Clientes Empresariales',
 		'uptime_sla': 'SLA de Disponibilidad',
-		'stats_title': 'AILive en Números',
+		'stats_title': 'Jeremy Live en Números',
 		'ready_to_transform': '¿Listo para transformar tu flujo de trabajo de IA?',
 
 		// Dashboard Metrics

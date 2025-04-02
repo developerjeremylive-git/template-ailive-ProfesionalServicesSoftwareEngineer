@@ -25,7 +25,7 @@ export default function AnimatedFooter() {
             {/* Company Info */}
             <div className="space-y-4">
               <Link to="/" className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-600 p-[2px]">
+                {/* <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-600 p-[2px]">
                   <div className="w-full h-full rounded-full bg-[var(--theme-background)] flex items-center justify-center">
                     <svg
                       viewBox="0 0 24 24"
@@ -42,8 +42,8 @@ export default function AnimatedFooter() {
                       />
                     </svg>
                   </div>
-                </div>
-                <span className="text-2xl font-bold text-[var(--theme-text-primary)]">AILive</span>
+                </div> */}
+                <span className="text-2xl font-bold text-[var(--theme-text-primary)]">Jeremy Live</span>
               </Link>
               <p className="text-[var(--theme-text-secondary)]">Como líderes en desarrollo de software y soluciones de IA, transformamos visiones en realidades digitales. Ofrecemos desarrollo web, software a medida, servicios cloud, aplicaciones móviles, SaaS y soporte técnico, impulsados por tecnología de vanguardia e inteligencia artificial. Nuestro equipo experto crea soluciones innovadoras que impulsan el crecimiento y la eficiencia de tus proyectos.</p>
               <div className="pt-2">
@@ -224,7 +224,7 @@ export default function AnimatedFooter() {
           <div className="mt-12 pt-8 border-t border-[var(--theme-border)]">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="text-[var(--theme-text-secondary)]">
-                &copy; 2024 AILive. {t('all_rights_reserved')}
+                &copy; 2024 Jeremy Live. {t('all_rights_reserved')}
               </div>
               <div className="flex gap-6">
                 <Link
