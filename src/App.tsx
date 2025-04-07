@@ -46,6 +46,7 @@ import AiServicesPage from './pages/AiServicesPage'
 import EcommercePage from './pages/EcommercePage'
 import WordPressPage from './pages/WordPressPage'
 import TiendaPage from './pages/TiendaPage'
+import AutomationSolutionsPage from './pages/AutomationSolutionsPage'
 
 // Protected route component for user account and settings pages
 const ProtectedRoute = ({ children }) => {
@@ -109,6 +110,7 @@ function AppContent() {
         <Route path="/saas-development" element={<SaaSDevelopmentPage />} />
         <Route path="/technical-support" element={<TechnicalSupportPage />} />
         <Route path="/ai-services" element={<AiServicesPage />} />
+        <Route path="/automation-solutions" element={<AutomationSolutionsPage />} />
         <Route path="/" element={
           <div className="min-h-screen bg-theme-gradient">
             <Header variant="default" />

@@ -68,10 +68,10 @@ export default function MobileAppDevelopmentPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-6xl font-bold text-white mb-6"
+              className="text-4xl md:text-6xl font-bold text-white"
             >
               Desarrollo de Apps Móviles
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 pb-6">
                 iOS y Android
               </span>
             </motion.h1>

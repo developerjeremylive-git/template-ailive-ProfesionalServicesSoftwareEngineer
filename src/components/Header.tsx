@@ -229,7 +229,8 @@ export default function Header({ variant = 'default' }: HeaderProps) {
 										{/* <Link to="/technical-support" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Soporte Técnico')}</Link> */}
 										<Link to="/mobile-app-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{'Desarrollo Móvil'}</Link>
 										<Link to="/saas-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Desarrollo SaaS')}</Link>
-										<Link to="/ai-services" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Servicios de IA')}</Link>
+										<Link to="/automation-solutions" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Servicios de IA')}</Link>
+										{/* <Link to="/ai-services" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Servicios de IA')}</Link> */}
 									</div>
 								</div>
 							</nav>
