@@ -421,12 +421,12 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const [selectedSupportPlan, setSelectedSupportPlan] = useState<'3' | '6' | '12' | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const deepseekPrice = 29.99;
-  const llama4Price = 29.99;
+  const deepseekPrice = 9.99;
+  const llama4Price = 9.99;
   const supportPlanPrices = {
-    '3': 49.99,
-    '6': 89.99,
-    '12': 159.99
+    '2': 49.99,
+    '4': 89.99,
+    '8': 159.99
   };
 
   const calculateTotalPrice = () => {
@@ -664,7 +664,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                               onChange={(e) => setIsDeepseekEnabled(e.target.checked)}
                               className="form-checkbox h-5 w-5 text-purple-500 rounded border-purple-500/30 bg-purple-500/10 focus:ring-purple-500 focus:ring-offset-0"
                             />
-                            <span className="text-white">Deepseek AI Worker</span>
+                            <span className="text-white">Deepseek R1 AI Worker</span>
                             <span className="text-purple-400 font-medium">${deepseekPrice}/mes</span>
                           </label>
                           <div className="absolute bottom-full left-0 mb-2 w-72 p-4 bg-gray-800/95 backdrop-blur-sm rounded-xl shadow-xl opacity-0 invisible group-hover/deepseek:opacity-100 group-hover/deepseek:visible transition-all duration-200 z-10">
@@ -697,9 +697,9 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                             className="w-full px-4 py-3 bg-purple-500/10 text-white rounded-xl border border-purple-500/30 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 appearance-none cursor-pointer transition-all duration-300 hover:bg-purple-500/20"
                           >
                             <option value="" className="bg-gray-900">Seleccionar plan de soporte</option>
-                            <option value="3" className="bg-gray-900">3 meses - Soporte básico (${supportPlanPrices['3']})</option>
-                            <option value="6" className="bg-gray-900">6 meses - Soporte prioritario (${supportPlanPrices['6']})</option>
-                            <option value="12" className="bg-gray-900">12 meses - Soporte premium (${supportPlanPrices['12']})</option>
+                            <option value="2" className="bg-gray-900">2 meses - Soporte básico (${supportPlanPrices['2']})</option>
+                            <option value="4" className="bg-gray-900">4 meses - Soporte prioritario (${supportPlanPrices['4']})</option>
+                            <option value="8" className="bg-gray-900">8 meses - Soporte premium (${supportPlanPrices['8']})</option>
                           </select>
                           <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                             <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
