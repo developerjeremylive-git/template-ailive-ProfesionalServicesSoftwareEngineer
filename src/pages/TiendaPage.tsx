@@ -714,7 +714,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                       <span className="text-2xl text-violet-300">$</span>
                       {calculateTotalPrice()}
                     </div>
-                    {(isDeepseekEnabled || selectedSupportPlan) && (
+                    {(isDeepseekEnabled || isLlama4Enabled || selectedSupportPlan) && (
                       <div className="mb-6 space-y-2">
                         <div className="text-sm text-violet-200">
                           <span className="font-medium">Precio base:</span> ${product.price}
