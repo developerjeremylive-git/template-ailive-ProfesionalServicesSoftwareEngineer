@@ -417,10 +417,12 @@ const products: Product[] = [
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeepseekEnabled, setIsDeepseekEnabled] = useState(false);
+  const [isLlama4Enabled, setIsLlama4Enabled] = useState(false);
   const [selectedSupportPlan, setSelectedSupportPlan] = useState<'3' | '6' | '12' | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const deepseekPrice = 29.99;
+  const llama4Price = 29.99;
   const supportPlanPrices = {
     '3': 49.99,
     '6': 89.99,
@@ -430,6 +432,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const calculateTotalPrice = () => {
     let total = product.price;
     if (isDeepseekEnabled) total += deepseekPrice;
+    if (isLlama4Enabled) total += llama4Price;
     if (selectedSupportPlan) total += supportPlanPrices[selectedSupportPlan];
     return total.toFixed(2);
   };
@@ -511,7 +514,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                     autoPlay
                     muted
                   >
-                    <source src="/videos/pro89.mp4" type="video/mp4" />
+                    <source src="https://us-east-access-294573272347.s3-accesspoint.us-east-1.amazonaws.com/pro89.mp4?response-content-disposition=inline&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEAIaCXVzLWVhc3QtMSJIMEYCIQDIxZcfSo87ZYy5GqjmX4LueHsL81Dfwa3hZBqW8yBRYAIhANkrXlwtCxo8CKkvzSaBVuJ4th0ZBe6%2BnXyzqaYgc1mIKscDCHoQABoMMjk0NTczMjcyMzQ3IgzHU%2F%2BnQkar5Y4M4hwqpAPKQDlar2JaWXedZwDONUu%2BS94VArW9QM%2B0fSnaNQ52PCMFHQq5eUVPwRaIdTNxWHrRC3FBq%2FKtwLeAx%2BH9PjLYDBwuoZbW%2BqwGuhAXAAR5G3Qm5i9hpKWI%2Fu5AGH%2BJ0KLGBkiknKVNqB0ehfeD4j63wgBXveDv2IcmBpjhCVD0q8RrGcD%2BNHdMqs5cM5BhBhQj6LQmyZVGfe9CX9L4pRL6xrt%2BWI%2F5wg1Ul%2Fyw5XGnBl7ok%2BagEOygYdqQsWO%2BzrnWeybVJhF6ZVbo86VnE4f7Nr6T0WxrVaOinDhk%2FmcDTh2qem5kPbO%2BTCzpD%2FYDQySPSuozATNIHhX%2B9q9n9QP1VAn7%2FVkjtPxRhiI76wAI7GedZwWEippCeHhV%2Bw8CluqCpmAjqm4CBRZZEORf2AdFV%2FtCu0AnOHs4NWUigpmODYF44rcOQph3My1nL4wUQq6cwuctiAHBcOxZG4S9g%2B5CKfzC1pyGshg%2FgJEgM%2BPv7CLpRWZqm7bfjfGtG5lmedec%2FYeQkVRBZxaigs9zCWZ2mEyuTwD6EmT8BLdmvpgUlHHn6aww56jVvwY64wLhIPfUdC%2F%2Fr1eIzfxtmaJrx3x4HNHozDn1wWOIgQ0wcZNRdHtW1koJO66uRRLjVjw98Vir8oZcBU%2FgDhFZ61mibUCzoNVie%2B56Ncw3LJ9APojn4Ng2KuEeyq8GOr%2Fs7o14SxDnPKjlhayqShvllc06Mf6HVP2lL9YYYlBcGAuKEBLHX9wJEVLs7eaADqn1aPT9RMxZlUyDYqb2X0N9Juvpn79ID3ikJS0NLBOoi8zpXzn5KAKZ34i6oA0cEAPWEiEfYk0Fqr1kmV35N6fIogAbE44jDHjYo48ka0X5pzjiS%2FArzth0YIPSkE5jv1mo10saUiG2R6hj6BCWfmzb6kTay6aQQXOD2Dj2WOKc6nbjIw3matOly1aUBn3GyIksG15WW3oykDZ5SS%2FwGiewO5Fok%2FUBcTxh%2FubvI0GO2%2Fte0NK%2FeOhtYf7jnclnJbeeypIl7cnhnzGIOooT4f%2F8o0Y42b4H&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAUJFPPNUNT3ZHNUKA%2F20250408%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250408T171613Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=6e659e82a3be2a6f598ffaaf959c07f847d0ddaac011a99d68f2334e8c0a6d6b" type="video/mp4" />
                     Tu navegador no soporta el elemento de video.
                   </video>
                 </div>
@@ -670,6 +673,23 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                           </div>
                         </div>
 
+                        <div className="relative group/deepseek">
+                          <label className="flex items-center space-x-3 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={isLlama4Enabled}
+                              onChange={(e) => setIsLlama4Enabled(e.target.checked)}
+                              className="form-checkbox h-5 w-5 text-purple-500 rounded border-purple-500/30 bg-purple-500/10 focus:ring-purple-500 focus:ring-offset-0"
+                            />
+                            <span className="text-white">Llama 4 AI Worker</span>
+                            <span className="text-purple-400 font-medium">${deepseekPrice}/mes</span>
+                          </label>
+                          <div className="absolute bottom-full left-0 mb-2 w-72 p-4 bg-gray-800/95 backdrop-blur-sm rounded-xl shadow-xl opacity-0 invisible group-hover/deepseek:opacity-100 group-hover/deepseek:visible transition-all duration-200 z-10">
+                            <div className="text-sm text-violet-200">Worker AI de Cloudflare que da acceso al modelo Llama-4-Scout-17B-16E-Instruct con 10K tokens diarios</div>
+                            <div className="absolute bottom-0 left-6 translate-y-1/2 transform rotate-45 w-2 h-2 bg-gray-800/95"></div>
+                          </div>
+                        </div>
+
                         <div className="relative w-full max-w-xs">
                           <select
                             value={selectedSupportPlan || ''}
@@ -701,7 +721,12 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                         </div>
                         {isDeepseekEnabled && (
                           <div className="text-sm text-violet-200">
-                            <span className="font-medium">Deepseek AI:</span> +${deepseekPrice}
+                            <span className="font-medium">Deepseek R1 Worker IA:</span> +${deepseekPrice}
+                          </div>
+                        )}
+                        {isLlama4Enabled && (
+                          <div className="text-sm text-violet-200">
+                            <span className="font-medium">Llama 4 Worker IA:</span> +${llama4Price}
                           </div>
                         )}
                         {selectedSupportPlan && (
