@@ -418,11 +418,13 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeepseekEnabled, setIsDeepseekEnabled] = useState(false);
   const [isLlama4Enabled, setIsLlama4Enabled] = useState(false);
+  const [isCombinedAIEnabled, setIsCombinedAIEnabled] = useState(false);
   const [selectedSupportPlan, setSelectedSupportPlan] = useState<'3' | '6' | '12' | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const deepseekPrice = 9.99;
   const llama4Price = 9.99;
+  const combinedAIPrice = 14.99;
   const supportPlanPrices = {
     '2': 49.99,
     '4': 89.99,
@@ -431,8 +433,12 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
   const calculateTotalPrice = () => {
     let total = product.price;
-    if (isDeepseekEnabled) total += deepseekPrice;
-    if (isLlama4Enabled) total += llama4Price;
+    if (isCombinedAIEnabled) {
+      total += combinedAIPrice;
+    } else {
+      if (isDeepseekEnabled) total += deepseekPrice;
+      if (isLlama4Enabled) total += llama4Price;
+    }
     if (selectedSupportPlan) total += supportPlanPrices[selectedSupportPlan];
     return total.toFixed(2);
   };
@@ -661,8 +667,14 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                             <input
                               type="checkbox"
                               checked={isDeepseekEnabled}
-                              onChange={(e) => setIsDeepseekEnabled(e.target.checked)}
-                              className="form-checkbox h-5 w-5 text-purple-500 rounded border-purple-500/30 bg-purple-500/10 focus:ring-purple-500 focus:ring-offset-0"
+                              onChange={(e) => {
+                                setIsDeepseekEnabled(e.target.checked);
+                                if (e.target.checked) {
+                                  setIsCombinedAIEnabled(false);
+                                }
+                              }}
+                              disabled={isCombinedAIEnabled}
+                              className="form-checkbox h-5 w-5 text-purple-500 rounded border-purple-500/30 bg-purple-500/10 focus:ring-purple-500 focus:ring-offset-0 disabled:opacity-50"
                             />
                             <span className="text-white">Deepseek R1 AI Worker</span>
                             <span className="text-purple-400 font-medium">${deepseekPrice}/mes</span>
@@ -678,14 +690,43 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                             <input
                               type="checkbox"
                               checked={isLlama4Enabled}
-                              onChange={(e) => setIsLlama4Enabled(e.target.checked)}
-                              className="form-checkbox h-5 w-5 text-purple-500 rounded border-purple-500/30 bg-purple-500/10 focus:ring-purple-500 focus:ring-offset-0"
+                              onChange={(e) => {
+                                setIsLlama4Enabled(e.target.checked);
+                                if (e.target.checked) {
+                                  setIsCombinedAIEnabled(false);
+                                }
+                              }}
+                              disabled={isCombinedAIEnabled}
+                              className="form-checkbox h-5 w-5 text-purple-500 rounded border-purple-500/30 bg-purple-500/10 focus:ring-purple-500 focus:ring-offset-0 disabled:opacity-50"
                             />
                             <span className="text-white">Llama 4 AI Worker</span>
-                            <span className="text-purple-400 font-medium">${deepseekPrice}/mes</span>
+                            <span className="text-purple-400 font-medium">${llama4Price}/mes</span>
                           </label>
                           <div className="absolute bottom-full left-0 mb-2 w-72 p-4 bg-gray-800/95 backdrop-blur-sm rounded-xl shadow-xl opacity-0 invisible group-hover/deepseek:opacity-100 group-hover/deepseek:visible transition-all duration-200 z-10">
                             <div className="text-sm text-violet-200">Worker AI de Cloudflare que da acceso al modelo Llama-4-Scout-17B-16E-Instruct con 10K tokens diarios</div>
+                            <div className="absolute bottom-0 left-6 translate-y-1/2 transform rotate-45 w-2 h-2 bg-gray-800/95"></div>
+                          </div>
+                        </div>
+
+                        <div className="relative group/deepseek">
+                          <label className="flex items-center space-x-3 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={isCombinedAIEnabled}
+                              onChange={(e) => {
+                                setIsCombinedAIEnabled(e.target.checked);
+                                if (e.target.checked) {
+                                  setIsDeepseekEnabled(false);
+                                  setIsLlama4Enabled(false);
+                                }
+                              }}
+                              className="form-checkbox h-5 w-5 text-purple-500 rounded border-purple-500/30 bg-purple-500/10 focus:ring-purple-500 focus:ring-offset-0"
+                            />
+                            <span className="text-white">Pack Dual AI Worker</span>
+                            <span className="text-purple-400 font-medium">${combinedAIPrice}/mes</span>
+                          </label>
+                          <div className="absolute bottom-full left-0 mb-2 w-72 p-4 bg-gray-800/95 backdrop-blur-sm rounded-xl shadow-xl opacity-0 invisible group-hover/deepseek:opacity-100 group-hover/deepseek:visible transition-all duration-200 z-10">
+                            <div className="text-sm text-violet-200">Acceso combinado a DeepSeek R1 y Llama 4 con 10K tokens diarios en total</div>
                             <div className="absolute bottom-0 left-6 translate-y-1/2 transform rotate-45 w-2 h-2 bg-gray-800/95"></div>
                           </div>
                         </div>
@@ -714,20 +755,28 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                       <span className="text-2xl text-violet-300">$</span>
                       {calculateTotalPrice()}
                     </div>
-                    {(isDeepseekEnabled || isLlama4Enabled || selectedSupportPlan) && (
+                    {(isDeepseekEnabled || isLlama4Enabled || selectedSupportPlan || isCombinedAIEnabled) && (
                       <div className="mb-6 space-y-2">
                         <div className="text-sm text-violet-200">
                           <span className="font-medium">Precio base:</span> ${product.price}
                         </div>
-                        {isDeepseekEnabled && (
+                        {isCombinedAIEnabled ? (
                           <div className="text-sm text-violet-200">
-                            <span className="font-medium">Deepseek R1 Worker IA:</span> +${deepseekPrice}
+                            <span className="font-medium">Pack Dual AI Worker:</span> +${combinedAIPrice}
                           </div>
-                        )}
-                        {isLlama4Enabled && (
-                          <div className="text-sm text-violet-200">
-                            <span className="font-medium">Llama 4 Worker IA:</span> +${llama4Price}
-                          </div>
+                        ) : (
+                          <>
+                            {isDeepseekEnabled && (
+                              <div className="text-sm text-violet-200">
+                                <span className="font-medium">Deepseek R1 Worker IA:</span> +${deepseekPrice}
+                              </div>
+                            )}
+                            {isLlama4Enabled && (
+                              <div className="text-sm text-violet-200">
+                                <span className="font-medium">Llama 4 Worker IA:</span> +${llama4Price}
+                              </div>
+                            )}
+                          </>
                         )}
                         {selectedSupportPlan && (
                           <div className="text-sm text-violet-200">
