@@ -570,13 +570,13 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                         </div>
                       )}
                     </div>
-                    <div className="absolute -translate-x-[calc(17%)] w-[calc(100%+60rem)] bg-gray-800/95 backdrop-blur-md rounded-xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform -translate-y-[344px] transition-all duration-300 ease-out z-20 shadow-[0_0_30px_rgba(139,92,246,0.3)] border border-purple-500/40">
+                    <div className="absolute -translate-x-[calc(17%)] w-[calc(100%+60rem)] md:w-[calc(100%+60rem)] w-full bg-gray-800/95 backdrop-blur-md rounded-xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform -translate-y-[344px] md:-translate-y-[344px] -translate-y-[500px] transition-all duration-300 ease-out z-20 shadow-[0_0_30px_rgba(139,92,246,0.3)] border border-purple-500/40">
                       <h4 className="text-xl font-semibold text-white mb-4">Stack Tecnológico Completo</h4>
-                      <div className="grid grid-cols-1 lg:grid-cols-7 gap-2">
-                        <div className="space-y-4 w-[calc(100%+23.5rem)]" style={{ gridColumn: 'span 1.2' }}>
+                      <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
+                        <div className="space-y-4 w-full md:w-[calc(100%+23.5rem)]" style={{ gridColumn: 'span 1.2' }}>
                           <h5 className="text-lg font-semibold text-purple-300">Frontend</h5>
                           <div className="space-y-2">
-                            <div className="grid grid-cols-3 gap-2">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                               {product.techStack.find(cat => cat.name === 'Frontend')?.technologies.map((tech, techIndex) => (
                                 <div key={techIndex} className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/30 transition-all duration-300 shadow-[0_0_10px_rgba(139,92,246,0.1)]">
                                   <div className="font-medium text-white mb-1">{tech.name}</div>
