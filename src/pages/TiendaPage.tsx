@@ -41,7 +41,8 @@ const products: Product[] = [
     }],
     price: 8.99,
     icon: <FiShoppingCart />,
-    category: 'basic'
+    category: 'basic',
+    coming_soon: true
   },
   {
     id: 'spa-002',
@@ -58,7 +59,8 @@ const products: Product[] = [
     }],
     price: 14.99,
     icon: <FiShoppingCart />,
-    category: 'basic'
+    category: 'basic',
+    coming_soon: true
   },
   {
     id: 'basic-1',
@@ -214,7 +216,8 @@ const products: Product[] = [
     }],
     price: 49.99,
     icon: <FiShoppingCart />,
-    category: 'advanced'
+    category: 'advanced',
+    coming_soon: true
   },
   {
     id: 'multispa-002',
