@@ -218,8 +218,8 @@ const products: Product[] = [
   },
   {
     id: 'multispa-002',
-    name: 'Suite Empresarial SaaS Premium: Plataforma Web Multi-Idioma con Sistema de Suscripciones',
-    description: 'Solución SaaS completa con sistema de suscripciones y pagos automatizados mediante PayPal y Stripe. Incluye formularios de contacto personalizables, seguimiento de suscriptores al boletín, autenticación robusta y panel de administración multilingüe.',
+    name: 'Suite Empresarial SaaS Premium con IA: Plataforma Multilenguaje con Suscripciones, Pagos y Modelos de Inteligencia Artificial',
+    description: 'Esta es una solución SaaS completa, diseñada para ofrecer una base sólida, escalable y lista para producción. Desarrollada con un stack tecnológico moderno y confiable, esta plataforma no solo ofrece funcionalidades empresariales esenciales como suscripciones, autenticación y pagos, sino que además integra capacidades de inteligencia artificial de última generación gracias a Cloudflare Workers AI.',
     previewStack: ['React 18', 'TypeScript', 'Supabase', 'Cloudflare'],
     techStack: [
       {
@@ -513,16 +513,14 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             <div className="flex flex-col gap-8">
               {product.price === 89.99 && (
                 <div className="w-full rounded-xl overflow-hidden ring-2 ring-purple-500/30 shadow-lg shadow-purple-500/20">
-                  <video
-                    ref={videoRef}
-                    className="w-full h-[400px] object-cover"
-                    controls
-                    autoPlay
-                    muted
-                  >
-                    <source src="https://us-east-access-294573272347.s3-accesspoint.us-east-1.amazonaws.com/pro89.mp4?response-content-disposition=inline&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEAIaCXVzLWVhc3QtMSJIMEYCIQDIxZcfSo87ZYy5GqjmX4LueHsL81Dfwa3hZBqW8yBRYAIhANkrXlwtCxo8CKkvzSaBVuJ4th0ZBe6%2BnXyzqaYgc1mIKscDCHoQABoMMjk0NTczMjcyMzQ3IgzHU%2F%2BnQkar5Y4M4hwqpAPKQDlar2JaWXedZwDONUu%2BS94VArW9QM%2B0fSnaNQ52PCMFHQq5eUVPwRaIdTNxWHrRC3FBq%2FKtwLeAx%2BH9PjLYDBwuoZbW%2BqwGuhAXAAR5G3Qm5i9hpKWI%2Fu5AGH%2BJ0KLGBkiknKVNqB0ehfeD4j63wgBXveDv2IcmBpjhCVD0q8RrGcD%2BNHdMqs5cM5BhBhQj6LQmyZVGfe9CX9L4pRL6xrt%2BWI%2F5wg1Ul%2Fyw5XGnBl7ok%2BagEOygYdqQsWO%2BzrnWeybVJhF6ZVbo86VnE4f7Nr6T0WxrVaOinDhk%2FmcDTh2qem5kPbO%2BTCzpD%2FYDQySPSuozATNIHhX%2B9q9n9QP1VAn7%2FVkjtPxRhiI76wAI7GedZwWEippCeHhV%2Bw8CluqCpmAjqm4CBRZZEORf2AdFV%2FtCu0AnOHs4NWUigpmODYF44rcOQph3My1nL4wUQq6cwuctiAHBcOxZG4S9g%2B5CKfzC1pyGshg%2FgJEgM%2BPv7CLpRWZqm7bfjfGtG5lmedec%2FYeQkVRBZxaigs9zCWZ2mEyuTwD6EmT8BLdmvpgUlHHn6aww56jVvwY64wLhIPfUdC%2F%2Fr1eIzfxtmaJrx3x4HNHozDn1wWOIgQ0wcZNRdHtW1koJO66uRRLjVjw98Vir8oZcBU%2FgDhFZ61mibUCzoNVie%2B56Ncw3LJ9APojn4Ng2KuEeyq8GOr%2Fs7o14SxDnPKjlhayqShvllc06Mf6HVP2lL9YYYlBcGAuKEBLHX9wJEVLs7eaADqn1aPT9RMxZlUyDYqb2X0N9Juvpn79ID3ikJS0NLBOoi8zpXzn5KAKZ34i6oA0cEAPWEiEfYk0Fqr1kmV35N6fIogAbE44jDHjYo48ka0X5pzjiS%2FArzth0YIPSkE5jv1mo10saUiG2R6hj6BCWfmzb6kTay6aQQXOD2Dj2WOKc6nbjIw3matOly1aUBn3GyIksG15WW3oykDZ5SS%2FwGiewO5Fok%2FUBcTxh%2FubvI0GO2%2Fte0NK%2FeOhtYf7jnclnJbeeypIl7cnhnzGIOooT4f%2F8o0Y42b4H&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAUJFPPNUNT3ZHNUKA%2F20250408%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250408T171613Z&X-Amz-Expires=43200&X-Amz-SignedHeaders=host&X-Amz-Signature=6e659e82a3be2a6f598ffaaf959c07f847d0ddaac011a99d68f2334e8c0a6d6b" type="video/mp4" />
-                    Tu navegador no soporta el elemento de video.
-                  </video>
+                  <iframe
+                    className="w-full h-[400px]"
+                    src="https://www.youtube.com/embed/imZAdr067q0?autoplay=1&mute=1&loop=1&playlist=imZAdr067q0"
+                    title="Product Demo Video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </div>
               )}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
