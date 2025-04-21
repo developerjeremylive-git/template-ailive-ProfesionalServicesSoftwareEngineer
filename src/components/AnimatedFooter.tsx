@@ -115,7 +115,7 @@ export default function AnimatedFooter() {
                 </li> */}
                 <li>
                   <Link
-                    to="/ai-services"
+                    to="/automation-solutions"
                     className="text-[var(--theme-text-secondary)] hover:text-[var(--theme-text-primary)] transition-colors"
                   >
                     Servicios IA
@@ -200,14 +200,14 @@ export default function AnimatedFooter() {
                     {t('about')}
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     to="/pricing"
                     className="text-[var(--theme-text-secondary)] hover:text-[var(--theme-text-primary)] transition-colors"
                   >
                     {t('pricing')}
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link
                     to="/contact"
