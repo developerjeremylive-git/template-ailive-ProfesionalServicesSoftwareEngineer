@@ -169,7 +169,7 @@ function AppContent() {
                     animate={{
                       d: [
                         "M0,256L48,256C96,256,192,256,288,256C384,256,480,256,576,256C672,256,768,256,864,256C960,256,1056,256,1152,256C1248,256,1344,256,1392,256L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                        "M0,220L48,230C96,240,192,260,288,270C384,280,480,280,576,270C672,260,768,240,864,230C960,220,1056,220,1152,230C1248,240,1344,260,1392,270L1440,280L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
+                        "M0,220L48,230C96,240,192,260,288,270C384,280,480,280,576,270C672,220,768,200,864,190C960,180,1056,220,1152,190C1248,200,1344,220,1392,230L1440,240L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
                         "M0,256L48,256C96,256,192,256,288,256C384,256,480,256,576,256C672,256,768,256,864,256C960,256,1056,256,1152,256C1248,256,1344,256,1392,256L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
                       ],
                     }}
@@ -277,6 +277,373 @@ function AppContent() {
                       >
                         <span className="relative z-10">Ver Portfolio</span>
                         <div className="absolute inset-0 bg-white bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </motion.a>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.section>
+
+            {/* EcommetAIntegration Platform Section */}
+            <motion.section
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="py-20 bg-black/20 relative overflow-hidden"
+            >
+              {/* Fondo de partículas */}
+              <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
+                <div className="absolute inset-0 opacity-30">
+                  {[...Array(50)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-1 h-1 bg-purple-500 rounded-full"
+                      initial={{
+                        x: Math.random() * window.innerWidth,
+                        y: Math.random() * window.innerHeight,
+                        scale: Math.random() * 0.5 + 0.5,
+                      }}
+                      animate={{
+                        y: [null, Math.random() * -500],
+                        opacity: [0.7, 0],
+                      }}
+                      transition={{
+                        duration: Math.random() * 2 + 3,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="container mx-auto px-4">
+                <div className="flex flex-col md:flex-row items-center gap-12">
+                  <motion.div
+                    className="md:w-1/2 text-left"
+                    initial={{ x: 50, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <motion.h2
+                      className="text-3xl md:text-4xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.6, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      EcommetAIntegration: Plataforma de IA para E-commerce
+                    </motion.h2>
+                    <motion.p
+                      className="text-lg text-violet-200 mb-8 leading-relaxed"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.8, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      Revoluciona tu negocio online con nuestra plataforma de IA especializada en e-commerce. Desde análisis predictivo hasta atención al cliente automatizada, EcommetAIntegration proporciona las herramientas necesarias para impulsar tus ventas y mejorar la experiencia de tus clientes.
+                    </motion.p>
+                    <motion.div
+                      className="flex gap-4"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 1, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.a
+                        href="https://www.ecommetaintegration.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold overflow-hidden group"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <span className="relative z-10">Explorar Plataforma</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </motion.a>
+                      <motion.a
+                        href="/contact"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative px-6 py-3 rounded-full bg-white bg-opacity-10 text-white font-semibold overflow-hidden group"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <span className="relative z-10">Solicitar Demo</span>
+                        <div className="absolute inset-0 bg-white bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </motion.a>
+                    </motion.div>
+                  </motion.div>
+
+                  <motion.div
+                    className="md:w-1/2"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="relative w-full max-w-lg mx-auto">
+                      <motion.div
+                        className="absolute -inset-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-75 blur-xl"
+                        animate={{
+                          scale: [1, 1.1, 1],
+                          opacity: [0.5, 0.7, 0.5],
+                        }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                      />
+                      <div className="relative bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                        <div className="flex items-center justify-center mb-6">
+                          <motion.div
+                            className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center"
+                            whileHover={{ scale: 1.1, rotate: 90 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
+                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                          </motion.div>
+                        </div>
+                        <motion.div
+                          className="space-y-4"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.4, duration: 0.6 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="flex items-center gap-3 text-violet-200">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Análisis predictivo avanzado</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-violet-200">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Chatbots inteligentes 24/7</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-violet-200">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Integración personalizada</span>
+                          </div>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.section>
+
+            {/* AI Agents Platform Section */}
+            <motion.section
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="py-20 bg-black/20 relative overflow-hidden"
+            >
+              {/* Fondo de neuronas */}
+              <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
+                <div className="absolute inset-0">
+                  {[...Array(30)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute"
+                      initial={{
+                        x: Math.random() * window.innerWidth,
+                        y: Math.random() * window.innerHeight,
+                      }}
+                    >
+                      <motion.div
+                        className="w-2 h-2 bg-purple-500 rounded-full"
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.3, 0.7, 0.3],
+                        }}
+                        transition={{
+                          duration: Math.random() * 2 + 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
+                      {[...Array(3)].map((_, j) => (
+                        <motion.div
+                          key={j}
+                          className="absolute top-1/2 left-1/2 w-8 h-0.5 bg-gradient-to-r from-purple-500 to-transparent"
+                          style={{
+                            transform: `rotate(${j * 120}deg)`,
+                            transformOrigin: "0 0",
+                          }}
+                          animate={{
+                            opacity: [0.1, 0.3, 0.1],
+                            scaleX: [1, 1.2, 1],
+                          }}
+                          transition={{
+                            duration: Math.random() * 3 + 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                        />
+                      ))}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="container mx-auto px-4">
+                <div className="flex flex-col md:flex-row items-center gap-12">
+                  <motion.div
+                    className="md:w-1/2"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="relative w-full max-w-lg mx-auto">
+                      <motion.div
+                        className="absolute -inset-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-75 blur-xl"
+                        animate={{
+                          scale: [1, 1.1, 1],
+                          opacity: [0.5, 0.7, 0.5],
+                        }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                      />
+                      <div className="relative bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                        <div className="flex items-center justify-center mb-6">
+                          <motion.div
+                            className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center relative overflow-hidden"
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
+                              animate={{
+                                rotate: [0, 360],
+                              }}
+                              transition={{
+                                duration: 8,
+                                repeat: Infinity,
+                                ease: "linear",
+                              }}
+                            />
+                            <svg className="w-8 h-8 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                          </motion.div>
+                        </div>
+                        <motion.div
+                          className="space-y-4"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.4, duration: 0.6 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="flex items-center gap-3 text-violet-200">
+                            <motion.div
+                              className="w-5 h-5 flex items-center justify-center"
+                              whileHover={{ scale: 1.2, rotate: 180 }}
+                              transition={{ type: "spring", stiffness: 300 }}
+                            >
+                              <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                              </svg>
+                            </motion.div>
+                            <span>Procesamiento de Lenguaje Natural Avanzado</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-violet-200">
+                            <motion.div
+                              className="w-5 h-5 flex items-center justify-center"
+                              whileHover={{ scale: 1.2, rotate: 180 }}
+                              transition={{ type: "spring", stiffness: 300 }}
+                            >
+                              <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                              </svg>
+                            </motion.div>
+                            <span>Aprendizaje Continuo y Adaptativo</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-violet-200">
+                            <motion.div
+                              className="w-5 h-5 flex items-center justify-center"
+                              whileHover={{ scale: 1.2, rotate: 180 }}
+                              transition={{ type: "spring", stiffness: 300 }}
+                            >
+                              <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                              </svg>
+                            </motion.div>
+                            <span>Toma de Decisiones Autónoma</span>
+                          </div>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    className="md:w-1/2 text-left"
+                    initial={{ x: 50, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <motion.h2
+                      className="text-3xl md:text-4xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.6, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      Agentes de IA: El Futuro de la Automatización Inteligente
+                    </motion.h2>
+                    <motion.p
+                      className="text-lg text-violet-200 mb-8 leading-relaxed"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.8, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      Descubre el poder de nuestros agentes de IA, diseñados para revolucionar la forma en que interactúas con la tecnología. Desde la comprensión avanzada del lenguaje natural hasta la toma de decisiones autónoma, nuestros agentes aprenden y evolucionan continuamente para proporcionar soluciones cada vez más inteligentes y eficientes.
+                    </motion.p>
+                    <motion.div
+                      className="flex gap-4"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 1, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.a
+                          href="https://www.etheroi.com"
+                        className="relative px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold overflow-hidden group"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <span className="relative z-10">Explorar Capacidades</span>
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500"
+                          initial={{ x: "-100%" }}
+                          whileHover={{ x: 0 }}
+                          transition={{ type: "spring", stiffness: 100 }}
+                        />
+                      </motion.a>
+                      <motion.a
+                        href="/contact"
+                        className="relative px-6 py-3 rounded-full bg-white bg-opacity-10 text-white font-semibold overflow-hidden group"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <span className="relative z-10">Programar Demostración</span>
+                        <motion.div
+                          className="absolute inset-0 bg-white bg-opacity-20"
+                          initial={{ scale: 0, opacity: 0 }}
+                          whileHover={{ scale: 1, opacity: 1 }}
+                          transition={{ type: "spring", stiffness: 100 }}
+                        />
                       </motion.a>
                     </motion.div>
                   </motion.div>
