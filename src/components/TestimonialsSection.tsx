@@ -197,7 +197,7 @@ export default function TestimonialsSection() {
 				</div>
 
 				{/* Testimonials Carousel */}
-				<div className="relative max-w-7xl mx-auto mb-32 px-12">
+				<div className="relative max-w-7xl mx-auto mb-32 md:px-12">
 					{/* Scroll Indicator */}
 					<div className="flex justify-center mb-8 gap-1">
 						{testimonials.map((_, index) => (
@@ -217,7 +217,7 @@ export default function TestimonialsSection() {
 						<motion.div
 							className="flex"
 							animate={{
-								x: `-${currentIndex * 33.33}%`
+								x: `-${currentIndex * (100 / (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1))}%`
 							}}
 							transition={{
 								duration: 0.7,
@@ -227,18 +227,17 @@ export default function TestimonialsSection() {
 							{testimonials.map((testimonial, index) => (
 								<motion.div
 									key={testimonial.id}
-									className="w-1/3 flex-shrink-0 px-4"
+									className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 lg:px-4 px-8"
 									initial={{ opacity: 0 }}
 									animate={{
-										opacity: Math.abs(currentIndex - index) < 3 ? 1 : 0.3,
-										scale: Math.abs(currentIndex - index) < 3 ? 1 : 0.95,
+										opacity: Math.abs(currentIndex - index) < (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1) ? 1 : 0.3,
+										scale: Math.abs(currentIndex - index) < (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1) ? 1 : 0.95,
 									}}
 									transition={{ duration: 0.5 }}
 								>
 									<div
 										onClick={() => setSelectedTestimonial(testimonial)}
-										className={`${isDarkTheme ? 'bg-gray-800' : 'bg-white'
-											} bg-opacity-5 backdrop-blur-sm rounded-2xl p-8 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:bg-opacity-10 h-[32rem] flex flex-col`}
+										className={`${isDarkTheme ? 'bg-gray-800' : 'bg-white'} bg-opacity-5 backdrop-blur-sm rounded-2xl p-6 md:p-8 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:bg-opacity-10 h-[28rem] md:h-[32rem] flex flex-col`}
 									>
 										<div className="flex items-center mb-6">
 											<div className="relative">
@@ -266,7 +265,7 @@ export default function TestimonialsSection() {
 												/>
 											))}
 										</div>
-										<p className="text-violet-200 mb-4 line-clamp-3 flex-grow">{t(testimonial.textKey)}</p>
+										<p className="text-violet-200 mb-8 line-clamp-3 flex-grow">{t(testimonial.textKey)}</p>
 										<div className="grid grid-cols-3 gap-2 mt-auto">
 											{Object.entries(testimonial.metrics).map(([key, value]) => (
 												<div
