@@ -10,6 +10,7 @@ import TestimonialsSection from './components/TestimonialsSection'
 import NeuralNetworkBackground from './components/NeuralNetworkBackground'
 import ScrollToTop from './components/ScrollToTop'
 import AuthPopup from './components/AuthPopup'
+import ProfileImage from './components/ProfileImage'
 import DocsPage from './pages/DocsPage'
 import ModelsPage from './pages/ModelsPage'
 import ModelDetailPage from './pages/ModelDetailPage'
@@ -169,7 +170,7 @@ function AppContent() {
                     animate={{
                       d: [
                         "M0,256L48,256C96,256,192,256,288,256C384,256,480,256,576,256C672,256,768,256,864,256C960,256,1056,256,1152,256C1248,256,1344,256,1392,256L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                        "M0,220L48,230C96,240,192,260,288,270C384,280,480,280,576,270C672,220,768,200,864,190C960,180,1056,220,1152,190C1248,200,1344,220,1392,230L1440,240L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
+                        "M0,220L48,230C96,240,192,260,288,270C384,280,480,280,576,270C672,260,768,240,864,230C960,220,1056,220,1152,230C1248,240,1344,260,1392,270L1440,280L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
                         "M0,256L48,256C96,256,192,256,288,256C384,256,480,256,576,256C672,256,768,256,864,256C960,256,1056,256,1152,256C1248,256,1344,256,1392,256L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
                       ],
                     }}
@@ -210,22 +211,19 @@ function AppContent() {
                     transition={{ delay: 0.2, duration: 0.6 }}
                     viewport={{ once: true }}
                   >
-                    <div className="relative w-64 h-64 mx-auto group cursor-pointer">
+                    <div className="relative w-64 mx-auto">
+                      <ProfileImage size="lg" />
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      />
-                      <motion.div
-                        className="absolute inset-2 bg-black rounded-full overflow-hidden backdrop-blur-sm"
+                        className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-center"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.6 }}
                         whileHover={{ scale: 1.05 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
                       >
-                        <svg className="w-full h-full text-gray-800 group-hover:text-purple-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                        </svg>
+                        <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 group-hover:from-pink-400 group-hover:to-purple-400 transition-all duration-300">
+                          Jeremy Live
+                        </h2>
                       </motion.div>
-                      <div className="absolute -inset-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full opacity-20 blur-xl group-hover:opacity-30 transition-opacity duration-300" />
                     </div>
                   </motion.div>
                   <motion.div
@@ -618,7 +616,7 @@ function AppContent() {
                       viewport={{ once: true }}
                     >
                       <motion.a
-                          href="https://www.etheroi.com"
+                        href="https://www.etheroi.com"
                         className="relative px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold overflow-hidden group"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
