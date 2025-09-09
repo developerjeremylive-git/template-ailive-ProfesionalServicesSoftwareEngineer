@@ -115,10 +115,18 @@ export default function AnimatedFooter() {
                 </li> */}
                 <li>
                   <Link
-                    to="/automation-solutions"
+                    to="/ai-services"
                     className="text-[var(--theme-text-secondary)] hover:text-[var(--theme-text-primary)] transition-colors"
                   >
                     Servicios IA
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/automation-solutions"
+                    className="text-[var(--theme-text-secondary)] hover:text-[var(--theme-text-primary)] transition-colors"
+                  >
+                    Automatización
                   </Link>
                 </li>
               </ul>

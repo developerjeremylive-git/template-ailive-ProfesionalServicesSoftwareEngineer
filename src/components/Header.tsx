@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { WiSnow } from 'react-icons/wi'
@@ -12,462 +12,557 @@ import AuthButton from './AuthButton'
 import AuthPopup from './AuthPopup'
 
 interface HeaderProps {
-	variant?: 'default' | 'docs' | 'models'
+  variant?: 'default' | 'docs' | 'models'
 }
 
 interface Snowflake {
-	id: number
-	x: number
-	y: number
-	size: number
-	speed: number
+  id: number
+  x: number
+  y: number
+  size: number
+  speed: number
 }
 
 export default function Header({ variant = 'default' }: HeaderProps) {
-	const [isMenuOpen, setIsMenuOpen] = useState(false)
-	const [isSettingsOpen, setIsSettingsOpen] = useState(false)
-	const [snowflakes, setSnowflakes] = useState<Snowflake[]>([])
-	const settingsRef = useRef<HTMLDivElement>(null)
-	const {
-		isDarkTheme,
-		isSnowEnabled,
-		isGraphEnabled,
-		toggleTheme,
-		toggleSnow,
-		toggleGraph,
-		toggleBackgroundTheme
-	} = useApp()
-	const { currentLanguage, setLanguage, t } = useLanguage()
-	const { user, isLoginOpen, setIsLoginOpen } = useAuth()
-	const location = useLocation()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+  const [snowflakes, setSnowflakes] = useState<Snowflake[]>([])
+  const settingsRef = useRef<HTMLDivElement>(null)
+  const {
+    isDarkTheme,
+    isSnowEnabled,
+    isGraphEnabled,
+    toggleTheme,
+    toggleSnow,
+    toggleGraph,
+    toggleBackgroundTheme
+  } = useApp()
+  const { currentLanguage, setLanguage, t } = useLanguage()
+  const { user, isLoginOpen, setIsLoginOpen } = useAuth()
+  const location = useLocation()
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false)
+  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
+    'desarrollo-web': true,
+    'software-cloud': true,
+    'servicios-avanzados': true
+  })
+  const menuRef = useRef<HTMLDivElement>(null)
 
-	useEffect(() => {
-		if (!isSnowEnabled) {
-			setSnowflakes([])
-			return
-		}
+  useEffect(() => {
+    if (!isSnowEnabled) {
+      setSnowflakes([])
+      return
+    }
 
-		// Create initial snowflakes
-		const initialSnowflakes = Array.from({ length: 50 }, (_, i) => ({
-			id: i,
-			x: Math.random() * window.innerWidth,
-			y: Math.random() * window.innerHeight,
-			size: Math.random() * 4 + 1,
-			speed: Math.random() * 2 + 1,
-		}))
-		setSnowflakes(initialSnowflakes)
+    // Create initial snowflakes
+    const initialSnowflakes = Array.from({ length: 50 }, (_, i) => ({
+      id: i,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      size: Math.random() * 4 + 1,
+      speed: Math.random() * 2 + 1,
+    }))
+    setSnowflakes(initialSnowflakes)
 
-		// Animation loop
-		const animateSnow = () => {
-			setSnowflakes((prev) =>
-				prev.map((flake) => ({
-					...flake,
-					y: flake.y + flake.speed,
-					x: flake.x + Math.sin(flake.y * 0.01) * 0.5,
-					...(flake.y > window.innerHeight && {
-						y: -10,
-						x: Math.random() * window.innerWidth,
-					}),
-				}))
-			)
-		}
+    // Animation loop
+    const animateSnow = () => {
+      setSnowflakes((prev) =>
+        prev.map((flake) => ({
+          ...flake,
+          y: flake.y + flake.speed,
+          x: flake.x + Math.sin(flake.y * 0.01) * 0.5,
+          ...(flake.y > window.innerHeight && {
+            y: -10,
+            x: Math.random() * window.innerWidth,
+          }),
+        }))
+      )
+    }
 
-		const interval = setInterval(animateSnow, 50)
-		return () => clearInterval(interval)
-	}, [isSnowEnabled])
+    const interval = setInterval(animateSnow, 50)
+    return () => clearInterval(interval)
+  }, [isSnowEnabled])
 
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (settingsRef.current && !settingsRef.current.contains(event.target as Node)) {
-				setIsSettingsOpen(false)
-			}
-		}
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (settingsRef.current && !settingsRef.current.contains(event.target as Node)) {
+        setIsSettingsOpen(false)
+      }
+    }
 
-		document.addEventListener('mousedown', handleClickOutside)
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside)
-		}
-	}, [])
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
-	const getTitle = () => {
-		return 'Jeremy Live'
-	}
+  const checkScrollable = useCallback(() => {
+    if (menuRef.current) {
+      const { scrollHeight, clientHeight } = menuRef.current
+      setShowScrollIndicator(scrollHeight > clientHeight)
+    }
+  }, [])
 
-	const headerVariants = {
-		hidden: { y: -100, opacity: 0 },
-		visible: {
-			y: 0,
-			opacity: 1,
-			transition: {
-				type: 'spring',
-				stiffness: 100,
-				damping: 20,
-				duration: 0.5,
-			},
-		},
-	}
+  const scrollToBottom = useCallback(() => {
+    if (menuRef.current) {
+      menuRef.current.scrollTo({
+        top: menuRef.current.scrollHeight,
+        behavior: 'smooth'
+      })
+    }
+  }, [])
 
-	const settingsPopupVariants = {
-		hidden: { opacity: 0, scale: 0.95, y: -20 },
-		visible: {
-			opacity: 1,
-			scale: 1,
-			y: 0,
-			transition: {
-				type: 'spring',
-				stiffness: 300,
-				damping: 30,
-			},
-		},
-		exit: {
-			opacity: 0,
-			scale: 0.95,
-			y: -20,
-			transition: {
-				duration: 0.2,
-			},
-		},
-	}
+  const toggleSection = useCallback((section: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }))
+  }, [])
 
-	return (
-		<>
-			{/* Snow Animation */}
-			{isSnowEnabled && (
-				<div className="fixed inset-0 pointer-events-none z-40">
-					{snowflakes.map((flake) => (
-						<motion.div
-							key={flake.id}
-							className="absolute bg-white rounded-full opacity-60"
-							animate={{
-								x: flake.x,
-								y: flake.y,
-							}}
-							transition={{
-								duration: 0.05,
-								ease: 'linear',
-							}}
-							style={{
-								width: flake.size,
-								height: flake.size,
-							}}
-						/>
-					))}
-				</div>
-			)}
+  useEffect(() => {
+    if (isMenuOpen) {
+      const timer = setTimeout(checkScrollable, 100)
+      window.addEventListener('resize', checkScrollable)
+      return () => {
+        clearTimeout(timer)
+        window.removeEventListener('resize', checkScrollable)
+      }
+    }
+  }, [isMenuOpen, checkScrollable])
 
-			<motion.header
-				initial="hidden"
-				animate="visible"
-				variants={headerVariants}
-				className={`fixed top-0 w-full backdrop-blur-sm z-50 ${isDarkTheme ? 'bg-[var(--theme-background)]' : 'bg-[var(--theme-background)]'}`}
-			>
-				<div className="container mx-auto px-4 py-4">
-					<div className="flex justify-between items-center">
-						<Link
-							to="/"
-							className="flex items-center gap-3 text-3xl font-extrabold text-[var(--theme-text-primary)] transition-all duration-300 hover:scale-105"
-						>
-							{/* <div className="w-11 h-11 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 p-[2px] shadow-lg shadow-purple-500/30 transition-all duration-300 hover:shadow-pink-500/30">
-								<div className="w-full h-full rounded-xl bg-[var(--theme-background)] flex items-center justify-center">
-									<svg
-										viewBox="0 0 24 24"
-										fill="none"
-										className="w-7 h-7"
-									>
-										<path
-											d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-											className="fill-purple-500"
-										/>
-										<path
-											d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"
-											className="fill-pink-500"
-										/>
-									</svg>
-								</div>
-							</div> */}
-							<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 transition-all duration-300">
-								{getTitle()}
-							</span>
-						</Link>
+  const getTitle = () => {
+    return 'Jeremy Live'
+  }
 
-						<div className="flex items-center space-x-6">
-							{/* Navigation Links */}
-							<nav className="hidden md:flex items-center space-x-6">
-								{/* Desarrollo Web */}
-								<div className="relative group">
-									<button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
-										{t('Desarrollo Web')}
-										<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-									</button>
-									<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-										<Link to="/web-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Desarrollo Web Profesional')}</Link>
-										<Link to="/ecommerce" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{'Comercio Electrónico'}</Link>
-										<Link to="/wordpress" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('WordPress')}</Link>
-									</div>
-								</div>
+  const headerVariants = {
+    hidden: { y: -100, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        damping: 20,
+        duration: 0.5,
+      },
+    },
+  }
 
-								{/* Software & Cloud */}
-								<div className="relative group">
-									<button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
-										{t('Software & Cloud')}
-										<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-									</button>
-									<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-										<Link to="/custom-software" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Software a Medida')}</Link>
-										<Link to="/cloud-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{'Computación en la Nube'}</Link>
-										<Link to="/database-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Bases de Datos')}</Link>
-									</div>
-								</div>
+  const settingsPopupVariants = {
+    hidden: { opacity: 0, scale: 0.95, y: -20 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 30,
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.95,
+      y: -20,
+      transition: {
+        duration: 0.2,
+      },
+    },
+  }
 
-								{/* Servicios Avanzados */}
-								<div className="relative group">
-									<button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
-										{t('Servicios Avanzados')}
-										<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-									</button>
-									<div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-										{/* <Link to="/technical-support" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Soporte Técnico')}</Link> */}
-										<Link to="/mobile-app-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{'Desarrollo Móvil'}</Link>
-										<Link to="/saas-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Desarrollo SaaS')}</Link>
-										<Link to="/automation-solutions" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Servicios de IA')}</Link>
-										{/* <Link to="/ai-services" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Servicios de IA')}</Link> */}
-									</div>
-								</div>
-							</nav>
-							{/* <nav className="hidden md:flex items-center space-x-6">
-								<Link
-									to="/pricing"
-									className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 
-										${location.pathname === '/pricing'
-											? 'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30'
-											: 'text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10'
-										}
-										before:absolute before:inset-0 before:rounded-lg before:transition-transform before:duration-300
-										hover:transform hover:scale-105`}
-								>
-									{'Precios'}
-								</Link>
-							</nav> */}
-							<nav className="hidden md:flex items-center space-x-6">
-								<Link
-									to="/tienda"
-									className={
-										`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 
-										${location.pathname === '/tienda'
-											? 'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30'
-											: 'text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10'
-										}
-										before:absolute before:inset-0 before:rounded-lg before:transition-transform before:duration-300
-										hover:transform hover:scale-105`
-									}
-								>
-									{'Tienda'}
-								</Link>
-							</nav>
+  return (
+    <>
+      {/* Snow Animation */}
+      {isSnowEnabled && (
+        <div className="fixed inset-0 pointer-events-none z-40">
+          {snowflakes.map((flake) => (
+            <motion.div
+              key={flake.id}
+              className="absolute bg-white rounded-full opacity-60"
+              animate={{
+                x: flake.x,
+                y: flake.y,
+              }}
+              transition={{
+                duration: 0.05,
+                ease: 'linear',
+              }}
+              style={{
+                width: flake.size,
+                height: flake.size,
+              }}
+            />
+          ))}
+        </div>
+      )}
 
-							<div className="flex items-center space-x-3">
-								{/* Settings button */}
-								<div ref={settingsRef} className="relative">
-									<button
-										onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-										className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-500 hover:from-purple-500/20 hover:to-pink-500/20 hover:scale-110 transform transition-all duration-300"
-										aria-label={t('settings')}
-									>
-										<FiSettings className="w-5 h-5" />
-									</button>
+      <motion.header
+        initial="hidden"
+        animate="visible"
+        variants={headerVariants}
+        className={`fixed top-0 w-full backdrop-blur-sm z-50 ${isDarkTheme ? 'bg-[var(--theme-background)]' : 'bg-[var(--theme-background)]'}`}
+      >
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
+            <Link
+              to="/"
+              className="flex items-center gap-3 text-3xl font-extrabold text-[var(--theme-text-primary)] transition-all duration-300 hover:scale-105"
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 transition-all duration-300">
+                {getTitle()}
+              </span>
+            </Link>
 
-									<AnimatePresence>
-										{isSettingsOpen && (
-											<motion.div
-												initial="hidden"
-												animate="visible"
-												exit="exit"
-												variants={settingsPopupVariants}
-												className="absolute right-0 mt-3 w-64 rounded-2xl overflow-hidden bg-[var(--theme-background)] border border-purple-500/20 shadow-xl shadow-purple-500/20 z-50"
-											>
-												{/* Theme Toggle */}
-												<motion.button
-													onClick={toggleBackgroundTheme}
-													className="w-full flex items-center justify-between px-5 py-3 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500/10 transition-all duration-300"
-													whileHover={{ x: 4 }}
-												>
-													<span className="font-medium">{t('theme')}</span>
-													{!isDarkTheme ? (
-														<RiSunLine className="w-5 h-5 text-amber-500" />
-													) : (
-														<RiMoonClearLine className="w-5 h-5 text-purple-400" />
-													)}
-												</motion.button>
+            <div className="flex items-center space-x-6">
+              {/* Navigation Links */}
+              <nav className="hidden md:flex items-center space-x-6">
+                {/* Desarrollo Web */}
+                <div className="relative group">
+                  <button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
+                    {t('Desarrollo Web')}
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                  </button>
+                  <div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <Link to="/web-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Desarrollo Web Profesional')}</Link>
+                    <Link to="/ecommerce" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{'Comercio Electrónico'}</Link>
+                    <Link to="/wordpress" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('WordPress')}</Link>
+                  </div>
+                </div>
 
-												{/* Graph Toggle */}
-												<motion.button
-													onClick={toggleGraph}
-													className="w-full flex items-center justify-between px-5 py-3 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500/10 transition-all duration-300"
-													whileHover={{ x: 4 }}
-												>
-													<span className="font-medium">{t('graph_animation')}</span>
-													<div className="relative">
-														<FiShare2 className={`w-5 h-5 ${isGraphEnabled ? 'text-green-500' : 'text-red-500'}`} />
-														{!isGraphEnabled && (
-															<FiSlash className="w-5 h-5 absolute top-0 left-0 text-red-500 animate-pulse" />
-														)}
-													</div>
-												</motion.button>
+                {/* Software & Cloud */}
+                <div className="relative group">
+                  <button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
+                    {t('Software & Cloud')}
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                  </button>
+                  <div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <Link to="/custom-software" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{t('Software a Medida')}</Link>
+                    <Link to="/cloud-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{'Computación en la Nube'}</Link>
+                    <Link to="/database-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Bases de Datos')}</Link>
+                  </div>
+                </div>
 
-												{/* Snow Toggle */}
-												<motion.button
-													onClick={toggleSnow}
-													className="w-full flex items-center justify-between px-5 py-3 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500/10 transition-all duration-300"
-													whileHover={{ x: 4 }}
-												>
-													<span className="font-medium">{t('snow_effect')}</span>
-													<div className="relative">
-														<WiSnow className={`w-6 h-6 ${isSnowEnabled ? 'text-blue-400' : 'text-red-500'}`} />
-														{!isSnowEnabled && (
-															<FiSlash className="w-5 h-5 absolute top-0 left-0 text-red-500 animate-pulse" />
-														)}
-													</div>
-												</motion.button>
-											</motion.div>
-										)}
-									</AnimatePresence>
-								</div>
+                {/* Servicios Avanzados */}
+                <div className="relative group">
+                  <button className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 flex items-center">
+                    {t('Servicios Avanzados')}
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                  </button>
+                  <div className="absolute left-0 mt-2 w-48 rounded-lg shadow-lg bg-[var(--theme-background)] border border-[var(--theme-border)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                    <Link to="/mobile-app-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-t-lg">{'Desarrollo Móvil'}</Link>
+                    <Link to="/saas-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{t('Desarrollo SaaS')}</Link>
+                    <Link to="/ai-services" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white">{t('Servicios de IA')}</Link>
+                    <Link to="/automation-solutions" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-b-lg">{t('Automatización')}</Link>
+                  </div>
+                </div>
+              </nav>
+              {/* <nav className="hidden md:flex items-center space-x-6">
+                <Link
+                  to="/pricing"
+                  className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 
+                    ${location.pathname === '/pricing'
+                      ? 'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30'
+                      : 'text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10'
+                    }
+                    before:absolute before:inset-0 before:rounded-lg before:transition-transform before:duration-300
+                    hover:transform hover:scale-105`}
+                >
+                  {'Precios'}
+                </Link>
+              </nav> */}
+              <nav className="hidden md:flex items-center space-x-6">
+                <Link
+                  to="/tienda"
+                  className={
+                    `relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 
+                      ${location.pathname === '/tienda'
+                        ? 'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30'
+                        : 'text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10'
+                      }
+                      before:absolute before:inset-0 before:rounded-lg before:transition-transform before:duration-300
+                      hover:transform hover:scale-105`
+                  }
+                >
+                  {'Tienda'}
+                </Link>
+              </nav>
 
-								{/* Auth Button */}
-								<AuthButton variant="header" className="hidden sm:flex" />
+              <div className="flex items-center space-x-3">
+                {/* Settings button */}
+                <div ref={settingsRef} className="relative">
+                  <button
+                    onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+                    className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-500 hover:from-purple-500/20 hover:to-pink-500/20 hover:scale-110 transform transition-all duration-300"
+                    aria-label={String(t('settings'))}
+                  >
+                    <FiSettings className="w-5 h-5" />
+                  </button>
 
-								{/* User Profile */}
-								{user && (
-									<UserProfile />
-								)}
+                  <AnimatePresence>
+                    {isSettingsOpen && (
+                      <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={settingsPopupVariants}
+                        className="absolute right-0 mt-3 w-64 rounded-2xl overflow-hidden bg-[var(--theme-background)] border border-purple-500/20 shadow-xl shadow-purple-500/20 z-50"
+                      >
+                        {/* Theme Toggle */}
+                        <motion.button
+                          onClick={toggleBackgroundTheme}
+                          className="w-full flex items-center justify-between px-5 py-3 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500/10 transition-all duration-300"
+                          whileHover={{ x: 4 }}
+                        >
+                          <span className="font-medium">{t('theme')}</span>
+                          {!isDarkTheme ? (
+                            <RiSunLine className="w-5 h-5 text-amber-500" />
+                          ) : (
+                            <RiMoonClearLine className="w-5 h-5 text-purple-400" />
+                          )}
+                        </motion.button>
 
-								{/* Mobile menu button */}
-								<button
-									onClick={() => setIsMenuOpen(!isMenuOpen)}
-									className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-500 hover:from-purple-500/20 hover:to-pink-500/20 hover:scale-110 transform transition-all duration-300"
-									aria-label={isMenuOpen ? t('close_menu') : t('open_menu')}
-								>
-									<svg
-										className="h-5 w-5"
-										stroke="currentColor"
-										fill="none"
-										viewBox="0 0 24 24"
-									>
-										{isMenuOpen ? (
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M6 18L18 6M6 6l12 12"
-											/>
-										) : (
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M4 6h16M4 12h16M4 18h16"
-											/>
-										)}
-									</svg>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
+                        {/* Graph Toggle */}
+                        <motion.button
+                          onClick={toggleGraph}
+                          className="w-full flex items-center justify-between px-5 py-3 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500/10 transition-all duration-300"
+                          whileHover={{ x: 4 }}
+                        >
+                          <span className="font-medium">{t('graph_animation')}</span>
+                          <div className="relative">
+                            <FiShare2 className={`w-5 h-5 ${isGraphEnabled ? 'text-green-500' : 'text-red-500'}`} />
+                            {!isGraphEnabled && (
+                              <FiSlash className="w-5 h-5 absolute top-0 left-0 text-red-500 animate-pulse" />
+                            )}
+                          </div>
+                        </motion.button>
 
-				{/* Mobile menu */}
-				<AnimatePresence>
-					{isMenuOpen && (
-						<motion.div
-							initial={{ opacity: 0, height: 0 }}
-							animate={{ opacity: 1, height: 'auto' }}
-							exit={{ opacity: 0, height: 0 }}
-							className="md:hidden border-t border-[var(--border)] bg-[var(--theme-background)] bg-opacity-95 backdrop-blur-lg"
-						>
-							<div className="px-4 py-3 space-y-2">
-								{/* Desarrollo Web */}
-								<div className="space-y-2">
-									<button
-										className="w-full px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10 flex items-center justify-between"
-										onClick={() => setIsMenuOpen(true)}
-									>
-										{t('Desarrollo Web')}
-										<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-									</button>
-									<div className="pl-4 space-y-2">
-										<Link to="/web-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('Desarrollo Web Profesional')}</Link>
-										<Link to="/ecommerce" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{'Comercio Electrónico'}</Link>
-										<Link to="/wordpress" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('WordPress')}</Link>
-									</div>
-								</div>
+                        {/* Snow Toggle */}
+                        <motion.button
+                          onClick={toggleSnow}
+                          className="w-full flex items-center justify-between px-5 py-3 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500/10 transition-all duration-300"
+                          whileHover={{ x: 4 }}
+                        >
+                          <span className="font-medium">{t('snow_effect')}</span>
+                          <div className="relative">
+                            <WiSnow className={`w-6 h-6 ${isSnowEnabled ? 'text-blue-400' : 'text-red-500'}`} />
+                            {!isSnowEnabled && (
+                              <FiSlash className="w-5 h-5 absolute top-0 left-0 text-red-500 animate-pulse" />
+                            )}
+                          </div>
+                        </motion.button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-								{/* Software & Cloud */}
-								<div className="space-y-2">
-									<button
-										className="w-full px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10 flex items-center justify-between"
-										onClick={() => setIsMenuOpen(true)}
-									>
-										{t('Software & Cloud')}
-										<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-									</button>
-									<div className="pl-4 space-y-2">
-										<Link to="/custom-software" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('Software a Medida')}</Link>
-										<Link to="/cloud-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{'Computación en la Nube'}</Link>
-										<Link to="/database-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('Bases de Datos')}</Link>
-									</div>
-								</div>
+                {/* Auth Button */}
+                <AuthButton variant="header" className="hidden sm:flex" />
 
-								{/* Servicios Avanzados */}
-								<div className="space-y-2">
-									<button
-										className="w-full px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10 flex items-center justify-between"
-										onClick={() => setIsMenuOpen(true)}
-									>
-										{t('Servicios Avanzados')}
-										<svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-									</button>
-									<div className="pl-4 space-y-2">
-										<Link to="/mobile-app-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{'Desarrollo Móvil'}</Link>
-										<Link to="/saas-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('Desarrollo SaaS')}</Link>
-										<Link to="/ai-services" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('Servicios de IA')}</Link>
-									</div>
-								</div>
+                {/* User Profile */}
+                {user && (
+                  <UserProfile />
+                )}
 
-								{/* <Link
-									to="/pricing"
-									className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-300 
-										${location.pathname === '/pricing'
-											? 'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30'
-											: 'text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10'
-										}`}
-									onClick={() => setIsMenuOpen(false)}
-								>
-									{'Precios'}
-								</Link> */}
+                {/* Mobile menu button */}
+                <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="md:hidden flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-500 hover:from-purple-500/20 hover:to-pink-500/20 hover:scale-110 transform transition-all duration-300"
+                  aria-label={String(isMenuOpen ? t('close_menu') : t('open_menu'))}
+                >
+                  <svg
+                    className="h-5 w-5"
+                    stroke="currentColor"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    {isMenuOpen ? (
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    ) : (
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 6h16M4 12h16M4 18h16"
+                      />
+                    )}
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-								<Link
-									to="/tienda"
-									className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-300 
-										${location.pathname === '/tienda'
-											? 'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30'
-											: 'text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10'
-										}`}
-									onClick={() => setIsMenuOpen(false)}
-								>
-									{'Tienda'}
-								</Link>
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20, height: 0 }}
+              animate={{ opacity: 1, y: 0, height: '70vh' }}
+              exit={{ opacity: 0, y: -20, height: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              className="md:hidden border-t border-[var(--border)] bg-[var(--theme-background)] bg-opacity-95 backdrop-blur-lg fixed top-16 left-0 right-0 bottom-0 overflow-hidden"
+            >
+              <div
+                ref={menuRef}
+                onScroll={checkScrollable}
+                className="px-4 py-3 space-y-2 pb-20 h-full overflow-y-auto"
+              >
+                {/* Desarrollo Web */}
+                <div className="space-y-2">
+                  <button
+                    className="w-full px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10 flex items-center justify-between"
+                    onClick={() => toggleSection('desarrollo-web')}
+                  >
+                    {t('Desarrollo Web')}
+                    <motion.svg 
+                      className="w-4 h-4 ml-1" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                      animate={{ rotate: expandedSections['desarrollo-web'] ? 0 : -90 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </motion.svg>
+                  </button>
+                  <motion.div 
+                    className="pl-4 space-y-2 overflow-hidden"
+                    initial={false}
+                    animate={{ 
+                      height: expandedSections['desarrollo-web'] ? 'auto' : 0,
+                      opacity: expandedSections['desarrollo-web'] ? 1 : 0
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Link to="/web-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('Desarrollo Web Profesional')}</Link>
+                    <Link to="/ecommerce" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{'Comercio Electrónico'}</Link>
+                    <Link to="/wordpress" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('WordPress')}</Link>
+                  </motion.div>
+                </div>
 
-								{/* Add Auth Button for mobile */}
-								<div className="px-3 py-2">
-									<AuthButton variant="header" className="w-full justify-center" />
-								</div>
-							</div>
-						</motion.div>
-					)}
-				</AnimatePresence>
-			</motion.header>
+                {/* Software & Cloud */}
+                <div className="space-y-2">
+                  <button
+                    className="w-full px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10 flex items-center justify-between"
+                    onClick={() => toggleSection('software-cloud')}
+                  >
+                    {t('Software & Cloud')}
+                    <motion.svg 
+                      className="w-4 h-4 ml-1" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                      animate={{ rotate: expandedSections['software-cloud'] ? 0 : -90 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </motion.svg>
+                  </button>
+                  <motion.div 
+                    className="pl-4 space-y-2 overflow-hidden"
+                    initial={false}
+                    animate={{ 
+                      height: expandedSections['software-cloud'] ? 'auto' : 0,
+                      opacity: expandedSections['software-cloud'] ? 1 : 0
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Link to="/custom-software" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('Software a Medida')}</Link>
+                    <Link to="/cloud-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{'Computación en la Nube'}</Link>
+                    <Link to="/database-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('Bases de Datos')}</Link>
+                  </motion.div>
+                </div>
 
-			<AuthPopup />
-		</>
-	)
+                {/* Servicios Avanzados */}
+                <div className="space-y-2">
+                  <button
+                    className="w-full px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-300 text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10 flex items-center justify-between"
+                    onClick={() => toggleSection('servicios-avanzados')}
+                  >
+                    {t('Servicios Avanzados')}
+                    <motion.svg 
+                      className="w-4 h-4 ml-1" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                      animate={{ rotate: expandedSections['servicios-avanzados'] ? 0 : -90 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </motion.svg>
+                  </button>
+                  <motion.div 
+                    className="pl-4 space-y-2 overflow-hidden"
+                    initial={false}
+                    animate={{ 
+                      height: expandedSections['servicios-avanzados'] ? 'auto' : 0,
+                      opacity: expandedSections['servicios-avanzados'] ? 1 : 0
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Link to="/mobile-app-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{'Desarrollo Móvil'}</Link>
+                    <Link to="/saas-development" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('Desarrollo SaaS')}</Link>
+                    <Link to="/ai-services" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('Servicios de IA')}</Link>
+                    <Link to="/automation-solutions" className="block px-4 py-2 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500 hover:text-white rounded-lg" onClick={() => setIsMenuOpen(false)}>{t('Automatización')}</Link>
+                  </motion.div>
+                </div>
+
+                {/* <Link
+                  to="/pricing"
+                  className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-300 
+                    ${location.pathname === '/pricing'
+                      ? 'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30'
+                      : 'text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10'
+                    }
+                  `}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {'Precios'}
+                </Link> */}
+
+                <Link
+                  to="/tienda"
+                  className={`block px-4 py-2.5 rounded-lg text-base font-medium transition-all duration-300 
+                    ${location.pathname === '/tienda'
+                      ? 'text-white bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg shadow-purple-500/30'
+                      : 'text-[var(--theme-text-primary)] hover:text-purple-500 hover:bg-purple-500/10'
+                    }
+                  `}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {'Tienda'}
+                </Link>
+
+                {/* Add Auth Button for mobile */}
+                <div className="px-3 py-2">
+                  <AuthButton variant="header" className="w-full justify-center" />
+                </div>
+              </div>
+              {showScrollIndicator && (
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  onClick={scrollToBottom}
+                  className="fixed bottom-20 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300 z-50"
+                  aria-label="Scroll down"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </motion.button>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
+
+      <AuthPopup />
+    </>
+  )
 }
