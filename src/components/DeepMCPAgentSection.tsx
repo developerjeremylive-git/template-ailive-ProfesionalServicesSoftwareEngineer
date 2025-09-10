@@ -1,7 +1,125 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const FeatureCard = ({ title, description, icon, isActive, onClick }) => (
+  <motion.div
+    onClick={onClick}
+    className={`flex-shrink-0 w-80 snap-center cursor-pointer ${!isActive ? 'opacity-70 hover:opacity-100' : ''}`}
+    whileHover={{ scale: isActive ? 1.02 : 0.98 }}
+    transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+  >
+    <div className={`h-full bg-gradient-to-br from-purple-900/50 to-pink-900/30 backdrop-blur-sm rounded-xl p-6 border-2 transition-all duration-300 ${isActive ? 'border-pink-400/60 shadow-lg shadow-pink-500/20' : 'border-purple-500/20'}`}>
+      <motion.div 
+        className="text-4xl mb-4"
+        animate={{ y: isActive ? [-5, 5, -5] : 0 }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        {icon}
+      </motion.div>
+      <h4 className="text-xl font-bold text-white mb-2">{title}</h4>
+      <p className="text-violet-200">{description}</p>
+    </div>
+  </motion.div>
+);
 
 export const DeepMCPAgentSection = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const features = [
+    {
+      title: "Múltiples Modelos",
+      description: "Elige entre diferentes modelos de IA incluyendo GPT-3.5, GPT-4 y Google Gemini",
+      icon: "🤖"
+    },
+    {
+      title: "Manejo Avanzado",
+      description: "Soporta varios formatos de entrada/salida incluyendo texto, imágenes y datos estructurados",
+      icon: "📊"
+    },
+    {
+      title: "Hugging Face",
+      description: "Conéctate sin problemas con miles de modelos y herramientas del ecosistema Hugging Face",
+      icon: "🤗"
+    },
+    {
+      title: "Chat Interactivo",
+      description: "Interfaz de lenguaje natural con soporte para contenido enriquecido y conversaciones de múltiples turnos",
+      icon: "💬"
+    },
+    {
+      title: "Configuración Avanzada",
+      description: "Ajusta parámetros como temperatura, tokens máximos y métodos de muestreo",
+      icon: "⚙️"
+    },
+    {
+      title: "Tiempo Real",
+      description: "Transmite respuestas con soporte para carga progresiva de contenido",
+      icon: "⚡"
+    },
+    {
+      title: "Gestión de Sesiones",
+      description: "Historial de conversaciones persistente con conciencia del contexto",
+      icon: "📚"
+    }
+  ];
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const activeCard = scrollContainer.children[activeIndex];
+    if (activeCard) {
+      // Get current scroll position
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Scroll the container horizontally without affecting vertical scroll
+      activeCard.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+      
+      // Restore the vertical scroll position
+      window.scrollTo({
+        top: scrollTop,
+        behavior: 'auto'
+      });
+    }
+  }, [activeIndex]);
+
+  useEffect(() => {
+    let isScrolling = false;
+    let scrollTimeout: NodeJS.Timeout;
+    
+    const handleScroll = (e: Event) => {
+      isScrolling = true;
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isScrolling = false;
+      }, 100);
+    };
+    
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      // Add type assertion to handle the event type
+      const scrollHandler = handleScroll as EventListener;
+      scrollContainer.addEventListener('wheel', scrollHandler);
+      scrollContainer.addEventListener('touchmove', scrollHandler);
+      
+      const interval = setInterval(() => {
+        if (!isScrolling) {
+          setActiveIndex((prev) => (prev + 1) % features.length);
+        }
+      }, 4000);
+      
+      return () => {
+        clearInterval(interval);
+        clearTimeout(scrollTimeout);
+        scrollContainer.removeEventListener('wheel', scrollHandler);
+        scrollContainer.removeEventListener('touchmove', scrollHandler);
+      };
+    }
+  }, [features.length]);
   return (
     <motion.section
       initial={{ opacity: 0, y: 50 }}
@@ -100,36 +218,69 @@ export const DeepMCPAgentSection = () => {
               <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
                 <span className="mr-2">🎯</span> Características Principales
               </h3>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Múltiples Modelos</strong>: Elige entre diferentes modelos de IA incluyendo GPT-3.5, GPT-4 y Google Gemini</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Manejo Avanzado de Datos</strong>: Soporta varios formatos de entrada/salida incluyendo texto, imágenes y datos estructurados</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Integración con Hugging Face</strong>: Conéctate sin problemas con miles de modelos y herramientas del ecosistema Hugging Face</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Chat Interactivo</strong>: Interfaz de lenguaje natural con soporte para contenido enriquecido y conversaciones de múltiples turnos</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Configuración de Modelos</strong>: Ajusta parámetros como temperatura, tokens máximos y métodos de muestreo</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Respuestas en Tiempo Real</strong>: Transmite respuestas con soporte para carga progresiva de contenido</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Gestión de Sesiones</strong>: Historial de conversaciones persistente con conciencia del contexto</span>
-                </li>
-              </ul>
+              <div className="relative w-full mt-12 overflow-hidden">
+                <div className="relative">
+                  <div 
+                    ref={scrollContainerRef}
+                    className="flex space-x-6 pb-8 -mx-4 px-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pt-4"
+                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                  >
+                    <AnimatePresence>
+                      {features.map((feature, index) => (
+                        <FeatureCard
+                          key={index}
+                          {...feature}
+                          isActive={activeIndex === index}
+                          onClick={() => setActiveIndex(index)}
+                        />
+                      ))}
+                    </AnimatePresence>
+                  </div>
+                  
+                  <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black/90 to-transparent pointer-events-none"></div>
+                  <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/90 to-transparent pointer-events-none"></div>
+                </div>
+                
+                <div className="relative z-10 mt-8">
+                  <div className="flex justify-center space-x-3 mb-4">
+                    {features.map((_, index) => (
+                      <motion.button
+                        key={index}
+                        className={`w-3 h-3 rounded-full focus:outline-none ${activeIndex === index ? 'bg-pink-400' : 'bg-purple-500/30'}`}
+                        onClick={() => setActiveIndex(index)}
+                        whileHover={{ scale: 1.5 }}
+                        whileTap={{ scale: 0.9 }}
+                        transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                        aria-label={`Ir a característica ${index + 1}`}
+                      >
+                        <motion.span 
+                          className="block w-full h-full rounded-full"
+                          initial={{ scale: 0 }}
+                          animate={{ 
+                            scale: activeIndex === index ? 1 : 0.6,
+                            opacity: activeIndex === index ? 1 : 0.6
+                          }}
+                          transition={{ 
+                            scale: { type: 'spring', stiffness: 500, damping: 30 },
+                            opacity: { duration: 0.2 }
+                          }}
+                        />
+                      </motion.button>
+                    ))}
+                  </div>
+                  
+                  <motion.div 
+                    className="h-1 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full"
+                    initial={{ width: '0%' }}
+                    animate={{ width: '100%' }}
+                    transition={{ 
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: 'linear'
+                    }}
+                  />
+                </div>
+              </div>
             </div>
 
             <div className="mt-12">
@@ -141,52 +292,126 @@ export const DeepMCPAgentSection = () => {
               </p>
               
               <h4 className="text-xl font-semibold text-white mt-6 mb-3">Capacidades de Generación de Imágenes</h4>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Texto a Imagen</strong>: Genera imágenes de alta calidad a partir de descripciones de texto usando modelos de última generación</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Imagen a Imagen</strong>: Transforma y mejora imágenes existentes basado en instrucciones de texto</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Procesamiento por Lotes</strong>: Genera múltiples variaciones de imágenes en una sola solicitud</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Transferencia de Estilo</strong>: Aplica estilos artísticos a imágenes generadas o cargadas</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span><strong>Mejora de Resolución</strong>: Aumenta la resolución de imágenes manteniendo la calidad</span>
-                </li>
-              </ul>
+              <motion.ul className="space-y-4 mb-8">
+                {[
+                  {
+                    title: "Texto a Imagen",
+                    description: "Genera imágenes de alta calidad a partir de descripciones de texto usando modelos de última generación"
+                  },
+                  {
+                    title: "Imagen a Imagen",
+                    description: "Transforma y mejora imágenes existentes basado en instrucciones de texto"
+                  },
+                  {
+                    title: "Procesamiento por Lotes",
+                    description: "Genera múltiples variaciones de imágenes en una sola solicitud"
+                  },
+                  {
+                    title: "Transferencia de Estilo",
+                    description: "Aplica estilos artísticos a imágenes generadas o cargadas"
+                  },
+                  {
+                    title: "Mejora de Resolución",
+                    description: "Aumenta la resolución de imágenes manteniendo la calidad"
+                  }
+                ].map((item, index) => (
+                  <motion.li 
+                    key={index}
+                    className="flex items-start bg-gradient-to-r from-purple-900/20 to-transparent p-4 rounded-xl border-l-4 border-pink-400/50"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ 
+                      delay: index * 0.1,
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 10
+                    }}
+                  >
+                    <motion.span 
+                      className="text-pink-400 mr-3 text-xl"
+                      animate={{ 
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 10, -10, 0]
+                      }}
+                      transition={{ 
+                        delay: 0.5 + (index * 0.1),
+                        duration: 0.5,
+                        repeat: Infinity,
+                        repeatDelay: 3
+                      }}
+                    >
+                      •
+                    </motion.span>
+                    <div>
+                      <strong className="text-pink-200">{item.title}</strong>:
+                      <span className="text-violet-200 ml-1">{item.description}</span>
+                    </div>
+                  </motion.li>
+                ))}
+              </motion.ul>
 
               <h4 className="text-xl font-semibold text-white mt-8 mb-3">Operaciones de Imagen Soportadas</h4>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span>Generación múltiple de imágenes con diferentes parámetros</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span>Edición y manipulación de imágenes mediante lenguaje natural</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span>Soporte para varias proporciones y resoluciones de aspecto</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span>Integración con Stable Diffusion y otros modelos líderes de generación de imágenes</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-pink-400 mr-2">•</span>
-                  <span>Vista previa en tiempo real de imágenes generadas</span>
-                </li>
-              </ul>
+              <motion.ul className="space-y-4 mb-8">
+                {[
+                  "Generación múltiple de imágenes con diferentes parámetros",
+                  "Edición y manipulación de imágenes mediante lenguaje natural",
+                  "Soporte para varias proporciones y resoluciones de aspecto",
+                  "Integración con Stable Diffusion y otros modelos líderes de generación de imágenes",
+                  "Vista previa en tiempo real de imágenes generadas"
+                ].map((item, index) => (
+                  <motion.li 
+                    key={index}
+                    className="relative overflow-hidden p-4 rounded-lg bg-gradient-to-r from-pink-900/10 to-purple-900/10 backdrop-blur-sm"
+                    initial={{ opacity: 0, x: 100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-30px" }}
+                    transition={{ 
+                      delay: 0.2 + (index * 0.15),
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 10
+                    }}
+                  >
+                    <motion.span 
+                      className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-pink-400 to-purple-500"
+                      initial={{ scaleY: 0 }}
+                      animate={{ scaleY: 1 }}
+                      transition={{ 
+                        delay: 0.3 + (index * 0.15),
+                        duration: 0.5,
+                        ease: "easeOut"
+                      }}
+                    />
+                    <div className="flex items-center">
+                      <motion.span 
+                        className="text-pink-400 mr-3 text-2xl"
+                        initial={{ scale: 0, rotate: -90 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{ 
+                          delay: 0.4 + (index * 0.15),
+                          type: "spring",
+                          stiffness: 200,
+                          damping: 10
+                        }}
+                      >
+                        →
+                      </motion.span>
+                      <span className="text-violet-200">{item}</span>
+                    </div>
+                    <motion.div 
+                      className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-pink-500/50 to-transparent"
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{ 
+                        delay: 0.6 + (index * 0.15),
+                        duration: 0.8,
+                        ease: "easeOut"
+                      }}
+                    />
+                  </motion.li>
+                ))}
+              </motion.ul>
 
               <h4 className="text-xl font-semibold text-white mt-8 mb-3">Tipos de Datos Soportados</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
