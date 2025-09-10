@@ -24,6 +24,7 @@ const FeatureCard = ({ title, description, icon, isActive, onClick }) => (
 
 export const DeepMCPAgentSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const features = [
     {
@@ -106,12 +107,31 @@ export const DeepMCPAgentSection = () => {
       scrollContainer.addEventListener('wheel', scrollHandler);
       scrollContainer.addEventListener('touchmove', scrollHandler);
       
-      const interval = setInterval(() => {
-        if (!isScrolling) {
-          setActiveIndex((prev) => (prev + 1) % features.length);
+      const scrollToCard = (index: number) => {
+        if (scrollContainerRef.current) {
+          const container = scrollContainerRef.current;
+          const card = container.children[index] as HTMLElement;
+          if (card) {
+            const containerWidth = container.offsetWidth;
+            const cardWidth = card.offsetWidth;
+            const scrollLeft = card.offsetLeft - (containerWidth / 2) + (cardWidth / 2);
+            
+            container.scrollTo({
+              left: scrollLeft,
+              behavior: 'smooth'
+            });
+          }
         }
-      }, 4000);
-      
+      };
+
+      const interval = setInterval(() => {
+        if (!isPaused) {
+          const nextIndex = (activeIndex + 1) % features.length;
+          setActiveIndex(nextIndex);
+          scrollToCard(nextIndex);
+        }
+      }, 5000);
+
       return () => {
         clearInterval(interval);
         clearTimeout(scrollTimeout);
@@ -119,7 +139,8 @@ export const DeepMCPAgentSection = () => {
         scrollContainer.removeEventListener('touchmove', scrollHandler);
       };
     }
-  }, [features.length]);
+  }, [activeIndex, isPaused, features.length]);
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 50 }}
@@ -241,12 +262,47 @@ export const DeepMCPAgentSection = () => {
                   <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/90 to-transparent pointer-events-none"></div>
                 </div>
                 
-                <div className="relative z-10 mt-8">
-                  <div className="flex justify-center space-x-3 mb-4">
+                {/* Carousel Controls */}
+                <div className="relative z-10 mt-8 flex flex-col items-center">
+                  {/* Pause/Play Button */}
+                  <button 
+                    onClick={() => setIsPaused(!isPaused)}
+                    className="mb-4 text-white p-2 rounded-full hover:bg-gray-700/50 transition-colors flex items-center justify-center"
+                    aria-label={isPaused ? 'Reanudar' : 'Pausar'}
+                  >
+                    {isPaused ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                  </button>
+
+                  {/* Progress Bar */}
+                  <div className="w-full max-w-md h-1 bg-gray-700 rounded-full overflow-hidden mb-6">
+                    <motion.div 
+                      className="h-full bg-gradient-to-r from-pink-400 to-purple-500 rounded-full"
+                      initial={{ width: '0%' }}
+                      animate={{ width: isPaused ? '100%' : '0%' }}
+                      transition={{ 
+                        duration: 5,
+                        repeat: isPaused ? 0 : Infinity,
+                        ease: 'linear'
+                      }}
+                    />
+                  </div>
+
+                  {/* Dots Navigation */}
+                  <div className="flex justify-center space-x-3">
                     {features.map((_, index) => (
                       <motion.button
                         key={index}
-                        className={`w-3 h-3 rounded-full focus:outline-none ${activeIndex === index ? 'bg-pink-400' : 'bg-purple-500/30'}`}
+                        className={`w-3 h-3 rounded-full focus:outline-none ${
+                          activeIndex === index ? 'bg-pink-400' : 'bg-purple-500/30'
+                        }`}
                         onClick={() => setActiveIndex(index)}
                         whileHover={{ scale: 1.5 }}
                         whileTap={{ scale: 0.9 }}
@@ -268,17 +324,6 @@ export const DeepMCPAgentSection = () => {
                       </motion.button>
                     ))}
                   </div>
-                  
-                  <motion.div 
-                    className="h-1 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full"
-                    initial={{ width: '0%' }}
-                    animate={{ width: '100%' }}
-                    transition={{ 
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: 'linear'
-                    }}
-                  />
                 </div>
               </div>
             </div>
