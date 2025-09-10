@@ -333,7 +333,7 @@ const translations = {
 		'form_password': 'Password',
 		'form_confirm_password': 'Confirm Password',
 		'form_full_name': 'Full Name',
-		'form_company': 'Company',
+		'form_company': 'About me',
 		'form_message': 'Message',
 		'form_name': 'Name',
 
@@ -1301,7 +1301,7 @@ const translations = {
 		'form_password': 'Contraseña',
 		'form_confirm_password': 'Confirmar Contraseña',
 		'form_full_name': 'Nombre Completo',
-		'form_company': 'Empresa',
+		'form_company': 'Sobre mí',
 		'form_message': 'Mensaje',
 		'form_name': 'Nombre',
 

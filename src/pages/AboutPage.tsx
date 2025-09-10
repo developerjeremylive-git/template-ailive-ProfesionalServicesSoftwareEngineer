@@ -5,48 +5,48 @@ import { FiUsers, FiTarget, FiHeart, FiGlobe } from 'react-icons/fi'
 import { useLanguage } from '../context/LanguageContext'
 import React from 'react'
 
-const engineeringServices = [
+const aiServices = [
 	{
-		name: 'Desarrollo Web Profesional',
+		name: 'Plataformas MAaaS',
 		icon: <FiGlobe className="w-8 h-8" />,
-		description: 'Desarrollo de sitios web profesionales, e-commerce y aplicaciones web modernas utilizando las últimas tecnologías y mejores prácticas.',
-		// metrics: '500+ proyectos exitosos',
+		description: 'Diseño e implementación de plataformas Multi-Agent as a Service (MAaaS) que orquestan modelos de lenguaje avanzados como Gemini y GPT para automatizar flujos de trabajo complejos.',
+		link: '/ai-services'
 	},
 	{
-		name: 'Software & Cloud',
+		name: 'IA Generativa',
 		icon: <FiTarget className="w-8 h-8" />,
-		description: 'Desarrollo de software a medida, soluciones cloud y bases de datos escalables para optimizar sus procesos empresariales.',
-		// metrics: '200+ soluciones implementadas',
+		description: 'Soluciones personalizadas de IA generativa para contenido, código y automatización de procesos, impulsadas por los últimos avances en modelos de lenguaje.',
+		link: '/ai-services'
 	},
 	{
-		name: 'Móvil & SaaS',
+		name: 'Procesamiento de Lenguaje',
 		icon: <FiUsers className="w-8 h-8" />,
-		description: 'Desarrollo de aplicaciones móviles nativas y soluciones SaaS innovadoras para transformar su negocio.',
-		// metrics: '300+ apps entregadas',
+		description: 'Sistemas avanzados de NLP para análisis de sentimientos, resumen de texto, traducción y generación de contenido multilingüe.',
+		link: '/ai-services'
 	},
 	{
-		name: 'Servicios de IA',
+		name: 'Automatización con IA',
 		icon: <FiHeart className="w-8 h-8" />,
-		description: 'Implementación de soluciones avanzadas de Inteligencia Artificial y aprendizaje automático para potenciar su negocio.',
-		// metrics: '150+ proyectos de IA',
+		description: 'Automatización de procesos empresariales mediante agentes de IA que aprenden y se adaptan a las necesidades específicas de su negocio.',
+		link: '/automation-solutions'
 	},
 ]
 
 const expertise = [
 	{
 		icon: <FiTarget className="w-8 h-8" />,
-		title: 'Arquitectura de Sistemas',
-		description: 'Especializado en diseño de arquitecturas escalables, microservicios y sistemas distribuidos con enfoque en rendimiento y seguridad',
+		title: 'Arquitecturas Multi-Agente',
+		description: 'Diseño e implementación de sistemas multi-agente escalables que combinan múltiples modelos de IA para resolver problemas complejos',
 	},
 	{
 		icon: <FiUsers className="w-8 h-8" />,
-		title: 'Desarrollo Backend',
-		description: 'Experto en Node.js, TypeScript y .NET, con amplia experiencia en sistemas de pago y APIs de alto rendimiento',
+		title: 'Orquestación de LLMs',
+		description: 'Experto en la integración y orquestación de modelos de lenguaje avanzados como GPT-4, Gemini y modelos de código abierto',
 	},
 	{
 		icon: <FiHeart className="w-8 h-8" />,
-		title: 'Cloud & DevOps',
-		description: 'Implementación de soluciones cloud-native, CI/CD pipelines y prácticas DevOps para entrega continua y escalabilidad',
+		title: 'Cloud AI & MLOps',
+		description: 'Implementación de pipelines de ML en la nube, despliegue de modelos y monitoreo de rendimiento con herramientas de MLOps',
 	},
 ]
 
@@ -55,31 +55,37 @@ const achievements = [
 		year: '2024',
 		title: 'Principal Solutions Architect - Olin CR',
 		description: 'Desarrollo de plataforma logística React/TypeScript con Firebase, implementando autenticación avanzada y optimización de rutas. Mejora significativa en eficiencia operativa y experiencia de usuario.',
+		link: '/achievements'
 	},
 	{
 		year: '2024',
 		title: 'Lead Software Architect - Lievant',
 		description: 'Diseño e implementación de servicios RESTful y microservicios para el sector salud, utilizando .NET 8/C#, ASP.NET Core y JavaScript. Desarrollo de sistema de cotización con mejoras significativas en eficiencia.',
+		link: '/achievements'
 	},
 	{
 		year: '2023',
 		title: 'Mid Backend Software Engineer - People Connection Technology',
 		description: 'Integración de sistemas de pago y análisis predictivo usando Node.js, TypeScript y APIs de Google. Optimización de rendimiento y experiencia de usuario con Tailwind CSS.',
+		link: '/achievements'
 	},
 	{
 		year: '2022',
 		title: 'Junior Data Engineer - Grupo8231',
 		description: 'Optimización de flujos de trabajo y diseño de pipelines ETL avanzados usando SSIS y C#. Mejora significativa en el rendimiento de bases de datos y gestión de transacciones.',
+		link: '/achievements'
 	},
 	{
 		year: '2021',
 		title: 'Junior Backend Software Engineer - SDC Media',
 		description: 'Desarrollo de aplicaciones multimedia con soporte multilenguaje usando TypeScript, Node.js y PHP. Integración de reproducción de video y optimización de flujos de trabajo.',
+		link: '/achievements'
 	},
 	{
 		year: '2018',
 		title: 'Junior Backend Software Engineer - Camaleonstudio',
 		description: 'Desarrollo de aplicaciones web con Laravel/PHP y Java/Spring Framework. Implementación de características responsivas y gestión de bases de datos SQL Server.',
+		link: '/achievements'
 	},
 ]
 
@@ -97,11 +103,11 @@ export default function AboutPage() {
 						animate={{ opacity: 1, y: 0 }}
 						className="text-center max-w-4xl mx-auto mb-24"
 					>
-						<h1 className="text-5xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-violet-200">
-							Senior Backend Developer & Solutions Architect
+						<h1 className="text-5xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-violet-200 leading-tight pb-4">
+							ML/IA & Software Engineer
 						</h1>
 						<p className="text-xl text-violet-200 leading-relaxed">
-							Con más de 8 años de experiencia en desarrollo de software, especializado en sistemas de pago, plataformas de datos en tiempo real y arquitecturas API-driven. Transformo ideas complejas en soluciones escalables y de alto rendimiento.
+							Con más de 8 años de experiencia en IA/ML e ingeniería de software, especializado en arquitecturas escalables en la nube. Diseño e implemento plataformas Multi-Agent as a Service (MAaaS) que orquestan modelos de lenguaje avanzados, incluyendo Gemini y GPT.
 						</p>
 					</motion.div>
 
@@ -116,13 +122,13 @@ export default function AboutPage() {
 							<h2 className="text-2xl font-semibold text-white mb-4">
 								Mi Enfoque
 							</h2>
-							<p className="text-violet-200">Desarrollo soluciones backend robustas y escalables, con especial énfasis en sistemas de pago seguros, APIs de alto rendimiento y arquitecturas cloud-native. Mi objetivo es crear infraestructuras tecnológicas que impulsen el crecimiento empresarial.</p>
+							<p className="text-violet-200">Diseño e implemento soluciones de IA generativa, sistemas de procesamiento de lenguaje natural y visión por computadora, todo respaldado por una infraestructura en la nube optimizada para alto rendimiento y escalabilidad.</p>
 						</div>
 						<div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-2xl p-8">
 							<h2 className="text-2xl font-semibold text-white mb-4">
 								Mi Experiencia
 							</h2>
-							<p className="text-violet-200">Experto en Node.js, TypeScript, y .NET, con amplia experiencia en implementación de sistemas de pago, microservicios y bases de datos distribuidas. Especializado en optimización de rendimiento y diseño de arquitecturas escalables en la nube.</p>
+							<p className="text-violet-200">Experto en orquestación de modelos de lenguaje, arquitecturas multi-agente y despliegue de soluciones de IA en la nube. Especializado en la creación de sistemas que combinan múltiples modelos de IA para resolver problemas complejos de manera eficiente.</p>
 						</div>
 					</motion.div>
 
@@ -165,10 +171,10 @@ export default function AboutPage() {
 						className="mb-24"
 					>
 						<h2 className="text-3xl font-bold text-white text-center mb-12">
-							Servicios de Ingeniería de Software
+							Soluciones de IA y Automatización
 						</h2>
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-							{engineeringServices.map((service, index) => (
+							{aiServices.map((service, index) => (
 								<motion.div
 									key={service.name}
 									initial={{ opacity: 0, y: 20 }}
@@ -183,7 +189,14 @@ export default function AboutPage() {
 										{service.name}
 									</h3>
 									<p className="text-violet-200 mb-4">{service.description}</p>
-									{/* <p className="text-purple-400 font-medium">{service.metrics}</p> */}
+									<a
+										href={service.link}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-purple-400 hover:text-purple-300 transition-colors"
+									>
+										→ Ver más
+									</a>
 								</motion.div>
 							))}
 						</div>
@@ -213,7 +226,14 @@ export default function AboutPage() {
 											{achievement.year}
 										</div>
 										<h3 className="text-xl font-semibold text-white mb-2">
-											{achievement.title}
+											<a
+												href={achievement.link}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="text-purple-400 hover:text-purple-300 transition-colors"
+											>
+												{achievement.title}
+											</a>
 										</h3>
 										<p className="text-violet-200">{achievement.description}</p>
 									</div>
