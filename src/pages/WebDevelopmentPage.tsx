@@ -14,32 +14,32 @@ export default function WebDevelopmentPage() {
     {
       icon: <FiCode className="w-6 h-6" />,
       title: 'Desarrollo Frontend Moderno',
-      description: 'Creamos interfaces de usuario dinámicas y responsivas utilizando las últimas tecnologías como React, Vue.js y Next.js.'
+      description: 'Te ofrezco interfaces de usuario dinámicas y responsivas utilizando las últimas tecnologías como React, Vue.js y Next.js, adaptadas a tus necesidades específicas.'
     },
     {
       icon: <FiServer className="w-6 h-6" />,
       title: 'Backend Robusto',
-      description: 'Arquitecturas backend escalables con Node.js, Python, y bases de datos optimizadas para alto rendimiento.'
+      description: 'Te diseño arquitecturas backend escalables con Node.js, Python y bases de datos optimizadas para ofrecerte el máximo rendimiento en todo momento.'
     },
     {
       icon: <FiZap className="w-6 h-6" />,
       title: 'Alto Rendimiento',
-      description: 'Optimización de carga, caché avanzado y arquitecturas distribuidas para máxima velocidad y eficiencia.'
+      description: 'Te garantizo sitios web ultrarrápidos mediante optimización de carga, caché avanzado y arquitecturas distribuidas para máxima velocidad y eficiencia.'
     },
     {
       icon: <FiShield className="w-6 h-6" />,
       title: 'Seguridad Avanzada',
-      description: 'Implementación de mejores prácticas de seguridad, SSL/TLS, protección contra ataques y cifrado de datos.'
+      description: 'Te protejo implementando las mejores prácticas de seguridad, incluyendo SSL/TLS, protección contra ataques y cifrado de datos de extremo a extremo.'
     },
     {
       icon: <FiDatabase className="w-6 h-6" />,
       title: 'Gestión de Datos',
-      description: 'Diseño e implementación de bases de datos escalables, con backup automático y alta disponibilidad.'
+      description: 'Te ofrezco diseño e implementación de bases de datos escalables, con sistemas de backup automático y garantía de alta disponibilidad para tu tranquilidad.'
     },
     {
       icon: <FiCpu className="w-6 h-6" />,
       title: 'Integración de APIs',
-      description: 'Desarrollo e integración de APIs RESTful y GraphQL para conectar servicios y sistemas externos.'
+      description: 'Te ayudo a conectar todos tus servicios mediante el desarrollo e integración de APIs RESTful y GraphQL personalizadas para tus necesidades específicas.'
     }
   ];
 
@@ -70,7 +70,7 @@ export default function WebDevelopmentPage() {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-6xl font-bold text-white mb-6"
             >
-              Desarrollo Web
+              Mi Servicio de Desarrollo Web
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
                 de Alto Rendimiento
               </span>
@@ -81,8 +81,8 @@ export default function WebDevelopmentPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-violet-200 mb-8 max-w-3xl mx-auto"
             >
-              Creamos sitios web escalables y de alto rendimiento que impulsan el crecimiento de tu negocio.
-              Desde landing pages hasta aplicaciones web complejas, transformamos tus ideas en realidad.
+              Creo sitios web escalables y de alto rendimiento que impulsan el crecimiento de tu negocio.
+              Desde landing pages hasta aplicaciones web complejas, transformo tus ideas en realidad digital con soluciones personalizadas.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ export default function WebDevelopmentPage() {
 
           {/* Technologies Section */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Utilizamos</h2>
+            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Manejo</h2>
             <div className="flex flex-wrap justify-center gap-4">
               {technologies.map((tech, index) => (
                 <motion.div
@@ -140,8 +140,8 @@ export default function WebDevelopmentPage() {
                 ¿Listo para Impulsar tu Presencia Web?
               </h2>
               <p className="text-violet-200 mb-8 max-w-2xl mx-auto">
-                Contáctanos hoy para discutir cómo podemos ayudarte a crear una presencia web
-                que destaque y genere resultados.
+                Contáctame hoy para discutir cómo puedo ayudarte a crear una presencia web
+                que destaque, genere resultados y se adapte perfectamente a los objetivos de tu negocio.
               </p>
               <button
                 onClick={() => navigate('/contact')}

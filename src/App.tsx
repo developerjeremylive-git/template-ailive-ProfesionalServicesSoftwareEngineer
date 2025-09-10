@@ -6,7 +6,7 @@ import { AuthProvider, useAuth } from './context/AuthContext'
 import { ApiProvider } from './context/ApiContext'
 import Header from './components/Header'
 import AnimatedFooter from './components/AnimatedFooter'
-import TestimonialsSection from './components/TestimonialsSection'
+import UseCasesSection from './components/UseCasesSection'
 import NeuralNetworkBackground from './components/NeuralNetworkBackground'
 import ScrollToTop from './components/ScrollToTop'
 import AuthPopup from './components/AuthPopup'
@@ -18,6 +18,8 @@ import PricingPage from './pages/PricingPage'
 import ContactPage from './pages/ContactPage'
 import InteractiveDemoPage from './pages/InteractiveDemoPage'
 import StarterDashboard from './pages/StarterDashboard'
+import DeepMCPAgentSection from './components/DeepMCPAgentSection'
+import DeepMCPAgentCLI from './components/DeepMCPAgentCLI'
 import ProDashboard from './pages/ProDashboard'
 import EnterpriseDashboard from './pages/EnterpriseDashboard'
 import SubscriptionPage from './pages/SubscriptionPage'
@@ -34,7 +36,7 @@ import ExploreModelsPopup from './components/ExploreModelsPopup'
 import LearnMorePopup from './components/LearnMorePopup'
 import SubscriptionPopup from './components/SubscriptionPopup'
 import { useState } from 'react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { LanguageProvider } from './context/LanguageContext'
 import WebDevelopmentPage from './pages/WebDevelopmentPage'
 import CustomSoftwarePage from './pages/CustomSoftwarePage'
@@ -87,12 +89,25 @@ function DashboardRoute() {
 }
 
 function AppContent() {
-  const { isGraphEnabled } = useApp()
-  const { t } = useLanguage()
+  const { language } = useLanguage()
+  const { user, isAuthenticated } = useAuth()
   const navigate = useNavigate()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [showPopup, setShowPopup] = useState(false)
+  const [popupTitle, setPopupTitle] = useState('')
+  const [popupContent, setPopupContent] = useState('')
   const [isExploreModelsOpen, setIsExploreModelsOpen] = useState(false)
   const [isLearnMoreOpen, setIsLearnMoreOpen] = useState(false)
   const [isSubscriptionOpen, setIsSubscriptionOpen] = useState(false)
+  const [isGraphEnabled, setIsGraphEnabled] = useState(true)
+
+  const handleProductClick = (title: string, description: string, e?: React.MouseEvent) => {
+    e?.preventDefault()
+    e?.stopPropagation()
+    setPopupTitle(title)
+    setPopupContent(description)
+    setShowPopup(true)
+  }
 
   return (
     <>
@@ -123,7 +138,7 @@ function AppContent() {
                     Soluciones de Software y Servicios de IA
                   </h1>
                   <p className="text-lg md:text-xl text-violet-200 mb-12">
-                    Transformamos tus ideas en soluciones tecnológicas innovadoras: Desarrollo web, software a medida, cloud computing y servicios de IA para impulsar tu negocio al siguiente nivel
+                    Transformo tus ideas en soluciones tecnológicas de alto impacto: desarrollo web personalizado, software a medida, arquitecturas en la nube escalables e inteligencia artificial avanzada, todo diseñado para impulsar tu negocio hacia el éxito digital del mañana.
                   </p>
                   <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <button
@@ -137,152 +152,12 @@ function AppContent() {
               </div>
             </div>
 
-            {/* Creator Profile Section */}
-            <motion.section
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true }}
-              className="py-20 bg-black/20 relative overflow-hidden"
-            >
-              {/* Olas animadas */}
-              <div className="absolute inset-0 z-0">
-                <motion.svg
-                  viewBox="0 0 1440 320"
-                  className="absolute bottom-0 w-full"
-                  preserveAspectRatio="none"
-                >
-                  <motion.path
-                    d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                    fill="rgba(139, 92, 246, 0.1)"
-                    animate={{
-                      d: [
-                        "M0,192L48,192C96,192,192,192,288,192C384,192,480,192,576,192C672,192,768,192,864,192C960,192,1056,192,1152,192C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                        "M0,160L48,170C96,180,192,200,288,210C384,220,480,220,576,210C672,200,768,180,864,170C960,160,1056,160,1152,170C1248,180,1344,200,1392,210L1440,220L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                        "M0,192L48,192C96,192,192,192,288,192C384,192,480,192,576,192C672,192,768,192,864,192C960,192,1056,192,1152,192C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                      ],
-                    }}
-                    transition={{ repeat: Infinity, duration: 15, ease: [0.43, 0.13, 0.23, 0.96] }}
-                  />
-                  <motion.path
-                    d="M0,256L48,261.3C96,267,192,277,288,261.3C384,245,480,203,576,197.3C672,192,768,224,864,213.3C960,203,1056,149,1152,133.3C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                    fill="rgba(236, 72, 153, 0.1)"
-                    animate={{
-                      d: [
-                        "M0,256L48,256C96,256,192,256,288,256C384,256,480,256,576,256C672,256,768,256,864,256C960,256,1056,256,1152,256C1248,256,1344,256,1392,256L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                        "M0,220L48,230C96,240,192,260,288,270C384,280,480,280,576,270C672,260,768,240,864,230C960,220,1056,220,1152,230C1248,240,1344,260,1392,270L1440,280L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                        "M0,256L48,256C96,256,192,256,288,256C384,256,480,256,576,256C672,256,768,256,864,256C960,256,1056,256,1152,256C1248,256,1344,256,1392,256L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                      ],
-                    }}
-                    transition={{ repeat: Infinity, duration: 12, ease: [0.43, 0.13, 0.23, 0.96] }}
-                  />
-                  <motion.path
-                    d="M0,288L48,282.7C96,277,192,267,288,245.3C384,224,480,192,576,181.3C672,171,768,181,864,192C960,203,1056,213,1152,208C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                    fill="rgba(168, 85, 247, 0.1)"
-                    animate={{
-                      d: [
-                        "M0,288L48,288C96,288,192,288,288,288C384,288,480,288,576,288C672,288,768,288,864,288C960,288,1056,288,1152,288C1248,288,1344,288,1392,288L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                        "M0,250L48,260C96,270,192,290,288,300C384,310,480,310,576,300C672,290,768,270,864,260C960,250,1056,250,1152,260C1248,270,1344,290,1392,300L1440,310L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                        "M0,288L48,288C96,288,192,288,288,288C384,288,480,288,576,288C672,288,768,288,864,288C960,288,1056,288,1152,288C1248,288,1344,288,1392,288L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                      ],
-                    }}
-                    transition={{ repeat: Infinity, duration: 18, ease: [0.43, 0.13, 0.23, 0.96] }}
-                  />
-                  <motion.path
-                    d="M0,224L48,229.3C96,235,192,245,288,240C384,235,480,213,576,202.7C672,192,768,192,864,197.3C960,203,1056,213,1152,192C1248,171,1344,117,1392,90.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                    fill="rgba(216, 180, 254, 0.1)"
-                    animate={{
-                      d: [
-                        "M0,224L48,224C96,224,192,224,288,224C384,224,480,224,576,224C672,224,768,224,864,224C960,224,1056,224,1152,224C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                        "M0,180L48,190C96,200,192,220,288,230C384,240,480,240,576,230C672,220,768,200,864,190C960,180,1056,180,1152,190C1248,200,1344,220,1392,230L1440,240L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                        "M0,224L48,224C96,224,192,224,288,224C384,224,480,224,576,224C672,224,768,224,864,224C960,224,1056,224,1152,224C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                      ],
-                    }}
-                    transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-                  />
-                </motion.svg>
-              </div>
-              <div className="container mx-auto px-4">
-                <div className="flex flex-col md:flex-row items-center gap-12">
-                  <motion.div
-                    className="md:w-1/2"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="relative w-64 mx-auto">
-                      <ProfileImage size="lg" />
-                      <motion.div
-                        className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-center"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 0.6 }}
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 group-hover:from-pink-400 group-hover:to-purple-400 transition-all duration-300">
-                          Jeremy Live
-                        </h2>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                  <motion.div
-                    className="md:w-1/2 text-left"
-                    initial={{ x: 50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                    viewport={{ once: true }}
-                  >
-                    <motion.h2
-                      className="text-3xl md:text-4xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.6, duration: 0.4 }}
-                      viewport={{ once: true }}
-                    >
-                      Desarrollador Innovador & Visionario Digital
-                    </motion.h2>
-                    <motion.p
-                      className="text-lg text-violet-200 mb-8 leading-relaxed"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.8, duration: 0.4 }}
-                      viewport={{ once: true }}
-                    >
-                      Soy un apasionado desarrollador full-stack especializado en crear experiencias digitales extraordinarias. Mi enfoque combina creatividad técnica con innovación práctica, utilizando tecnologías de vanguardia como React, TypeScript y arquitecturas cloud modernas. Me destaco por transformar ideas complejas en soluciones elegantes y accesibles, siempre buscando elevar la interacción entre usuarios y tecnología a nuevos niveles de excelencia.
-                    </motion.p>
-                    <motion.div
-                      className="flex gap-4"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 1, duration: 0.4 }}
-                      viewport={{ once: true }}
-                    >
-                      <motion.a
-                        href="https://jeremylive.netlify.app/contact"
-                        className="relative px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold overflow-hidden group"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <span className="relative z-10">Contáctame</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </motion.a>
-                      <motion.a
-                        href="https://jeremylive.netlify.app/tienda"
-                        className="relative px-6 py-3 rounded-full bg-white bg-opacity-10 text-white font-semibold overflow-hidden group"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <span className="relative z-10">Ver Portfolio</span>
-                        <div className="absolute inset-0 bg-white bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </motion.a>
-                    </motion.div>
-                  </motion.div>
-                </div>
-              </div>
-            </motion.section>
+            {/* AI Agents Platform Section */}
+            <DeepMCPAgentSection />
 
-            {/* EcommetAIntegration Platform Section */}
+            <DeepMCPAgentCLI />
+
+            {/* MAaaS Platform Section */}
             <motion.section
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -290,14 +165,14 @@ function AppContent() {
               viewport={{ once: true }}
               className="py-20 bg-black/20 relative overflow-hidden"
             >
-              {/* Fondo de partículas */}
+              {/* Particle Background */}
               <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 to-transparent"></div>
                 <div className="absolute inset-0 opacity-30">
                   {[...Array(50)].map((_, i) => (
                     <motion.div
                       key={i}
-                      className="absolute w-1 h-1 bg-purple-500 rounded-full"
+                      className="absolute w-1 h-1 bg-blue-500 rounded-full"
                       initial={{
                         x: Math.random() * window.innerWidth,
                         y: Math.random() * window.innerHeight,
@@ -327,22 +202,22 @@ function AppContent() {
                     viewport={{ once: true }}
                   >
                     <motion.h2
-                      className="text-3xl md:text-4xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400"
+                      className="text-3xl md:text-4xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400"
                       initial={{ y: 20, opacity: 0 }}
                       whileInView={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.6, duration: 0.4 }}
                       viewport={{ once: true }}
                     >
-                      EcommetAIntegration: Plataforma de IA para E-commerce
+                      MAaaS: Plataforma Multi-Agente como Servicio
                     </motion.h2>
                     <motion.p
-                      className="text-lg text-violet-200 mb-8 leading-relaxed"
+                      className="text-lg text-blue-100 mb-8 leading-relaxed"
                       initial={{ y: 20, opacity: 0 }}
                       whileInView={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.8, duration: 0.4 }}
                       viewport={{ once: true }}
                     >
-                      Revoluciona tu negocio online con nuestra plataforma de IA especializada en e-commerce. Desde análisis predictivo hasta atención al cliente automatizada, EcommetAIntegration proporciona las herramientas necesarias para impulsar tus ventas y mejorar la experiencia de tus clientes.
+                      Una plataforma escalable Multi-Agente como Servicio construida sobre la arquitectura serverless de Cloudflare. Incluye características como comunicación en tiempo real a través de WebSocket, programación avanzada de tareas e integración perfecta con los principales modelos de IA, incluyendo OpenAI y Google Gemini. La plataforma ofrece un robusto frontend en TypeScript y React con sesiones de chat seguras y persistentes, y manejo eficiente de mensajes mediante Cloudflare Durable Objects.
                     </motion.p>
                     <motion.div
                       className="flex gap-4"
@@ -352,15 +227,15 @@ function AppContent() {
                       viewport={{ once: true }}
                     >
                       <motion.a
-                        href="https://www.ecommetaintegration.com"
+                        href="https://my-chat-agent.developerjeremylive.workers.dev"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold overflow-hidden group"
+                        className="relative px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold overflow-hidden group"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
                         <span className="relative z-10">Explorar Plataforma</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </motion.a>
                       <motion.a
                         href="/contact"
@@ -385,7 +260,7 @@ function AppContent() {
                   >
                     <div className="relative w-full max-w-lg mx-auto">
                       <motion.div
-                        className="absolute -inset-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-75 blur-xl"
+                        className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl opacity-75 blur-xl"
                         animate={{
                           scale: [1, 1.1, 1],
                           opacity: [0.5, 0.7, 0.5],
@@ -395,7 +270,202 @@ function AppContent() {
                       <div className="relative bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
                         <div className="flex items-center justify-center mb-6">
                           <motion.div
-                            className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center"
+                            className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center relative overflow-hidden"
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600"
+                              animate={{
+                                rotate: [0, 360],
+                              }}
+                              transition={{
+                                duration: 8,
+                                repeat: Infinity,
+                                ease: "linear",
+                              }}
+                            />
+                            <svg className="w-8 h-8 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                          </motion.div>
+                        </div>
+                        <motion.div
+                          className="space-y-4"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.4, duration: 0.6 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="flex items-start gap-3 text-blue-100">
+                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span><span className="font-semibold text-white">Comunicación en tiempo real</span> con WebSocket</span>
+                          </div>
+                          <div className="flex items-start gap-3 text-blue-100">
+                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span><span className="font-semibold text-white">Programación avanzada</span> de tareas</span>
+                          </div>
+                          <div className="flex items-start gap-3 text-blue-100">
+                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span><span className="font-semibold text-white">Integración perfecta</span> con modelos de IA</span>
+                          </div>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.section>
+
+            {/* EcommetAIntegration Platform Section */}
+            <motion.section
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="py-20 bg-black/20 relative overflow-hidden"
+            >
+              {/* Fondo de partículas */}
+              <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-b from-yellow-900/20 to-transparent"></div>
+                <div className="absolute inset-0 opacity-30">
+                  {[...Array(50)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-1 h-1 bg-yellow-400 rounded-full"
+                      initial={{
+                        x: Math.random() * window.innerWidth,
+                        y: Math.random() * window.innerHeight,
+                        scale: Math.random() * 0.5 + 0.5,
+                      }}
+                      animate={{
+                        y: [null, Math.random() * -500],
+                        opacity: [0.7, 0],
+                      }}
+                      transition={{
+                        duration: Math.random() * 2 + 3,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="container mx-auto px-4">
+                <div className="flex flex-col md:flex-row items-center gap-12">
+                  <motion.div
+                    className="md:w-1/2 text-left"
+                    initial={{ x: 50, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <motion.h2
+                      className="text-3xl md:text-4xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-400"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.6, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      Plataforma de IA para Análisis Predictivo
+                    </motion.h2>
+                    <motion.div
+                      className="text-lg text-violet-200 mb-8 leading-relaxed space-y-4"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.8, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      <p>Aplicación API REST desarrollada con Flask que integra tecnologías avanzadas de IA para ofrecer análisis predictivos y reconocimiento de patrones.</p>
+                      
+                      <h3 className="text-xl font-semibold text-yellow-300 mt-6 mb-2">Características principales:</h3>
+                      <ul className="list-disc pl-6 space-y-2">
+                        <li>Reconocimiento de voz mediante Speech Recognition API</li>
+                        <li>Análisis de emociones con Azure Face API</li>
+                        <li>Modelos predictivos con precisión superior al 80%</li>
+                        <li>Interfaz intuitiva con procesamiento en tiempo real</li>
+                      </ul>
+
+                      <h3 className="text-xl font-semibold text-yellow-300 mt-6 mb-2">Modelos implementados:</h3>
+                      <ul className="list-disc pl-6 space-y-2">
+                        <li>Asociación de productos en tienda</li>
+                        <li>Clasificación de calidad de vino</li>
+                        <li>Clasificación de imágenes de ojos por género</li>
+                        <li>Predicción de precios de automóviles</li>
+                        <li>Análisis de series de tiempo para criptomonedas</li>
+                      </ul>
+
+                      <h3 className="text-xl font-semibold text-yellow-300 mt-6 mb-2">Tecnologías clave:</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                        <div className="bg-gray-900/50 p-4 rounded-lg">
+                          <h4 className="font-medium text-yellow-200">Aprendizaje Supervisado</h4>
+                          <p className="text-sm">Regresión lineal, ARIMA, Árboles de decisión, Bosques aleatorios, KNN, SVM, Redes Neuronales</p>
+                        </div>
+                        <div className="bg-gray-900/50 p-4 rounded-lg">
+                          <h4 className="font-medium text-yellow-200">Aprendizaje No Supervisado</h4>
+                          <p className="text-sm">Algoritmo Apriori para análisis de asociación</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                    <motion.div
+                      className="flex gap-4"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 1, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.a
+                        href="https://gitlab.com/jeremylive/ProyectoIA_Jarvis/-/blob/main/Documentacion.pdf?ref_type=heads"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative px-6 py-3 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-900 font-semibold overflow-hidden group"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <span className="relative z-10">Explorar Documentación</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </motion.a>
+                      <motion.a
+                        href="/contact"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative px-6 py-3 rounded-full bg-white bg-opacity-10 text-white font-semibold overflow-hidden group"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <span className="relative z-10">Solicitar Demo</span>
+                        <div className="absolute inset-0 bg-white bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </motion.a>
+                    </motion.div>
+                  </motion.div>
+
+                  <motion.div
+                    className="md:w-1/2"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="relative w-full max-w-lg mx-auto">
+                      <motion.div
+                        className="absolute -inset-4 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl opacity-75 blur-xl"
+                        animate={{
+                          scale: [1, 1.1, 1],
+                          opacity: [0.5, 0.7, 0.5],
+                        }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                      />
+                      <div className="relative bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                        <div className="flex items-center justify-center mb-6">
+                          <motion.div
+                            className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center"
                             whileHover={{ scale: 1.1, rotate: 90 }}
                             transition={{ type: "spring", stiffness: 300 }}
                           >
@@ -411,23 +481,29 @@ function AppContent() {
                           transition={{ delay: 0.4, duration: 0.6 }}
                           viewport={{ once: true }}
                         >
-                          <div className="flex items-center gap-3 text-violet-200">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <div className="flex items-start gap-3 text-yellow-100">
+                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            <span>Análisis predictivo avanzado</span>
+                            <span><span className="font-semibold text-white">Reconocimiento de voz avanzado</span> - Interacción natural mediante comandos de voz con más del 90% de precisión</span>
                           </div>
-                          <div className="flex items-center gap-3 text-violet-200">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <div className="flex items-start gap-3 text-yellow-100">
+                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            <span>Chatbots inteligentes 24/7</span>
+                            <span><span className="font-semibold text-white">Análisis de emociones en tiempo real</span> - Detección precisa de emociones mediante reconocimiento facial</span>
                           </div>
-                          <div className="flex items-center gap-3 text-violet-200">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <div className="flex items-start gap-3 text-yellow-100">
+                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            <span>Integración personalizada</span>
+                            <span><span className="font-semibold text-white">Modelos predictivos especializados</span> - Precisión superior al 80% en predicciones de precios y clasificaciones</span>
+                          </div>
+                          <div className="flex items-start gap-3 text-yellow-100">
+                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span><span className="font-semibold text-white">API REST personalizable</span> - Fácil integración con sistemas existentes mediante endpoints flexibles</span>
                           </div>
                         </motion.div>
                       </div>
@@ -437,310 +513,170 @@ function AppContent() {
               </div>
             </motion.section>
 
-            {/* AI Agents Platform Section */}
-            <motion.section
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: true }}
-              className="py-20 bg-black/20 relative overflow-hidden"
-            >
-              {/* Fondo de neuronas */}
-              <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
-                <div className="absolute inset-0">
-                  {[...Array(30)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute"
-                      initial={{
-                        x: Math.random() * window.innerWidth,
-                        y: Math.random() * window.innerHeight,
-                      }}
-                    >
-                      <motion.div
-                        className="w-2 h-2 bg-purple-500 rounded-full"
-                        animate={{
-                          scale: [1, 1.5, 1],
-                          opacity: [0.3, 0.7, 0.3],
-                        }}
-                        transition={{
-                          duration: Math.random() * 2 + 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                      {[...Array(3)].map((_, j) => (
-                        <motion.div
-                          key={j}
-                          className="absolute top-1/2 left-1/2 w-8 h-0.5 bg-gradient-to-r from-purple-500 to-transparent"
-                          style={{
-                            transform: `rotate(${j * 120}deg)`,
-                            transformOrigin: "0 0",
-                          }}
-                          animate={{
-                            opacity: [0.1, 0.3, 0.1],
-                            scaleX: [1, 1.2, 1],
-                          }}
-                          transition={{
-                            duration: Math.random() * 3 + 2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
-                        />
-                      ))}
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
+            {/* AI Products & Departments Section */}
+            <section className="py-20 bg-gradient-to-b from-black/40 to-violet-900/20">
               <div className="container mx-auto px-4">
-                <div className="flex flex-col md:flex-row items-center gap-12">
-                  <motion.div
-                    className="md:w-1/2"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="relative w-full max-w-lg mx-auto">
-                      <motion.div
-                        className="absolute -inset-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl opacity-75 blur-xl"
-                        animate={{
-                          scale: [1, 1.1, 1],
-                          opacity: [0.5, 0.7, 0.5],
-                        }}
-                        transition={{ duration: 4, repeat: Infinity }}
-                      />
-                      <div className="relative bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-                        <div className="flex items-center justify-center mb-6">
-                          <motion.div
-                            className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center relative overflow-hidden"
-                            whileHover={{ scale: 1.1 }}
-                            transition={{ type: "spring", stiffness: 300 }}
-                          >
-                            <motion.div
-                              className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
-                              animate={{
-                                rotate: [0, 360],
-                              }}
-                              transition={{
-                                duration: 8,
-                                repeat: Infinity,
-                                ease: "linear",
-                              }}
-                            />
-                            <svg className="w-8 h-8 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                          </motion.div>
-                        </div>
-                        <motion.div
-                          className="space-y-4"
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.4, duration: 0.6 }}
-                          viewport={{ once: true }}
-                        >
-                          <div className="flex items-center gap-3 text-violet-200">
-                            <motion.div
-                              className="w-5 h-5 flex items-center justify-center"
-                              whileHover={{ scale: 1.2, rotate: 180 }}
-                              transition={{ type: "spring", stiffness: 300 }}
-                            >
-                              <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                              </svg>
-                            </motion.div>
-                            <span>Procesamiento de Lenguaje Natural Avanzado</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-violet-200">
-                            <motion.div
-                              className="w-5 h-5 flex items-center justify-center"
-                              whileHover={{ scale: 1.2, rotate: 180 }}
-                              transition={{ type: "spring", stiffness: 300 }}
-                            >
-                              <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                              </svg>
-                            </motion.div>
-                            <span>Aprendizaje Continuo y Adaptativo</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-violet-200">
-                            <motion.div
-                              className="w-5 h-5 flex items-center justify-center"
-                              whileHover={{ scale: 1.2, rotate: 180 }}
-                              transition={{ type: "spring", stiffness: 300 }}
-                            >
-                              <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
-                              </svg>
-                            </motion.div>
-                            <span>Toma de Decisiones Autónoma</span>
-                          </div>
-                        </motion.div>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="md:w-1/2 text-left"
-                    initial={{ x: 50, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                    viewport={{ once: true }}
-                  >
-                    <motion.h2
-                      className="text-3xl md:text-4xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.6, duration: 0.4 }}
-                      viewport={{ once: true }}
-                    >
-                      Agentes de IA: El Futuro de la Automatización Inteligente
-                    </motion.h2>
-                    <motion.p
-                      className="text-lg text-violet-200 mb-8 leading-relaxed"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.8, duration: 0.4 }}
-                      viewport={{ once: true }}
-                    >
-                      Descubre el poder de nuestros agentes de IA, diseñados para revolucionar la forma en que interactúas con la tecnología. Desde la comprensión avanzada del lenguaje natural hasta la toma de decisiones autónoma, nuestros agentes aprenden y evolucionan continuamente para proporcionar soluciones cada vez más inteligentes y eficientes.
-                    </motion.p>
-                    <motion.div
-                      className="flex gap-4"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 1, duration: 0.4 }}
-                      viewport={{ once: true }}
-                    >
-                      <motion.a
-                        href="https://www.etheroi.com"
-                        className="relative px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold overflow-hidden group"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <span className="relative z-10">Explorar Capacidades</span>
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500"
-                          initial={{ x: "-100%" }}
-                          whileHover={{ x: 0 }}
-                          transition={{ type: "spring", stiffness: 100 }}
-                        />
-                      </motion.a>
-                      <motion.a
-                        href="/contact"
-                        className="relative px-6 py-3 rounded-full bg-white bg-opacity-10 text-white font-semibold overflow-hidden group"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <span className="relative z-10">Programar Demostración</span>
-                        <motion.div
-                          className="absolute inset-0 bg-white bg-opacity-20"
-                          initial={{ scale: 0, opacity: 0 }}
-                          whileHover={{ scale: 1, opacity: 1 }}
-                          transition={{ type: "spring", stiffness: 100 }}
-                        />
-                      </motion.a>
-                    </motion.div>
-                  </motion.div>
-                </div>
-              </div>
-            </motion.section>
-
-            {/* Dashboard Preview Section - Hidden on mobile */}
-            <section className="hidden md:block py-20 bg-black/20">
-              <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                    Servicios Profesionales de Software Engineering
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+                    Plataforma Integral de IA Empresarial
                   </h2>
-                  <p className="text-violet-200 text-lg max-w-2xl mx-auto">
-                    Desde desarrollo web hasta inteligencia artificial, ofrecemos soluciones tecnológicas completas para transformar tu visión en realidad.
+                  <p className="text-violet-200 text-xl max-w-4xl mx-auto leading-relaxed">
+                    Soluciones de inteligencia artificial de vanguardia impulsadas por nuestra arquitectura multi-agente y modelos de aprendizaje profundo.
                   </p>
                 </div>
-                <div className="max-w-5xl mx-auto">
-                  <div className="bg-gradient-to-br from-purple-900/50 to-violet-800/50 backdrop-blur-sm p-8 rounded-2xl border border-purple-700/30">
-                    <DashboardPreview type="web" />
+                <div className="max-w-6xl mx-auto">
+                  <div className="bg-gradient-to-br from-purple-900/40 to-violet-800/40 backdrop-blur-sm p-8 rounded-2xl border border-purple-700/30">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                      <div 
+                        className="p-6 bg-white/5 rounded-xl border border-white/5 hover:border-purple-500/30 transition-all cursor-pointer hover:bg-white/10"
+                        onClick={() => handleProductClick(
+                          'DeepMCP Agent',
+                          'Estamos trabajando en la implementación de esta funcionalidad. ¡Próximamente estará disponible!'
+                        )}
+                      >
+                        <div className="text-4xl mb-4">🤖</div>
+                        <h3 className="text-xl font-semibold text-white mb-3">DeepMCP Agent</h3>
+                        <p className="text-violet-200 text-sm">Agente autónomo de propósito general con capacidades avanzadas de razonamiento y ejecución de tareas complejas.</p>
+                      </div>
+                      <div 
+                        className="p-6 bg-white/5 rounded-xl border border-white/5 hover:border-purple-500/30 transition-all cursor-pointer hover:bg-white/10"
+                        onClick={() => handleProductClick(
+                          'MCP Vision',
+                          'Estamos trabajando en la implementación de esta funcionalidad. ¡Próximamente estará disponible!'
+                        )}
+                      >
+                        <div className="text-4xl mb-4">🔍</div>
+                        <h3 className="text-xl font-semibold text-white mb-3">MCP Vision</h3>
+                        <p className="text-violet-200 text-sm">Sistema de visión por computadora para análisis avanzado de imágenes y vídeo en tiempo real.</p>
+                      </div>
+                      <div 
+                        className="p-6 bg-white/5 rounded-xl border border-white/5 hover:border-purple-500/30 transition-all cursor-pointer hover:bg-white/10"
+                        onClick={() => handleProductClick(
+                          'DataFlow Engine',
+                          'Estamos trabajando en la implementación de esta funcionalidad. ¡Próximamente estará disponible!'
+                        )}
+                      >
+                        <div className="text-4xl mb-4">📊</div>
+                        <h3 className="text-xl font-semibold text-white mb-3">DataFlow Engine</h3>
+                        <p className="text-violet-200 text-sm">Plataforma de procesamiento de datos a gran escala con capacidades de análisis predictivo.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </section>
 
+            {/* Popup */}
+            {showPopup && (
+              <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={() => setShowPopup(false)}>
+                <div className="bg-gradient-to-br from-purple-900/90 to-violet-900/90 backdrop-blur-lg rounded-2xl p-8 max-w-md w-full border border-purple-500/30 shadow-2xl" onClick={e => e.stopPropagation()}>
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="text-2xl font-bold text-white">{popupTitle}</h3>
+                    <button 
+                      onClick={() => setShowPopup(false)}
+                      className="text-violet-300 hover:text-white transition-colors"
+                      aria-label="Cerrar"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                  <p className="text-violet-100 mb-6">{popupContent}</p>
+                  <div className="flex justify-end">
+                    <button 
+                      onClick={() => setShowPopup(false)}
+                      className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+                    >
+                      Entendido
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Features Grid */}
             <section className="py-20">
               <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {/* Desarrollo Web */}
-                  <div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-2xl p-8 cursor-pointer transform transition-all hover:scale-105" onClick={() => navigate('/web-development')}>
-                    <div className="text-4xl mb-6">💻</div>
+                  {/* Departamento de IA Avanzada */}
+                  <div 
+  className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 cursor-pointer transform transition-all hover:scale-105 border border-white/5 hover:border-purple-500/30" 
+  onClick={(e) => handleProductClick('Investigación en IA', 'Estamos trabajando en esta sección. ¡Próximamente estará disponible!', e)}
+>
+                    <div className="text-4xl mb-6">🧠</div>
                     <h3 className="text-2xl font-semibold text-white mb-4">
-                      Desarrollo Web Profesional
+                      Investigación en IA
                     </h3>
                     <p className="text-violet-200 mb-4">
-                      Creamos experiencias web excepcionales que impulsan el crecimiento de tu negocio:
+                      Innovación en modelos de aprendizaje automático y procesamiento del lenguaje natural:
                     </p>
                     <ul className="text-violet-200 mb-6 list-disc list-inside space-y-2">
-                      <li>Aplicaciones web empresariales de alto rendimiento</li>
-                      <li>Optimización avanzada de velocidad y SEO</li>
-                      <li>Diseño UX/UI centrado en conversión</li>
-                      <li>Integración con sistemas empresariales</li>
-                      <li>Arquitectura escalable y segura</li>
+                      <li>Desarrollo de modelos de lenguaje avanzados</li>
+                      <li>Investigación en aprendizaje por refuerzo</li>
+                      <li>Arquitecturas neuronales personalizadas</li>
+                      <li>Optimización de modelos para producción</li>
+                      <li>Ética y seguridad en IA</li>
                     </ul>
                     <div className="text-sm text-violet-300 p-4 bg-purple-900/30 rounded-lg mb-4">
-                      <strong>Stack Tecnológico:</strong> React, Next.js, Vue.js, Node.js, GraphQL
+                      <strong>Tecnologías:</strong> PyTorch, TensorFlow, JAX, Transformers, RLlib
                     </div>
                     <div className="text-sm text-green-300 p-4 bg-green-900/30 rounded-lg">
-                      <strong>Caso de Éxito:</strong> +300% en conversiones para e-commerce B2B
+                      <strong>Logro:</strong> Modelos con +95% de precisión en tareas específicas
                     </div>
                   </div>
 
-                  {/* Software a Medida */}
-                  <div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-2xl p-8 cursor-pointer transform transition-all hover:scale-105" onClick={() => navigate('/custom-software')}>
-                    <div className="text-4xl mb-6">🔧</div>
+                  {/* Departamento de Ingeniería de IA */}
+                  <div 
+                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 cursor-pointer transform transition-all hover:scale-105 border border-white/5 hover:border-purple-500/30"
+                    onClick={(e) => handleProductClick('Ingeniería de IA', 'Estamos trabajando en esta sección. ¡Próximamente estará disponible!', e)}
+                  >
+                    <div className="text-4xl mb-6">⚙️</div>
                     <h3 className="text-2xl font-semibold text-white mb-4">
-                      Software Empresarial a Medida
+                      Ingeniería de IA
                     </h3>
                     <p className="text-violet-200 mb-4">
-                      Soluciones personalizadas que transforman desafíos en ventajas competitivas:
+                      Implementación y despliegue de soluciones de IA a escala empresarial:
                     </p>
                     <ul className="text-violet-200 mb-6 list-disc list-inside space-y-2">
-                      <li>Automatización de procesos críticos</li>
-                      <li>Sistemas ERP y CRM personalizados</li>
-                      <li>Integración con APIs y servicios externos</li>
-                      <li>Migración y modernización de sistemas</li>
-                      <li>Análisis de datos y Business Intelligence</li>
+                      <li>Arquitecturas escalables para inferencia de IA</li>
+                      <li>Pipelines de ML automatizados</li>
+                      <li>Optimización de modelos para edge computing</li>
+                      <li>Monitoreo y mantenimiento de modelos en producción</li>
+                      <li>Seguridad y privacidad de datos</li>
                     </ul>
                     <div className="text-sm text-violet-300 p-4 bg-purple-900/30 rounded-lg mb-4">
-                      <strong>Tecnologías:</strong> Java, Python, .NET, Node.js, Microservicios
+                      <strong>Tecnologías:</strong> Kubernetes, TensorFlow Serving, ONNX, FastAPI, Prometheus
                     </div>
                     <div className="text-sm text-green-300 p-4 bg-green-900/30 rounded-lg">
-                      <strong>Impacto:</strong> 60% reducción en costos operativos
+                      <strong>Impacto:</strong> 10x reducción en latencia de inferencia
                     </div>
                   </div>
 
-                  {/* Servicios Cloud */}
-                  <div className="bg-white bg-opacity-5 backdrop-blur-sm rounded-2xl p-8 cursor-pointer transform transition-all hover:scale-105" onClick={() => navigate('/cloud-development')}>
-                    <div className="text-4xl mb-6">☁️</div>
+                  {/* Departamento de IA Aplicada */}
+                  <div 
+                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 cursor-pointer transform transition-all hover:scale-105 border border-white/5 hover:border-purple-500/30"
+                    onClick={(e) => handleProductClick('IA Aplicada', 'Estamos trabajando en esta sección. ¡Próximamente estará disponible!', e)}
+                  >
+                    <div className="text-4xl mb-6">🔍</div>
                     <h3 className="text-2xl font-semibold text-white mb-4">
-                      Desarrollo Cloud & DevOps
+                      IA Aplicada
                     </h3>
                     <p className="text-violet-200 mb-4">
-                      Infraestructura cloud moderna y escalable para tu negocio:
+                      Soluciones prácticas de IA para desafíos empresariales específicos:
                     </p>
                     <ul className="text-violet-200 mb-6 list-disc list-inside space-y-2">
-                      <li>Arquitectura cloud-native</li>
-                      <li>Implementación de CI/CD</li>
-                      <li>Containerización y orquestación</li>
-                      <li>Monitoreo y optimización</li>
-                      <li>Seguridad cloud avanzada</li>
+                      <li>Procesamiento de lenguaje natural (NLP)</li>
+                      <li>Visión por computadora</li>
+                      <li>Sistemas de recomendación</li>
+                      <li>Análisis predictivo</li>
+                      <li>Automatización de procesos con IA</li>
                     </ul>
                     <div className="text-sm text-violet-300 p-4 bg-purple-900/30 rounded-lg mb-4">
-                      <strong>Plataformas:</strong> AWS, Azure, GCP, Kubernetes
+                      <strong>Casos de Uso:</strong> Chatbots, Análisis de Sentimiento, Detección de Anomalías
                     </div>
                     <div className="text-sm text-green-300 p-4 bg-green-900/30 rounded-lg">
-                      <strong>Resultado:</strong> 99.99% uptime y 40% reducción en costos
+                      <strong>Resultado:</strong> 70% mejora en eficiencia operativa
                     </div>
                   </div>
 
@@ -819,8 +755,8 @@ function AppContent() {
               </div>
             </section>
 
-            {/* Testimonials Section */}
-            <TestimonialsSection />
+            {/* AI Solutions Section */}
+            <UseCasesSection />
 
             {/* Footer */}
             <AnimatedFooter />

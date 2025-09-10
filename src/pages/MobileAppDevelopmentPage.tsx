@@ -14,32 +14,32 @@ export default function MobileAppDevelopmentPage() {
     {
       icon: <FiSmartphone className="w-6 h-6" />,
       title: 'Desarrollo Multiplataforma',
-      description: 'Aplicaciones nativas y multiplataforma para iOS y Android utilizando React Native y Flutter.'
+      description: 'Te ofrezco aplicaciones nativas y multiplataforma para iOS y Android utilizando React Native y Flutter, adaptadas a tus necesidades específicas.'
     },
     {
       icon: <FiLayers className="w-6 h-6" />,
       title: 'Diseño UX/UI',
-      description: 'Interfaces intuitivas y atractivas que siguen las mejores prácticas de diseño móvil.'
+      description: 'Te diseño interfaces intuitivas y atractivas que siguen las mejores prácticas de diseño móvil para ofrecer la mejor experiencia a tus usuarios.'
     },
     {
       icon: <FiZap className="w-6 h-6" />,
       title: 'Alto Rendimiento',
-      description: 'Optimización de rendimiento y uso eficiente de recursos para una experiencia fluida.'
+      description: 'Me aseguro de optimizar el rendimiento y el uso eficiente de recursos para ofrecerte una experiencia de usuario fluida y sin interrupciones.'
     },
     {
       icon: <FiShield className="w-6 h-6" />,
       title: 'Seguridad Avanzada',
-      description: 'Implementación de medidas de seguridad robustas para proteger datos y usuarios.'
+      description: 'Te protejo implementando medidas de seguridad robustas para salvaguardar los datos de tu aplicación y la privacidad de tus usuarios.'
     },
     {
       icon: <FiCloud className="w-6 h-6" />,
       title: 'Integración Cloud',
-      description: 'Conexión con servicios en la nube para sincronización y almacenamiento de datos.'
+      description: 'Te ofrezco conexión con servicios en la nube para una sincronización perfecta y un almacenamiento seguro de los datos de tu aplicación.'
     },
     {
       icon: <FiServer className="w-6 h-6" />,
       title: 'APIs y Backend',
-      description: 'Desarrollo de APIs y servicios backend escalables para tu aplicación móvil.'
+      description: 'Te desarrollo APIs y servicios backend escalables que potenciarán tu aplicación móvil con un rendimiento óptimo.'
     }
   ];
 
@@ -70,7 +70,7 @@ export default function MobileAppDevelopmentPage() {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-6xl font-bold text-white"
             >
-              Desarrollo de Apps Móviles
+              Mi Servicio de Desarrollo de Apps Móviles
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 pb-6">
                 iOS y Android
               </span>
@@ -81,8 +81,8 @@ export default function MobileAppDevelopmentPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-violet-200 mb-8 max-w-3xl mx-auto"
             >
-              Creamos aplicaciones móviles intuitivas y potentes que transforman tu visión en
-              realidad. Desarrollo nativo y multiplataforma para alcanzar a tu audiencia en cualquier dispositivo.
+              Desarrollo aplicaciones móviles intuitivas y potentes que transforman tu visión en
+              realidad. Te ofrezco desarrollo nativo y multiplataforma para que puedas alcanzar a tu audiencia en cualquier dispositivo.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ export default function MobileAppDevelopmentPage() {
 
           {/* Technologies Section */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Utilizamos</h2>
+            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Manejo</h2>
             <div className="flex flex-wrap justify-center gap-4">
               {technologies.map((tech, index) => (
                 <motion.div
@@ -140,8 +140,8 @@ export default function MobileAppDevelopmentPage() {
                 ¿Listo para Crear tu App Móvil?
               </h2>
               <p className="text-violet-200 mb-8 max-w-2xl mx-auto">
-                Contáctanos hoy para discutir cómo podemos ayudarte a desarrollar
-                la aplicación móvil perfecta para tu negocio.
+                Contáctame hoy para discutir cómo puedo ayudarte a desarrollar
+                la aplicación móvil perfecta para tu negocio, adaptada a tus necesidades específicas.
               </p>
               <button
                 onClick={() => navigate('/contact')}

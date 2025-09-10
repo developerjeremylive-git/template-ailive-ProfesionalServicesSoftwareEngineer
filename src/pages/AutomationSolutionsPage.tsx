@@ -14,7 +14,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiCpu className="w-6 h-6" />,
             title: 'Cloudflare Agents API',
-            description: 'Conjunto completo de herramientas para construir agentes inteligentes y escalables que gestionan lógica de negocio y estado en tiempo real.',
+            description: 'Te ofrezco un conjunto completo de herramientas para construir agentes inteligentes y escalables que gestionan tu lógica de negocio y estado en tiempo real.',
             features: [
                 'Agente del lado del servidor con gestión de estado',
                 'WebSocket API para comunicación bidireccional',
@@ -31,7 +31,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiCpu className="w-6 h-6" />,
             title: 'Model Context Protocol (MCP)',
-            description: 'Estándar abierto que actúa como un "USB-C para aplicaciones de IA", conectando sistemas de IA con aplicaciones externas.',
+            description: 'Te implemento un estándar abierto que actúa como un "USB-C para aplicaciones de IA", conectando tus sistemas de IA con aplicaciones externas de manera fluida.',
             features: [
                 'Conexiones remotas e locales',
                 'Roles definidos (Hosts, Clients, Servers)',
@@ -47,7 +47,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiDatabase className="w-6 h-6" />,
             title: 'Cloudflare AutoRAG',
-            description: 'Solución totalmente administrada para crear pipelines de retrieval-augmented generation (RAG).',
+            description: 'Te proporciono una solución totalmente administrada para crear pipelines de retrieval-augmented generation (RAG) personalizados para tus necesidades.',
             features: [
                 'Indexación Automatizada continua',
                 'Integración con Cloudflare Workers',
@@ -62,7 +62,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiCloud className="w-6 h-6" />,
             title: 'Cloudflare Workflows',
-            description: 'Motor de ejecución duradero para orquestar aplicaciones de múltiples pasos.',
+            description: 'Te ayudo a implementar un motor de ejecución duradero para orquestar tus aplicaciones de múltiples pasos de manera confiable.',
             features: [
                 'Ejecución Duradera y confiable',
                 'Automatización de Retries',
@@ -78,7 +78,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiCpu className="w-6 h-6" />,
             title: 'Workers AI',
-            description: 'Plataforma serverless para ejecutar modelos de machine learning y tareas de IA en la infraestructura global de Cloudflare.',
+            description: 'Te ofrezco una plataforma serverless para ejecutar tus modelos de machine learning y tareas de IA en la infraestructura global de Cloudflare.',
             features: [
                 'Ejecución de modelos de IA en el Edge',
                 'Infraestructura escalable sin servidor',
@@ -98,7 +98,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiGlobe className="w-6 h-6" />,
             title: 'Browse the Web',
-            description: 'Esta funcionalidad, integrada en la Agents API de Cloudflare, permite a tus agentes realizar solicitudes HTTP y conectarse a la web en tiempo real.',
+            description: 'Te implemento esta funcionalidad en la Agents API de Cloudflare, permitiendo a tus agentes realizar solicitudes HTTP y conectarse a la web en tiempo real para ti.',
             benefits: [
                 'Acceso a Información Externa',
                 'Respuesta Dinámica',
@@ -108,7 +108,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiDatabase className="w-6 h-6" />,
             title: 'Retrieval Augmented Generation (RAG)',
-            description: 'El componente RAG de la Agents API permite a tus agentes combinar la generación de contenido por IA con la recuperación de información externa.',
+            description: 'Te ayudo a implementar el componente RAG en la Agents API, permitiendo a tus agentes combinar la generación de contenido por IA con la recuperación de información externa relevante para ti.',
             benefits: [
                 'Respuestas Contextualizadas',
                 'Aplicaciones de Soporte y Asistencia',
@@ -118,7 +118,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiServer className="w-6 h-6" />,
             title: 'MCP Agent API',
-            description: 'Extensión de la plataforma Cloudflare Agents para construir y desplegar servidores MCP.',
+            description: 'Te ofrezco una extensión de la plataforma Cloudflare Agents para construir y desplegar tus propios servidores MCP personalizados.',
             benefits: [
                 'Integración de herramientas personalizadas',
                 'Persistencia de estado duradero',
@@ -129,7 +129,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiMessageSquare className="w-6 h-6" />,
             title: 'WebSocket API',
-            description: 'Conexiones en tiempo real para aplicaciones interactivas con comunicación bidireccional.',
+            description: 'Te implemento conexiones en tiempo real para tus aplicaciones interactivas con comunicación bidireccional.',
             benefits: [
                 'Comunicación en tiempo real',
                 'Gestión de eventos avanzada',
@@ -139,7 +139,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiZap className="w-6 h-6" />,
             title: 'State Synchronization API',
-            description: 'Sincronización automática del estado entre múltiples conexiones o instancias.',
+            description: 'Te ofrezco sincronización automática del estado entre múltiples conexiones o instancias de tus aplicaciones.',
             benefits: [
                 'Sincronización en tiempo real',
                 'Coherencia de datos garantizada',
@@ -149,7 +149,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiServer className="w-6 h-6" />,
             title: 'SQL & Scheduling API',
-            description: 'Base de datos integrada y programación de tareas automatizadas.',
+            description: 'Te proporciono soluciones de base de datos integrada y programación de tareas automatizadas personalizadas.',
             benefits: [
                 'Almacenamiento persistente',
                 'Programación flexible de tareas',
@@ -159,7 +159,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiClock className="w-6 h-6" />,
             title: 'Scheduling API',
-            description: 'Programación de tareas para ejecución futura, ya sea puntual, con retraso o en base a un cronograma.',
+            description: 'Te ayudo a programar tareas para ejecución futura, ya sea puntual, con retraso o en base a un cronograma que se ajuste a tus necesidades.',
             benefits: [
                 'Programación de Tareas',
                 'Automatización y Recordatorios',
@@ -170,7 +170,7 @@ export default function AutomationSolutionsPage() {
         {
             icon: <FiCode className="w-6 h-6" />,
             title: 'Client API y React API',
-            description: 'Clases y hooks para conectar y sincronizar el estado del agente en aplicaciones cliente.',
+            description: 'Te ofrezco clases y hooks personalizados para conectar y sincronizar el estado del agente en tus aplicaciones cliente.',
             benefits: [
                 'Agente del Lado del Cliente',
                 'Integración con Frameworks Modernos',
@@ -193,7 +193,7 @@ export default function AutomationSolutionsPage() {
                             transition={{ duration: 0.6 }}
                             className="text-4xl md:text-6xl font-bold text-white"
                         >
-                            Soluciones de
+                            Mis Soluciones de
                             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 pb-6">
                                 Automatización Inteligente
                             </span>
@@ -336,8 +336,8 @@ export default function AutomationSolutionsPage() {
                                 ¿Listo para Automatizar tu Negocio?
                             </h2>
                             <p className="text-violet-200 mb-8 max-w-2xl mx-auto">
-                                Descubre cómo nuestras soluciones de automatización inteligente pueden
-                                transformar tus procesos empresariales.
+                                Descubre cómo mis soluciones de automatización inteligente pueden
+                                transformar tus procesos empresariales y hacer crecer tu negocio.
                             </p>
                             <button
                                 onClick={() => navigate('/contact')}

@@ -14,32 +14,32 @@ export default function CustomSoftwarePage() {
     {
       icon: <FiCode className="w-6 h-6" />,
       title: 'Desarrollo a Medida',
-      description: 'Soluciones de software personalizadas que se adaptan perfectamente a tus procesos y objetivos específicos.'
+      description: 'Te ofrezco soluciones de software personalizadas que se adaptan perfectamente a tus procesos y objetivos específicos, diseñadas exclusivamente para ti.'
     },
     {
       icon: <FiLayers className="w-6 h-6" />,
       title: 'Arquitectura Escalable',
-      description: 'Diseño de sistemas que crecen con tu negocio, asegurando rendimiento y eficiencia a largo plazo.'
+      description: 'Te diseño sistemas que crecen con tu negocio, asegurándote rendimiento óptimo y eficiencia a largo plazo en cada etapa de tu crecimiento.'
     },
     {
       icon: <FiZap className="w-6 h-6" />,
       title: 'Integración Perfecta',
-      description: 'Conexión fluida con tus sistemas existentes y APIs de terceros para una operación sin interrupciones.'
+      description: 'Te garantizo una conexión fluida con tus sistemas existentes y APIs de terceros para una operación sin interrupciones ni complicaciones.'
     },
     {
       icon: <FiShield className="w-6 h-6" />,
       title: 'Seguridad Avanzada',
-      description: 'Implementación de las mejores prácticas de seguridad y protección de datos en cada etapa del desarrollo.'
+      description: 'Te protejo implementando las mejores prácticas de seguridad y protección de datos en cada etapa del desarrollo de tu software.'
     },
     {
       icon: <FiServer className="w-6 h-6" />,
       title: 'Mantenimiento Continuo',
-      description: 'Soporte técnico especializado y actualizaciones regulares para mantener tu software optimizado.'
+      description: 'Te ofrezco soporte técnico especializado y actualizaciones regulares para mantener tu software siempre en su mejor versión y funcionando sin problemas.'
     },
     {
       icon: <FiPackage className="w-6 h-6" />,
       title: 'Metodología Ágil',
-      description: 'Desarrollo iterativo con entregas frecuentes y feedback continuo para asegurar resultados óptimos.'
+      description: 'Trabajo con metodologías ágiles, ofreciéndote entregas frecuentes y feedback continuo para asegurar que el resultado final cumpla con todas tus expectativas.'
     }
   ];
 
@@ -70,7 +70,7 @@ export default function CustomSoftwarePage() {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-6xl font-bold text-white mb-6"
             >
-              Desarrollo de Software
+              Mi Servicio de Desarrollo de Software
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
                 a Medida
               </span>
@@ -81,8 +81,8 @@ export default function CustomSoftwarePage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-violet-200 mb-8 max-w-3xl mx-auto"
             >
-              Transformamos tus ideas en soluciones de software robustas y escalables.
-              Desarrollo personalizado que impulsa la eficiencia y el crecimiento de tu negocio.
+              Transformo tus ideas en soluciones de software robustas y escalables.
+              Te ofrezco desarrollo personalizado que impulsa la eficiencia y el crecimiento de tu negocio, adaptándome a tus necesidades específicas.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ export default function CustomSoftwarePage() {
 
           {/* Technologies Section */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Utilizamos</h2>
+            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Manejo</h2>
             <div className="flex flex-wrap justify-center gap-4">
               {technologies.map((tech, index) => (
                 <motion.div
@@ -140,8 +140,8 @@ export default function CustomSoftwarePage() {
                 ¿Listo para Transformar tu Negocio?
               </h2>
               <p className="text-violet-200 mb-8 max-w-2xl mx-auto">
-                Contáctanos hoy para discutir cómo podemos ayudarte a crear la solución
-                de software perfecta para tu empresa.
+                Contáctame hoy para discutir cómo puedo ayudarte a crear la solución
+                de software perfecta para tu empresa, adaptada a tus necesidades específicas y objetivos de negocio.
               </p>
               <button
                 onClick={() => navigate('/contact')}

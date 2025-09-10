@@ -14,32 +14,32 @@ export default function DatabaseDevelopmentPage() {
     {
       icon: <FiDatabase className="w-6 h-6" />,
       title: 'Diseño de Bases de Datos',
-      description: 'Arquitecturas de bases de datos optimizadas y escalables diseñadas para tus necesidades específicas.'
+      description: 'Te ofrezco arquitecturas de bases de datos optimizadas y escalables, diseñadas específicamente para cubrir las necesidades únicas de tu negocio.'
     },
     {
       icon: <FiServer className="w-6 h-6" />,
       title: 'Alta Disponibilidad',
-      description: 'Configuración de clusters y replicación para garantizar acceso continuo a tus datos.'
+      description: 'Configuro clusters y replicación para garantizarte acceso continuo a tus datos, minimizando el tiempo de inactividad.'
     },
     {
       icon: <FiShield className="w-6 h-6" />,
       title: 'Seguridad de Datos',
-      description: 'Implementación de políticas de seguridad, encriptación y cumplimiento normativo.'
+      description: 'Te protejo implementando políticas de seguridad avanzadas, encriptación de última generación y asegurando el cumplimiento normativo.'
     },
     {
       icon: <FiLayers className="w-6 h-6" />,
       title: 'Migración de Datos',
-      description: 'Migración segura y eficiente de datos entre diferentes sistemas y plataformas.'
+      description: 'Te ayudo a migrar tus datos de manera segura y eficiente entre diferentes sistemas y plataformas, sin pérdida de información.'
     },
     {
       icon: <FiZap className="w-6 h-6" />,
       title: 'Optimización de Rendimiento',
-      description: 'Mejora del rendimiento de consultas y optimización de índices para máxima eficiencia.'
+      description: 'Mejoro significativamente el rendimiento de tus consultas y optimizo los índices para ofrecerte la máxima eficiencia en tus operaciones.'
     },
     {
       icon: <FiCpu className="w-6 h-6" />,
       title: 'Integración de Sistemas',
-      description: 'Conexión fluida entre diferentes bases de datos y sistemas empresariales.'
+      description: 'Te ofrezco una conexión fluida y segura entre tus diferentes bases de datos y sistemas empresariales para una gestión unificada.'
     }
   ];
 
@@ -70,7 +70,7 @@ export default function DatabaseDevelopmentPage() {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-6xl font-bold text-white"
             >
-              Desarrollo de Bases de Datos
+              Mi Servicio de Desarrollo de Bases de Datos
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 pb-6">
                 Robustas y Escalables
               </span>
@@ -81,8 +81,8 @@ export default function DatabaseDevelopmentPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-violet-200 mb-8 max-w-3xl mx-auto"
             >
-              Diseñamos e implementamos arquitecturas de datos que garantizan rendimiento,
-              seguridad y escalabilidad para tu negocio.
+              Diseño e implemento arquitecturas de datos que garantizan rendimiento,
+              seguridad y escalabilidad para tu negocio, adaptadas a tus necesidades específicas.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ export default function DatabaseDevelopmentPage() {
 
           {/* Technologies Section */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Utilizamos</h2>
+            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Manejo</h2>
             <div className="flex flex-wrap justify-center gap-4">
               {technologies.map((tech, index) => (
                 <motion.div
@@ -140,8 +140,8 @@ export default function DatabaseDevelopmentPage() {
                 ¿Listo para Optimizar tus Datos?
               </h2>
               <p className="text-violet-200 mb-8 max-w-2xl mx-auto">
-                Contáctanos hoy para discutir cómo podemos ayudarte a crear una arquitectura
-                de datos robusta y eficiente para tu empresa.
+                Contáctame hoy para discutir cómo puedo ayudarte a crear una arquitectura
+                de datos robusta, segura y eficiente para tu empresa, adaptada a tus necesidades específicas.
               </p>
               <button
                 onClick={() => navigate('/contact')}

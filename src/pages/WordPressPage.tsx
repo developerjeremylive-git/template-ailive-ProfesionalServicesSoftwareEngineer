@@ -13,32 +13,32 @@ export default function WordPressPage() {
     {
       icon: <FiCode className="w-6 h-6" />,
       title: 'WooCommerce Integrado',
-      description: 'Crea una tienda online profesional con WooCommerce, gestiona productos, pedidos y pagos de forma sencilla. Integración con PayPal, Stripe y más pasarelas de pago.'
+      description: 'Te ayudo a crear una tienda online profesional con WooCommerce, gestionando productos, pedidos y pagos de forma sencilla. Te integro con PayPal, Stripe y más pasarelas de pago para que puedas vender desde el primer día.'
     },
     {
       icon: <FiLayers className="w-6 h-6" />,
       title: 'Temas Personalizados',
-      description: 'Diseñamos y desarrollamos temas WordPress a medida que reflejan la identidad única de tu marca, totalmente compatibles con WooCommerce y otros plugins esenciales.'
+      description: 'Diseño y desarrollo temas WordPress a medida que reflejan la identidad única de tu marca, asegurando que sean totalmente compatibles con WooCommerce y otros plugins esenciales que necesites.'
     },
     {
       icon: <FiZap className="w-6 h-6" />,
       title: 'Marketing Digital',
-      description: 'Integración con herramientas de marketing como Mailchimp, sistemas de membresía, y plugins de redes sociales para impulsar tus ventas online.'
+      description: 'Te ayudo a integrar herramientas de marketing como Mailchimp, sistemas de membresía y plugins de redes sociales para impulsar tus ventas online y fidelizar a tus clientes.'
     },
     {
       icon: <FiShield className="w-6 h-6" />,
       title: 'Seguridad y Pagos',
-      description: 'Certificados SSL, protección contra fraudes y pasarelas de pago seguras para garantizar transacciones seguras en tu tienda online.'
+      description: 'Te protejo con certificados SSL, sistemas contra fraudes y pasarelas de pago seguras para garantizar que todas las transacciones en tu tienda online sean completamente seguras.'
     },
     {
       icon: <FiDatabase className="w-6 h-6" />,
       title: 'Gestión de Inventario',
-      description: 'Control total de tu inventario, múltiples variaciones de productos, gestión de stock y sincronización con proveedores dropshipping.'
+      description: 'Te ofrezco control total de tu inventario, con soporte para múltiples variaciones de productos, gestión de stock avanzada y sincronización con proveedores de dropshipping si lo necesitas.'
     },
     {
       icon: <FiSearch className="w-6 h-6" />,
       title: 'SEO y Analytics',
-      description: 'Optimización SEO con Yoast, integración con Google Analytics y herramientas de seguimiento para maximizar tu visibilidad online.'
+      description: 'Optimizo tu sitio con las mejores prácticas SEO, integro Google Analytics y configuro herramientas de seguimiento personalizadas para que puedas medir y maximizar tu visibilidad online.'
     }
   ];
 
@@ -57,12 +57,12 @@ export default function WordPressPage() {
     {
       icon: <FiAward className="w-6 h-6" />,
       title: 'Calidad Premium',
-      description: 'Desarrollo de clase mundial con los más altos estándares de calidad y las mejores prácticas de la industria.'
+      description: 'Te ofrezco desarrollo de clase mundial con los más altos estándares de calidad y las mejores prácticas de la industria, asegurando que tu sitio web sea rápido, seguro y confiable.'
     },
     {
       icon: <FiTrendingUp className="w-6 h-6" />,
       title: 'Escalabilidad',
-      description: 'Soluciones que crecen con tu negocio, desde sitios pequeños hasta grandes plataformas empresariales.'
+      description: 'Te ofrezco soluciones que crecerán con tu negocio, desde sitios pequeños hasta grandes plataformas empresariales, asegurando que siempre tengas el soporte que necesitas.'
     }
   ];
 
@@ -80,7 +80,7 @@ export default function WordPressPage() {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-6xl font-bold text-white mb-6"
             >
-              Potencia tu Negocio con <br />
+              Potencio tu Negocio con <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
                 WordPress y WooCommerce
               </span>
@@ -91,8 +91,8 @@ export default function WordPressPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-violet-200 mb-8 max-w-3xl mx-auto"
             >
-              Creamos sitios web y tiendas online potentes con WordPress y WooCommerce.
-              Desde blogs hasta marketplaces completos, impulsamos tu presencia digital con las mejores soluciones.
+              Creo sitios web y tiendas online potentes con WordPress y WooCommerce.
+              Desde blogs hasta marketplaces completos, impulsaré tu presencia digital con las mejores soluciones personalizadas para tu negocio.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -129,7 +129,7 @@ export default function WordPressPage() {
 
           {/* Technologies Section */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-white text-center mb-8">Tecnologías que Utilizamos</h2>
+            <h2 className="text-3xl font-bold text-white text-center mb-8">Tecnologías que Manejo</h2>
             <div className="flex flex-wrap justify-center gap-4">
               {technologies.map((tech, index) => (
                 <motion.div

@@ -14,32 +14,32 @@ export default function CloudDevelopmentPage() {
     {
       icon: <FiCloud className="w-6 h-6" />,
       title: 'Arquitectura Cloud Nativa',
-      description: 'Diseño e implementación de aplicaciones optimizadas para la nube utilizando microservicios y contenedores.'
+      description: 'Te ofrezco diseño e implementación de aplicaciones optimizadas para la nube, utilizando microservicios y contenedores para garantizar máxima eficiencia.'
     },
     {
       icon: <FiServer className="w-6 h-6" />,
       title: 'Infraestructura como Código',
-      description: 'Automatización de infraestructura con Terraform, CloudFormation y Kubernetes para despliegues consistentes.'
+      description: 'Automatizo tu infraestructura con herramientas como Terraform, CloudFormation y Kubernetes para garantizarte despliegues consistentes y reproducibles.'
     },
     {
       icon: <FiShield className="w-6 h-6" />,
       title: 'Seguridad Cloud',
-      description: 'Implementación de mejores prácticas de seguridad, encriptación y cumplimiento normativo en la nube.'
+      description: 'Te protejo implementando las mejores prácticas de seguridad, encriptación avanzada y asegurando el cumplimiento normativo en la nube.'
     },
     {
       icon: <FiDatabase className="w-6 h-6" />,
       title: 'Bases de Datos Cloud',
-      description: 'Gestión de bases de datos escalables en la nube con servicios administrados y alta disponibilidad.'
+      description: 'Gestiono tus bases de datos escalables en la nube, utilizando servicios administrados para ofrecerte alta disponibilidad y rendimiento óptimo.'
     },
     {
       icon: <FiZap className="w-6 h-6" />,
       title: 'Serverless Computing',
-      description: 'Desarrollo de aplicaciones serverless para optimizar costos y escalar automáticamente según la demanda.'
+      description: 'Te ayudo a desarrollar aplicaciones serverless que optimizan costos y escalan automáticamente según la demanda de tu negocio.'
     },
     {
       icon: <FiLayers className="w-6 h-6" />,
       title: 'DevOps y CI/CD',
-      description: 'Implementación de pipelines de integración y despliegue continuo para entregas rápidas y confiables.'
+      description: 'Te implemento pipelines de integración y despliegue continuo que permiten entregas rápidas, confiables y con la máxima calidad.'
     }
   ];
 
@@ -70,7 +70,7 @@ export default function CloudDevelopmentPage() {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-6xl font-bold text-white"
             >
-              Desarrollo en la Nube
+              Mi Servicio de Desarrollo en la Nube
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 pb-6">
                 Escalable y Seguro
               </span>
@@ -81,8 +81,8 @@ export default function CloudDevelopmentPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-violet-200 mb-8 max-w-3xl mx-auto"
             >
-              Transformamos tu negocio con soluciones cloud nativas que maximizan la eficiencia,
-              escalabilidad y seguridad de tus aplicaciones.
+              Transformo tu negocio con soluciones cloud nativas que maximizan la eficiencia,
+              escalabilidad y seguridad de tus aplicaciones, adaptándome a tus necesidades específicas.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ export default function CloudDevelopmentPage() {
 
           {/* Technologies Section */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Utilizamos</h2>
+            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Manejo</h2>
             <div className="flex flex-wrap justify-center gap-4">
               {technologies.map((tech, index) => (
                 <motion.div
@@ -140,8 +140,8 @@ export default function CloudDevelopmentPage() {
                 ¿Listo para Migrar a la Nube?
               </h2>
               <p className="text-violet-200 mb-8 max-w-2xl mx-auto">
-                Contáctanos hoy para discutir cómo podemos ayudarte a aprovechar todo el
-                potencial de la computación en la nube para tu negocio.
+                Contáctame hoy para discutir cómo puedo ayudarte a aprovechar todo el
+                potencial de la computación en la nube para tu negocio, con soluciones personalizadas que impulsen tu crecimiento.
               </p>
               <button
                 onClick={() => navigate('/contact')}

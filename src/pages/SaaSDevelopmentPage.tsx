@@ -14,32 +14,32 @@ export default function SaaSDevelopmentPage() {
     {
       icon: <FiCloud className="w-6 h-6" />,
       title: 'Arquitectura Multi-tenant',
-      description: 'Diseño de sistemas escalables que permiten servir a múltiples clientes de forma eficiente y segura.'
+      description: 'Diseño de sistemas escalables que te permitirán servir a múltiples clientes de forma eficiente y segura.'
     },
     {
       icon: <FiUsers className="w-6 h-6" />,
       title: 'Gestión de Suscripciones',
-      description: 'Implementación de sistemas de facturación y gestión de suscripciones flexibles y automatizados.'
+      description: 'Te ayudo a implementar sistemas de facturación y gestión de suscripciones flexibles y automatizados.'
     },
     {
       icon: <FiZap className="w-6 h-6" />,
       title: 'Alta Disponibilidad',
-      description: 'Arquitectura distribuida que garantiza uptime 24/7 y respuesta rápida para todos los usuarios.'
+      description: 'Te ofrezco arquitecturas distribuidas que garantizan uptime 24/7 y respuesta rápida para todos tus usuarios.'
     },
     {
       icon: <FiShield className="w-6 h-6" />,
       title: 'Seguridad Empresarial',
-      description: 'Protección de datos, autenticación multi-factor y cumplimiento de normativas de seguridad.'
+      description: 'Te protejo con soluciones de seguridad que incluyen protección de datos, autenticación multi-factor y cumplimiento normativo.'
     },
     {
       icon: <FiDatabase className="w-6 h-6" />,
       title: 'Analítica Avanzada',
-      description: 'Herramientas de análisis y reportes para entender el uso y optimizar la experiencia del usuario.'
+      description: 'Te proporciono herramientas de análisis y reportes para que entiendas mejor a tus usuarios y optimices su experiencia.'
     },
     {
       icon: <FiServer className="w-6 h-6" />,
       title: 'API y Integraciones',
-      description: 'APIs RESTful y webhooks para integración con servicios externos y extensibilidad.'
+      description: 'Te ofrezco soluciones con APIs RESTful y webhooks para integrar fácilmente con otros servicios y expandir funcionalidades.'
     }
   ];
 
@@ -70,7 +70,7 @@ export default function SaaSDevelopmentPage() {
               transition={{ duration: 0.6 }}
               className="text-4xl md:text-6xl font-bold text-white mb-6"
             >
-              Desarrollo SaaS
+              Mi Servicio de Desarrollo SaaS
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
                 Soluciones en la Nube
               </span>
@@ -81,8 +81,8 @@ export default function SaaSDevelopmentPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-violet-200 mb-8 max-w-3xl mx-auto"
             >
-              Desarrollamos soluciones SaaS escalables y seguras que transforman tu idea
-              en un negocio rentable basado en suscripción.
+              Desarrollo soluciones SaaS escalables y seguras que transforman tu idea
+              en un negocio rentable basado en suscripción, con un enfoque personalizado en tus necesidades específicas.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ export default function SaaSDevelopmentPage() {
 
           {/* Technologies Section */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Utilizamos</h2>
+            <h2 className="text-3xl font-bold text-white mb-8">Tecnologías que Utilizo</h2>
             <div className="flex flex-wrap justify-center gap-4">
               {technologies.map((tech, index) => (
                 <motion.div
@@ -140,8 +140,8 @@ export default function SaaSDevelopmentPage() {
                 ¿Listo para Lanzar tu SaaS?
               </h2>
               <p className="text-violet-200 mb-8 max-w-2xl mx-auto">
-                Contáctanos hoy para discutir cómo podemos ayudarte a desarrollar
-                una solución SaaS exitosa y escalable.
+                Contáctame hoy para discutir cómo puedo ayudarte a desarrollar
+                una solución SaaS exitosa y escalable, adaptada a tus necesidades específicas.
               </p>
               <button
                 onClick={() => navigate('/contact')}
