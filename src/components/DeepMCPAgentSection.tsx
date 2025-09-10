@@ -1,7 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const FeatureCard = ({ title, description, icon, isActive, onClick }) => (
+interface FeatureCardProps {
+  title: string;
+  description: string;
+  icon: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon, isActive, onClick }) => (
   <motion.div
     onClick={onClick}
     className={`flex-shrink-0 w-80 snap-center cursor-pointer ${!isActive ? 'opacity-70 hover:opacity-100' : ''}`}
@@ -22,7 +36,7 @@ const FeatureCard = ({ title, description, icon, isActive, onClick }) => (
   </motion.div>
 );
 
-export const DeepMCPAgentSection = () => {
+const DeepMCPAgentSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -64,82 +78,130 @@ export const DeepMCPAgentSection = () => {
     }
   ];
 
+  // Auto-scroll to active card
+  const scrollToCard = useCallback((index: number) => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const card = scrollContainer.children[index] as HTMLElement;
+    if (card) {
+      const containerWidth = scrollContainer.offsetWidth;
+      const cardWidth = card.offsetWidth;
+      const scrollLeft = card.offsetLeft - (containerWidth / 2) + (cardWidth / 2);
+      
+      scrollContainer.scrollTo({
+        left: scrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  }, []);
+
+  // Handle scroll events and auto-play
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
 
-    const activeCard = scrollContainer.children[activeIndex];
-    if (activeCard) {
-      // Get current scroll position
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // Scroll the container horizontally without affecting vertical scroll
-      activeCard.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
-      });
-      
-      // Restore the vertical scroll position
-      window.scrollTo({
-        top: scrollTop,
-        behavior: 'auto'
-      });
-    }
-  }, [activeIndex]);
-
-  useEffect(() => {
-    let isScrolling = false;
     let scrollTimeout: NodeJS.Timeout;
-    
-    const handleScroll = (e: Event) => {
+    let autoScrollInterval: NodeJS.Timeout;
+    let isScrolling = false;
+    let isAutoScrolling = false;
+
+    const handleScroll = () => {
+      if (isAutoScrolling) return;
+      
       isScrolling = true;
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
         isScrolling = false;
       }, 100);
-    };
-    
-    const scrollContainer = scrollContainerRef.current;
-    if (scrollContainer) {
-      // Add type assertion to handle the event type
-      const scrollHandler = handleScroll as EventListener;
-      scrollContainer.addEventListener('wheel', scrollHandler);
-      scrollContainer.addEventListener('touchmove', scrollHandler);
+
+      // Find the card closest to the center
+      const cards = Array.from(scrollContainer.children) as HTMLElement[];
+      let closestCard = cards[0];
+      let minDistance = Infinity;
+      const containerCenter = scrollContainer.offsetWidth / 2;
+      const containerRect = scrollContainer.getBoundingClientRect();
       
-      const scrollToCard = (index: number) => {
-        if (scrollContainerRef.current) {
-          const container = scrollContainerRef.current;
-          const card = container.children[index] as HTMLElement;
-          if (card) {
-            const containerWidth = container.offsetWidth;
-            const cardWidth = card.offsetWidth;
-            const scrollLeft = card.offsetLeft - (containerWidth / 2) + (cardWidth / 2);
-            
-            container.scrollTo({
-              left: scrollLeft,
-              behavior: 'smooth'
-            });
-          }
+      cards.forEach((card) => {
+        if (!card) return;
+        
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = (cardRect.left + cardRect.width / 2) - containerRect.left;
+        const distance = Math.abs(cardCenter - containerCenter);
+        
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestCard = card;
         }
-      };
-
-      const interval = setInterval(() => {
-        if (!isPaused) {
-          const nextIndex = (activeIndex + 1) % features.length;
-          setActiveIndex(nextIndex);
-          scrollToCard(nextIndex);
+      });
+      
+      if (closestCard) {
+        const newActiveIndex = cards.indexOf(closestCard);
+        if (newActiveIndex !== -1 && newActiveIndex !== activeIndex) {
+          setActiveIndex(newActiveIndex);
         }
-      }, 5000);
+      }
+    };
 
-      return () => {
-        clearInterval(interval);
-        clearTimeout(scrollTimeout);
-        scrollContainer.removeEventListener('wheel', scrollHandler);
-        scrollContainer.removeEventListener('touchmove', scrollHandler);
-      };
+    // Auto-scroll functionality
+    const startAutoScroll = () => {
+      if (isPaused || isScrolling) return;
+      
+      autoScrollInterval = setInterval(() => {
+        isAutoScrolling = true;
+        setActiveIndex((prev) => {
+          const nextIndex = (prev + 1) % features.length;
+          // Force reflow to ensure smooth transition
+          setTimeout(() => {
+            scrollToCard(nextIndex);
+          }, 50);
+          return nextIndex;
+        });
+        
+        // Reset auto-scrolling flag after animation completes
+        setTimeout(() => {
+          isAutoScrolling = false;
+        }, 1000);
+      }, 3000); // Reduced interval for smoother transitions
+    };
+
+    // Add event listeners
+    scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+    scrollContainer.addEventListener('touchmove', handleScroll, { passive: true });
+    
+    // Initial scroll to first card
+    scrollToCard(activeIndex);
+    
+    // Start auto-scroll after a short delay
+    const startDelay = setTimeout(() => {
+      startAutoScroll();
+    }, 1000);
+
+    // Cleanup
+    return () => {
+      clearInterval(autoScrollInterval);
+      clearTimeout(scrollTimeout);
+      clearTimeout(startDelay);
+      scrollContainer.removeEventListener('scroll', handleScroll);
+      scrollContainer.removeEventListener('touchmove', handleScroll);
+    };
+  }, [isPaused, features.length, scrollToCard]); // Removed activeIndex from deps to prevent loop
+
+  // Handle active index changes
+  useEffect(() => {
+    if (!isPaused) {
+      scrollToCard(activeIndex);
     }
-  }, [activeIndex, isPaused, features.length]);
+  }, [activeIndex, isPaused, scrollToCard]);
+
+  // Pause auto-scroll on hover
+  const handleMouseEnter = useCallback(() => setIsPaused(true), []);
+  const handleMouseLeave = useCallback(() => setIsPaused(false), []);
+
+  // Scroll to active card when activeIndex changes
+  useEffect(() => {
+    scrollToCard(activeIndex);
+  }, [activeIndex, scrollToCard]);
 
   return (
     <motion.section
@@ -239,21 +301,56 @@ export const DeepMCPAgentSection = () => {
               <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
                 <span className="mr-2">🎯</span> Características Principales
               </h3>
-              <div className="relative w-full mt-12 overflow-hidden">
+              <div className="relative w-full mt-12 overflow-hidden group">
                 <div className="relative">
+                  {/* Side arrows have been removed as requested */}
+
                   <div 
                     ref={scrollContainerRef}
                     className="flex space-x-6 pb-8 -mx-4 px-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pt-4"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                   >
-                    <AnimatePresence>
+                    <AnimatePresence mode="wait">
                       {features.map((feature, index) => (
-                        <FeatureCard
+                        <motion.div
                           key={index}
-                          {...feature}
-                          isActive={activeIndex === index}
-                          onClick={() => setActiveIndex(index)}
-                        />
+                          className={`flex-shrink-0 w-80 px-2 transition-all duration-300 ${
+                            activeIndex === index 
+                              ? 'z-10 scale-105' 
+                              : 'opacity-70 hover:opacity-100 hover:scale-[1.02]'
+                          }`}
+                          initial={{ opacity: 0, x: 50 }}
+                          animate={{ 
+                            opacity: activeIndex === index ? 1 : 0.6,
+                            scale: activeIndex === index ? 1.05 : 0.95,
+                            x: 0
+                          }}
+                          exit={{ opacity: 0, x: -50 }}
+                          transition={{ duration: 0.5, ease: 'easeInOut' }}
+                          // Removed hover scroll behavior
+                          onClick={() => {
+                            setActiveIndex(index);
+                            const scrollContainer = scrollContainerRef.current;
+                            if (scrollContainer) {
+                              const card = scrollContainer.children[index] as HTMLElement;
+                              if (card) {
+                                const containerWidth = scrollContainer.offsetWidth;
+                                const cardWidth = card.offsetWidth;
+                                const scrollLeft = card.offsetLeft - (containerWidth / 2) + (cardWidth / 2);
+                                scrollContainer.scrollTo({
+                                  left: scrollLeft,
+                                  behavior: 'smooth'
+                                });
+                              }
+                            }
+                          }}
+                        >
+                          <FeatureCard
+                            {...feature}
+                            isActive={activeIndex === index}
+                            onClick={() => {}}
+                          />
+                        </motion.div>
                       ))}
                     </AnimatePresence>
                   </div>
@@ -280,20 +377,6 @@ export const DeepMCPAgentSection = () => {
                       </svg>
                     )}
                   </button>
-
-                  {/* Progress Bar */}
-                  <div className="w-full max-w-md h-1 bg-gray-700 rounded-full overflow-hidden mb-6">
-                    <motion.div 
-                      className="h-full bg-gradient-to-r from-pink-400 to-purple-500 rounded-full"
-                      initial={{ width: '0%' }}
-                      animate={{ width: isPaused ? '100%' : '0%' }}
-                      transition={{ 
-                        duration: 5,
-                        repeat: isPaused ? 0 : Infinity,
-                        ease: 'linear'
-                      }}
-                    />
-                  </div>
 
                   {/* Dots Navigation */}
                   <div className="flex justify-center space-x-3">

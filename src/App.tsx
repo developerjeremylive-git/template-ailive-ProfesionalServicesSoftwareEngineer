@@ -101,6 +101,8 @@ function AppContent() {
   const [isGraphEnabled, setIsGraphEnabled] = useState(true)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const progressRef = useRef(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const handleProductClick = (title: string, description: string, e?: React.MouseEvent) => {
@@ -633,7 +635,7 @@ function AppContent() {
             <section className="py-20">
               <div className="container mx-auto px-4">
                 <h2 className="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-violet-300">
-                  Nuestros Servicios
+                  Mis Servicios
                 </h2>
                 
                 <div className="relative w-full mt-12 overflow-hidden">
@@ -835,18 +837,45 @@ function AppContent() {
                       )}
                     </button>
 
-                    {/* Progress Bar */}
-                    <div className="w-full max-w-md h-1 bg-gray-700 rounded-full overflow-hidden mb-6">
+                    {/* Enhanced Progress Bar with Pause/Resume */}
+                    <div className="w-full max-w-md h-1.5 bg-gray-800/50 rounded-full overflow-hidden mb-6">
                       <motion.div 
-                        className="h-full bg-gradient-to-r from-pink-400 to-purple-500 rounded-full"
+                        className="h-full bg-gradient-to-r from-pink-500 via-purple-500 to-violet-500 rounded-full shadow-[0_0_8px_0px_rgba(192,132,252,0.6)]"
                         initial={{ width: '0%' }}
-                        animate={{ width: isPaused ? '100%' : '0%' }}
+                        animate={{ 
+                          width: isPaused ? `${progress}%` : '100%',
+                          opacity: isPaused ? 1 : [0.7, 1, 0.7],
+                        }}
                         transition={{ 
-                          duration: 5,
-                          repeat: isPaused ? 0 : Infinity,
-                          ease: 'linear'
+                          width: {
+                            duration: isPaused ? 0 : 5 * (1 - progress / 100),
+                            ease: 'linear',
+                          },
+                          opacity: {
+                            duration: 2,
+                            repeat: isPaused ? 0 : Infinity,
+                            ease: 'easeInOut'
+                          }
+                        }}
+                        style={{
+                          backgroundSize: '200% 100%',
+                          animation: isPaused ? 'none' : 'shimmer 3s infinite linear',
+                        }}
+                        onUpdate={(latest) => {
+                          // Update progress based on current width
+                          if (!isPaused) {
+                            const currentProgress = parseFloat(latest.width) || 0;
+                            progressRef.current = currentProgress;
+                            setProgress(currentProgress);
+                          }
                         }}
                       />
+                      <style>{`
+                        @keyframes shimmer {
+                          0% { background-position: 200% 0; }
+                          100% { background-position: -200% 0; }
+                        }
+                      `}</style>
                     </div>
 
                     {/* Dots Navigation */}
