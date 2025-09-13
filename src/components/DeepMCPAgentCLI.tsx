@@ -237,16 +237,17 @@ export const DeepMCPAgentSection = () => {
             >
               <div className="relative group">
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded whitespace-nowrap">
-                  ¡Próximamente en producción!
+                  ¡Tokens Gratuitos!
                 </div>
                 <motion.a
-                  href="#"
-                  className="relative px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold overflow-hidden group-hover:opacity-90 cursor-not-allowed inline-flex items-center"
+                  href="https://deep-mcp-agent.live/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold overflow-hidden group-hover:opacity-90 inline-flex items-center"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  style={{ pointerEvents: 'none' }}
                 >
-                  <span className="relative z-10">Ver Demostración</span>
+                  <span className="relative z-10">Probar Solución</span>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500"
                     initial={{ x: "-100%" }}
@@ -257,12 +258,14 @@ export const DeepMCPAgentSection = () => {
               </div>
               
               <motion.a
-                href="#"
+                href="https://github.com/cryxnet/DeepMCPAgent"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="relative px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold overflow-hidden group inline-flex items-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10">Ver WebUI</span>
+                <span className="relative z-10">GitHub Repo 📦</span>
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500"
                   initial={{ scale: 0, opacity: 0 }}
@@ -270,6 +273,56 @@ export const DeepMCPAgentSection = () => {
                   transition={{ type: "spring", stiffness: 100 }}
                 />
               </motion.a>
+
+              {/* Sección de Herramientas */}
+              <div className="mt-10 w-full max-w-4xl mx-auto">
+                <h3 className="text-xl font-bold text-white mb-6 text-center">Herramientas utilizadas</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <motion.a
+                    href="https://pypi.org/project/deepagents/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative px-6 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold overflow-hidden group inline-flex items-center justify-center"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span className="relative z-10 flex items-center">
+                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.5c5.247 0 9.5 4.253 9.5 9.5s-4.253 9.5-9.5 9.5S2.5 17.247 2.5 12 6.753 2.5 12 2.5zm0 1.5a8 8 0 100 16 8 8 0 000-16zm0 2a6 6 0 110 12 6 6 0 010-12zm0 1.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z"/>
+                      </svg>
+                      DeepAgents PyPI
+                    </span>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-orange-500 to-amber-500"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.a>
+
+                  <motion.a
+                    href="https://github.com/cryxnet/DeepMCPAgent"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold overflow-hidden group inline-flex items-center justify-center"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span className="relative z-10 flex items-center">
+                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                      </svg>
+                      GitHub Repositorio
+                    </span>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.a>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
