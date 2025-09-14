@@ -415,9 +415,9 @@ const DeepMCPAgentSection: React.FC = () => {
               <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
                 <span className="mr-2">🖼️</span> Contenido Multimedia y Generación de Imágenes
               </h3>
-              <p className="mb-4">
-                La interfaz de chat admite manejo avanzado de medios a través de las herramientas MCP de Hugging Face:
-              </p>
+              <div className="mb-4">
+                <p>La interfaz de chat admite manejo avanzado de medios a través de las herramientas MCP de Hugging Face:</p>
+              </div>
               
               <h4 className="text-xl font-semibold text-white mt-6 mb-3">Capacidades de Generación de Imágenes</h4>
               <motion.ul className="space-y-4 mb-8">

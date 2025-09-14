@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate } from 'react-router-dom'
+import { X } from 'lucide-react'
 import { AppProvider } from './context/AppContext'
 import { useApp } from './context/AppContext'
 import { useLanguage } from './context/LanguageContext'
@@ -35,7 +36,7 @@ import DashboardPreview from './components/DashboardPreview'
 import ExploreModelsPopup from './components/ExploreModelsPopup'
 import LearnMorePopup from './components/LearnMorePopup'
 import SubscriptionPopup from './components/SubscriptionPopup'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { LanguageProvider } from './context/LanguageContext'
 import WebDevelopmentPage from './pages/WebDevelopmentPage'
 import CustomSoftwarePage from './pages/CustomSoftwarePage'
@@ -88,6 +89,25 @@ function DashboardRoute() {
 }
 
 function AppContent() {
+  const [isAgentSectionOpen, setIsAgentSectionOpen] = useState(false);
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      setIsAgentSectionOpen(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isAgentSectionOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isAgentSectionOpen, handleClickOutside]);
   const { language } = useLanguage()
   const { user, isAuthenticated } = useAuth()
   const navigate = useNavigate()
@@ -187,11 +207,153 @@ function AppContent() {
                 </div>
               </div>
             </div>
+   
 
-            {/* AI Agents Platform Section */}
-            <DeepMCPAgentSection />
+            {/* Hero Section with AI Introduction */}
+            <motion.section 
+              className="py-16 md:py-24 relative overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Decorative Background Elements */}
+              <div className="absolute inset-0 overflow-hidden -z-10">
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-900/10 via-purple-900/10 to-pink-900/10"></div>
+                {[...Array(20)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-2 h-2 rounded-full bg-teal-400/20"
+                    style={{
+                      top: `${Math.random() * 100}%`,
+                      left: `${Math.random() * 100}%`,
+                      scale: Math.random() * 2 + 0.5,
+                    }}
+                    animate={{
+                      y: [0, -20, 0],
+                      opacity: [0.3, 0.7, 0.3],
+                    }}
+                    transition={{
+                      duration: 3 + Math.random() * 5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: Math.random() * 2
+                    }}
+                  />
+                ))}
+              </div>
 
-            <DeepMCPAgentCLI />
+              <div className="container mx-auto px-4 text-center">
+                <motion.h2 
+                  className="text-3xl md:text-5xl font-bold text-white mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-blue-400 to-purple-400">
+                    DeepMCPAgent: Potencia tu IA
+                  </span>
+                </motion.h2>
+                
+                <motion.p 
+                  className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-12"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  DeepMCPAgent es una plataforma de IA avanzada que utiliza el protocolo MCP (Model-Controller-Presenter) para ofrecer interacciones fluidas con modelos de lenguaje. Experimenta el futuro de la IA conversacional con 3,800 tokens gratuitos.
+                </motion.p>
+
+                {/* Action Buttons */}
+                <motion.div 
+                  className="flex flex-col sm:flex-row justify-center gap-6 mt-12"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  <div className="group relative">
+                    <motion.button
+                      onClick={() => setIsAgentSectionOpen(true)}
+                      className="relative px-8 py-4 bg-gradient-to-r from-teal-500 to-emerald-600 text-white font-semibold rounded-full overflow-hidden group-hover:shadow-lg group-hover:shadow-teal-500/30 transition-all duration-300"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span className="relative z-10 flex items-center justify-center gap-3">
+                        <span>¿Qué es DeepMCPAgent?</span>
+                        <motion.svg 
+                          className="w-5 h-5"
+                          fill="none" 
+                          viewBox="0 0 24 24" 
+                          stroke="currentColor"
+                          initial={{ x: 0 }}
+                          whileHover={{ x: 5 }}
+                          transition={{ type: 'spring', stiffness: 500, damping: 10 }}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </motion.svg>
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </motion.button>
+                    <div className="absolute -bottom-2 left-1/2 w-4/5 h-1 bg-teal-400/30 rounded-full blur-md transform -translate-x-1/2 group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+
+                  <div className="group relative">
+                    <DeepMCPAgentCLI />
+                  </div>
+                </motion.div>
+
+                <motion.p 
+                  className="text-sm text-gray-400 mt-6"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  Haz clic en cualquiera de los botones para comenzar tu viaje con IA
+                </motion.p>
+              </div>
+            </motion.section>
+
+            {/* DeepMCPAgent Section Popup */}
+            <AnimatePresence mode="wait">
+              {isAgentSectionOpen && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                >
+                  <motion.div
+                    ref={popupRef}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 20, opacity: 0 }}
+                    transition={{ type: 'spring', damping: 25, stiffness: 400 }}
+                    className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl border border-teal-500/20 w-full max-w-6xl max-h-[90vh] flex flex-col overflow-hidden"
+                  >
+                    {/* Header */}
+                    <div className="bg-gradient-to-r from-teal-900/80 to-emerald-900/80 px-6 py-4 border-b border-teal-500/20 flex items-center justify-between sticky top-0 z-10 rounded-t-2xl">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <h3 className="text-lg font-bold text-white">DeepMCP Agent</h3>
+                      </div>
+                      <button
+                        onClick={() => setIsAgentSectionOpen(false)}
+                        className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-gray-300 hover:text-white"
+                        aria-label="Cerrar"
+                      >
+                        <X className="w-5 h-5" />
+                      </button>
+                    </div>
+                    <div className="flex-1 overflow-y-auto p-6 md:p-8 pr-5">
+                      <DeepMCPAgentSection />
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* MAaaS Platform Section */}
             <motion.section
@@ -256,33 +418,43 @@ function AppContent() {
                       Una plataforma escalable Multi-Agente como Servicio construida sobre la arquitectura serverless de Cloudflare. Incluye características como comunicación en tiempo real a través de WebSocket, programación avanzada de tareas e integración perfecta con los principales modelos de IA, incluyendo OpenAI y Google Gemini. La plataforma ofrece un robusto frontend en TypeScript y React con sesiones de chat seguras y persistentes, y manejo eficiente de mensajes mediante Cloudflare Durable Objects.
                     </motion.p>
                     <motion.div
-                      className="flex gap-4"
+                      className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 w-full"
                       initial={{ y: 20, opacity: 0 }}
                       whileInView={{ y: 0, opacity: 1 }}
                       transition={{ delay: 1, duration: 0.4 }}
                       viewport={{ once: true }}
                     >
                       <motion.a
-                        href="https://my-chat-agent.developerjeremylive.workers.dev"
+                        href="https://chat.etheroi.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold overflow-hidden group"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        className="relative px-8 py-4 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold overflow-hidden group text-center w-[240px] shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center h-[52px]"
+                        whileHover={{ scale: 1.03, boxShadow: '0 10px 25px -5px rgba(14, 165, 233, 0.4)' }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        <span className="relative z-10">Explorar Plataforma</span>
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          <span>Explorar Plataforma</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </span>
                         <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </motion.a>
                       <motion.a
                         href="/contact"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative px-6 py-3 rounded-full bg-white bg-opacity-10 text-white font-semibold overflow-hidden group"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        className="relative px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-300 w-[240px] text-center flex items-center justify-center h-[52px]"
+                        whileHover={{ scale: 1.03, boxShadow: '0 10px 25px -5px rgba(192, 132, 252, 0.4)' }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        <span className="relative z-10">Solicitar Demo</span>
-                        <div className="absolute inset-0 bg-white bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          <span>Solicitar Demo</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H12a3.988 3.988 0 00-1.564-.317H5.436z" />
+                          </svg>
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </motion.a>
                     </motion.div>
                   </motion.div>
@@ -354,6 +526,195 @@ function AppContent() {
                         </motion.div>
                       </div>
                     </div>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.section>
+
+            {/* Etheroi Platform Section */}
+            <motion.section
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="py-20 bg-gradient-to-b from-purple-900/30 to-indigo-900/20 relative overflow-hidden"
+            >
+              {/* Animated background elements */}
+              <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5"></div>
+                {[...Array(15)].map((_, i) => (
+                  <motion.div
+                    key={`etheroi-bg-${i}`}
+                    className="absolute rounded-full"
+                    style={{
+                      width: Math.random() * 100 + 50,
+                      height: Math.random() * 100 + 50,
+                      background: `radial-gradient(circle, rgba(168, 85, 247, ${Math.random() * 0.1 + 0.05}) 0%, rgba(236, 72, 153, 0) 70%)`,
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                    animate={{
+                      scale: [1, 1.5, 1],
+                      opacity: [0.2, 0.4, 0.2],
+                    }}
+                    transition={{
+                      duration: Math.random() * 10 + 10,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ))}
+              </div>
+
+              <div className="container mx-auto px-4 relative z-10">
+                <div className="flex flex-col md:flex-row items-center gap-12">
+                  <motion.div
+                    className="md:w-1/2"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="relative w-full max-w-lg mx-auto">
+                      <motion.div
+                        className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl opacity-75 blur-xl"
+                        animate={{
+                          scale: [1, 1.1, 1],
+                          opacity: [0.4, 0.6, 0.4],
+                        }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                      />
+                      <div className="relative bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                        <div className="flex items-center justify-center mb-6">
+                          <motion.div
+                            className="w-20 h-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center relative overflow-hidden"
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-700"
+                              animate={{
+                                rotate: [0, 360],
+                              }}
+                              transition={{
+                                duration: 12,
+                                repeat: Infinity,
+                                ease: "linear",
+                              }}
+                            />
+                            <svg className="w-10 h-10 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                          </motion.div>
+                        </div>
+                        <motion.div
+                          className="space-y-4"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.4, duration: 0.6 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="flex items-start gap-3 text-purple-100">
+                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span><span className="font-semibold text-white">Arquitectura Multi-Agente</span> con modelos GPT-4, Claude 3 y Mistral</span>
+                          </div>
+                          <div className="flex items-start gap-3 text-purple-100">
+                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span><span className="font-semibold text-white">Integración nativa</span> con APIs de OpenAI, Anthropic y modelos open-source</span>
+                          </div>
+                          <div className="flex items-start gap-3 text-purple-100">
+                            <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span><span className="font-semibold text-white">Sistema unificado</span> para gestión de tareas, análisis de datos y automatización</span>
+                          </div>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    className="md:w-1/2 text-left"
+                    initial={{ x: 50, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <motion.h2
+                      className="text-3xl md:text-4xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.6, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      etherOI: Plataforma de IA Empresarial
+                    </motion.h2>
+                    <motion.div
+                      className="text-lg text-purple-100 mb-8 leading-relaxed space-y-4"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.8, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      <p>He desarrollado etherOI como un ecosistema de IA unificado que aprovecha modelos de lenguaje de última generación, incluyendo arquitecturas Transformer y técnicas avanzadas de fine-tuning. La plataforma integra múltiples productos de IA bajo un mismo techo, permitiendo un flujo de trabajo sin fricciones para resolver cualquier tarea empresarial.</p>
+                      
+                      <p className="bg-purple-900/30 border-l-4 border-pink-500 pl-4 py-2 italic">
+                        "La verdadera revolución de la IA no está en modelos individuales, sino en sistemas que integran múltiples capacidades de IA de manera coherente y productiva."
+                      </p>
+                      
+                      <p>La arquitectura de etherOI se basa en microservicios escalables que implementan:
+                        <ul className="list-disc list-inside mt-2 space-y-1">
+                          <li>Modelos de lenguaje entrenados con RLHF (Reinforcement Learning from Human Feedback)</li>
+                          <li>Redes neuronales profundas para procesamiento de lenguaje natural</li>
+                          <li>Sistemas de RAG (Retrieval-Augmented Generation) para precisión en datos</li>
+                          <li>Pipelines de MLOps para despliegue continuo de modelos</li>
+                        </ul>
+                      </p>
+                    </motion.div>
+                    <motion.div
+                      className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-10 w-full"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 1, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.a
+                        href="https://etheroi.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative px-8 py-4 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold overflow-hidden group text-center w-[240px] shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center h-[52px]"
+                        whileHover={{ scale: 1.03, boxShadow: '0 10px 25px -5px rgba(14, 165, 233, 0.4)' }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          <span>Explorar Plataforma</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </motion.a>
+                      <motion.a
+                        href="https://chat.etheroi.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-300 w-[240px] text-center flex items-center justify-center h-[52px]"
+                        whileHover={{ scale: 1.03, boxShadow: '0 10px 25px -5px rgba(192, 132, 252, 0.4)' }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          <span>Solicitar Demo</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H12a3.988 3.988 0 00-1.564-.317H5.436z" />
+                          </svg>
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </motion.a>
+                    </motion.div>
                   </motion.div>
                 </div>
               </div>
@@ -451,7 +812,7 @@ function AppContent() {
                       </div>
                     </motion.div>
                     <motion.div
-                      className="flex gap-4"
+                      className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 w-full"
                       initial={{ y: 20, opacity: 0 }}
                       whileInView={{ y: 0, opacity: 1 }}
                       transition={{ delay: 1, duration: 0.4 }}
@@ -461,23 +822,33 @@ function AppContent() {
                         href="https://gitlab.com/jeremylive/ProyectoIA_Jarvis/-/blob/main/Documentacion.pdf?ref_type=heads"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative px-6 py-3 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-900 font-semibold overflow-hidden group"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        className="relative px-8 py-4 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-900 font-semibold overflow-hidden group text-center w-[240px] shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center h-[52px]"
+                        whileHover={{ scale: 1.03, boxShadow: '0 10px 25px -5px rgba(234, 179, 8, 0.4)' }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        <span className="relative z-10">Explorar Documentación</span>
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          <span>Explorar Documentación</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                        </span>
                         <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </motion.a>
                       <motion.a
                         href="/contact"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="relative px-6 py-3 rounded-full bg-white bg-opacity-10 text-white font-semibold overflow-hidden group"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        className="relative px-8 py-4 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-lg overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-300 w-[240px] text-center flex items-center justify-center h-[52px]"
+                        whileHover={{ scale: 1.03, boxShadow: '0 10px 25px -5px rgba(14, 165, 233, 0.4)' }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        <span className="relative z-10">Solicitar Demo</span>
-                        <div className="absolute inset-0 bg-white bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          <span>Solicitar Demo</span>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H12a3.988 3.988 0 00-1.564-.317H5.436z" />
+                          </svg>
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </motion.a>
                     </motion.div>
                   </motion.div>
