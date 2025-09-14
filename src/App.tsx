@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate } from 'react-router-dom'
-import { X } from 'lucide-react'
+import { X, ArrowDown, ArrowUp, RotateCw } from 'lucide-react'
 import { AppProvider } from './context/AppContext'
 import { useApp } from './context/AppContext'
 import { useLanguage } from './context/LanguageContext'
@@ -50,7 +50,7 @@ import EcommercePage from './pages/EcommercePage'
 import WordPressPage from './pages/WordPressPage'
 import TiendaPage from './pages/TiendaPage'
 import AutomationSolutionsPage from './pages/AutomationSolutionsPage'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useAnimation } from 'framer-motion'
 
 // Protected route component for user account and settings pages
 const ProtectedRoute = ({ children }) => {
@@ -87,6 +87,114 @@ function DashboardRoute() {
       return <Navigate to="/interactive-demo" />;
   }
 }
+
+const FloatingScrollButton = () => {
+  const [isAtBottom, setIsAtBottom] = useState(false);
+  const [rotation, setRotation] = useState(0);
+  const controls = useAnimation();
+  const buttonVariants = {
+    initial: { scale: 1, rotate: 0 },
+    spin: { 
+      rotate: 360,
+      transition: { duration: 0.5 }
+    },
+    bounce: {
+      y: [0, -10, 0],
+      transition: { duration: 0.5 }
+    }
+  };
+
+  const checkScrollPosition = useCallback(() => {
+    const scrollPosition = window.scrollY + window.innerHeight;
+    const pageHeight = document.documentElement.scrollHeight;
+    const isBottom = scrollPosition >= pageHeight - 100; // 100px threshold
+    setIsAtBottom(isBottom);
+  }, []);
+
+  const scrollToNextSection = useCallback(() => {
+    const currentScroll = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const sections = document.querySelectorAll('section, footer, header, main > div');
+    
+    // Find the next section to scroll to
+    for (let i = 0; i < sections.length; i++) {
+      const section = sections[i] as HTMLElement;
+      const sectionTop = section.offsetTop;
+      
+      if (sectionTop > currentScroll + 100) { // 100px offset from top
+        window.scrollTo({
+          top: sectionTop,
+          behavior: 'smooth'
+        });
+        return;
+      }
+    }
+    
+    // If no next section found, scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setRotation(prev => prev + 180);
+  }, []);
+
+  const handleClick = async () => {
+    // Animate button
+    await controls.start('spin');
+    await controls.start('bounce');
+    controls.start('initial');
+    
+    // Handle scroll
+    if (isAtBottom) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      scrollToNextSection();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', checkScrollPosition);
+    window.addEventListener('resize', checkScrollPosition);
+    checkScrollPosition(); // Initial check
+    
+    return () => {
+      window.removeEventListener('scroll', checkScrollPosition);
+      window.removeEventListener('resize', checkScrollPosition);
+    };
+  }, [checkScrollPosition]);
+
+  return (
+    <motion.button
+      className="fixed bottom-6 right-6 z-40 p-3 text-white rounded-full shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-blue-500"
+      style={{
+        background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #8b5cf6 100%)',
+        boxShadow: '0 4px 14px 0 rgba(99, 102, 241, 0.4)'
+      }}
+      whileHover={{
+        scale: 1.05,
+        boxShadow: '0 6px 20px 0 rgba(99, 102, 241, 0.6)',
+        transition: { duration: 0.2 }
+      }}
+      whileTap={{ 
+        scale: 0.95,
+        boxShadow: '0 2px 8px 0 rgba(99, 102, 241, 0.3)'
+      }}
+      onClick={handleClick}
+      initial="initial"
+      animate={controls}
+      variants={buttonVariants}
+      aria-label={isAtBottom ? 'Scroll to top' : 'Scroll to next section'}
+    >
+      {isAtBottom ? (
+        <ArrowUp className="w-6 h-6" />
+      ) : (
+        <motion.div
+          animate={{ rotate: rotation }}
+          transition={{ duration: 0.3 }}
+        >
+          <ArrowDown className="w-6 h-6" />
+        </motion.div>
+      )}
+    </motion.button>
+  );
+};
 
 function AppContent() {
   const [isAgentSectionOpen, setIsAgentSectionOpen] = useState(false);
@@ -1332,6 +1440,9 @@ function AppContent() {
         isOpen={isSubscriptionOpen}
         onClose={() => setIsSubscriptionOpen(false)}
       />
+      
+      {/* Floating Scroll Button */}
+      <FloatingScrollButton />
     </>
   );
 }
