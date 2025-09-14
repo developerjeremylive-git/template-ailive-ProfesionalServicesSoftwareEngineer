@@ -187,7 +187,7 @@ function AppContent() {
         <Route path="/" element={
           <div className="min-h-screen bg-theme-gradient">
             <Header variant="default" />
-            <div className="pt-20 pb-20">
+            {/* <div className="pt-20 pb-20">
               <div className="container mx-auto px-4">
                 <div className="text-center max-w-4xl mx-auto">
                   <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-violet-200">
@@ -207,7 +207,7 @@ function AppContent() {
                 </div>
               </div>
             </div>
-   
+    */}
 
             {/* Hero Section with AI Introduction */}
             <motion.section 
@@ -921,7 +921,7 @@ function AppContent() {
             </motion.section>
 
             {/* AI Products & Departments Section */}
-            <section className="py-20 bg-gradient-to-b from-black/40 to-violet-900/20">
+            {/* <section className="py-20 bg-gradient-to-b from-black/40 to-violet-900/20">
               <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
                   <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
@@ -971,7 +971,7 @@ function AppContent() {
                   </div>
                 </div>
               </div>
-            </section>
+            </section> */}
 
             {/* Popup */}
             {showPopup && (
