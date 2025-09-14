@@ -774,7 +774,7 @@ function AppContent() {
                       Plataforma de IA para Análisis Predictivo
                     </motion.h2>
                     <motion.div
-                      className="text-lg text-violet-200 mb-8 leading-relaxed space-y-4"
+                      className="text-lg text-violet-200 mb-6 leading-relaxed space-y-4"
                       initial={{ y: 20, opacity: 0 }}
                       whileInView={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.8, duration: 0.4 }}
@@ -782,7 +782,7 @@ function AppContent() {
                     >
                       <p>Aplicación API REST desarrollada con Flask que integra tecnologías avanzadas de IA para ofrecer análisis predictivos y reconocimiento de patrones.</p>
 
-                      <h3 className="text-xl font-semibold text-yellow-300 mt-6 mb-2">Características principales:</h3>
+                      <h3 className="text-xl font-semibold text-yellow-300 mt-6 mb-3">Características principales:</h3>
                       <ul className="list-disc pl-6 space-y-2">
                         <li>Reconocimiento de voz mediante Speech Recognition API</li>
                         <li>Análisis de emociones con Azure Face API</li>
@@ -790,7 +790,7 @@ function AppContent() {
                         <li>Interfaz intuitiva con procesamiento en tiempo real</li>
                       </ul>
 
-                      <h3 className="text-xl font-semibold text-yellow-300 mt-6 mb-2">Modelos implementados:</h3>
+                      <h3 className="text-xl font-semibold text-yellow-300 mt-6 mb-3">Modelos implementados:</h3>
                       <ul className="list-disc pl-6 space-y-2">
                         <li>Asociación de productos en tienda</li>
                         <li>Clasificación de calidad de vino</li>
@@ -799,7 +799,7 @@ function AppContent() {
                         <li>Análisis de series de tiempo para criptomonedas</li>
                       </ul>
 
-                      <h3 className="text-xl font-semibold text-yellow-300 mt-6 mb-2">Tecnologías clave:</h3>
+                      <h3 className="text-xl font-semibold text-yellow-300 mt-6 mb-3">Tecnologías clave:</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                         <div className="bg-gray-900/50 p-4 rounded-lg">
                           <h4 className="font-medium text-yellow-200">Aprendizaje Supervisado</h4>
