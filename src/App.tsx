@@ -349,52 +349,42 @@ function AppContent() {
             <Header variant="default" />
             <motion.section
               className="pt-40 pb-16 md:pt-24 md:pb-24 relative overflow-hidden"
-              variants={mktvozContainerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
             >
 
               <div className="container mx-auto px-4">
                 <div className="max-w-6xl mx-auto">
-                  <motion.div className="text-center mb-10" variants={mktvozItemVariants}>
-                    <motion.div className="mx-auto mb-6 w-14 h-14 rounded-2xl bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center shadow-lg" variants={mktvozItemVariants}>
+                  <div className="text-center mb-10">
+                    <div className="mx-auto mb-6 w-14 h-14 rounded-2xl bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center shadow-lg">
                       <FiCpu className="w-7 h-7 text-white" />
-                    </motion.div>
-                    <motion.h2 className="text-3xl md:text-5xl font-bold text-white mb-3 bg-clip-text text-transparent bg-gradient-to-r from-pink-300 via-purple-300 to-violet-300" variants={mktvozItemVariants}>
+                    </div>
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-3 bg-clip-text text-transparent bg-gradient-to-r from-pink-300 via-purple-300 to-violet-300">
                       MktVoz: IA Conversacional para Contenidos
-                    </motion.h2>
-                    <motion.p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto" variants={mktvozItemVariants}>
+                    </h2>
+                    <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
                       Asistente de voz con IA que entiende tu voz, analiza archivos (PDF, audio, video, imágenes) y genera material de estudio al instante. Gratis y sin registro.
-                    </motion.p>
-                    <motion.div className="mt-6 flex flex-wrap items-center justify-center gap-3" variants={mktvozItemVariants}>
-                      <motion.span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-pink-200" variants={mktvozItemVariants}>RAG-enabled</motion.span>
-                      <motion.span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-purple-200" variants={mktvozItemVariants}>Multimodal</motion.span>
-                      <motion.span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-violet-200" variants={mktvozItemVariants}>Gemini 2.5 Flash Native</motion.span>
-                      <motion.span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-teal-200" variants={mktvozItemVariants}>Gratis · Sin registro</motion.span>
-                    </motion.div>
-                    <motion.div className="mt-8 flex items-center justify-center gap-4" variants={mktvozItemVariants}>
-                      <motion.a
+                    </p>
+                    <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                      <span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-pink-200">RAG-enabled</span>
+                      <span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-purple-200">Multimodal</span>
+                      <span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-violet-200">Gemini 2.5 Flash Native</span>
+                      <span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-teal-200">Gratis · Sin registro</span>
+                    </div>
+                    <div className="mt-8 flex items-center justify-center gap-4">
+                      <a
                         href="https://mktvoz.etheroi.com"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Visitar MktVoz"
                         className="px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.98 }}
                       >
                         Visitar MktVoz
-                      </motion.a>
-                    </motion.div>
-                  </motion.div>
+                      </a>
+                    </div>
+                    </div>
 
                   <div className="grid grid-cols-1 gap-10">
-                    <motion.div
+                    <div
                       className="bg-white/5 rounded-2xl p-6 border border-white/10"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6 }}
-                      viewport={{ once: true }}
                     >
                       <h3 className="text-2xl font-semibold text-white mb-4">Funciones de generación de contenido</h3>
                       <p className="text-violet-200 mb-4">Basadas en documento del usuario y Gemini 2.5 Flash.</p>
@@ -408,14 +398,11 @@ function AppContent() {
                             onMouseLeave={() => setIsMktvozPaused(false)}
                           >
                             {mktvozItems.map((item, idx) => (
-                              <motion.div
+                              <div
                                 key={idx}
                                 className={`flex-shrink-0 w-72 snap-center p-4 rounded-lg bg-purple-900/40 border transition-all ${
                                   mktvozActiveIndex === idx ? 'border-pink-500/50 shadow-lg shadow-pink-500/20' : 'border-purple-500/30 hover:border-pink-500/30'
                                 }`}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3 }}
                                 onClick={() => {
                                   setMktvozActiveIndex(idx)
                                   scrollMktvozToCard(idx)
@@ -430,7 +417,7 @@ function AppContent() {
                                     <p className="text-violet-200 text-sm">{item.desc}</p>
                                   </div>
                                 </div>
-                              </motion.div>
+                              </div>
                             ))}
                           </div>
                           
@@ -452,16 +439,12 @@ function AppContent() {
                           ))}
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
 
                   <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <motion.div
+                    <div
                       className="bg-white/5 rounded-2xl p-6 border border-white/10"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6 }}
-                      viewport={{ once: true }}
                     >
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-10 h-10 rounded-lg bg-pink-600/20 flex items-center justify-center">
@@ -590,14 +573,10 @@ function AppContent() {
                           Multimodal
                         </button>
                       </div>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
+                    <div
                       className="bg-white/5 rounded-2xl p-6 border border-white/10"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6 }}
-                      viewport={{ once: true }}
                     >
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-10 h-10 rounded-lg bg-teal-600/20 flex items-center justify-center">
@@ -615,15 +594,11 @@ function AppContent() {
                         <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg p-3"><FiCpu className="w-5 h-5" /><span>Personalidad ajustable</span></div>
                         <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg p-3"><FiMic className="w-5 h-5" /><span>Voces realistas</span></div>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
 
-                  <motion.div
+                  <div
                     className="mt-10 bg-white/5 rounded-2xl p-6 border border-white/10"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
                   >
                     <h3 className="text-2xl font-semibold text-white mb-4">Evolución de las funciones</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -644,7 +619,7 @@ function AppContent() {
                         <span className="text-violet-200">Actualizaciones de dependencias externas como PDF.js.</span>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </div>
             </motion.section>
