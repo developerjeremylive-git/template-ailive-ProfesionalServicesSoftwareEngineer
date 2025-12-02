@@ -51,9 +51,10 @@ import WordPressPage from './pages/WordPressPage'
 import TiendaPage from './pages/TiendaPage'
 import AutomationSolutionsPage from './pages/AutomationSolutionsPage'
 import { motion, AnimatePresence, useAnimation } from 'framer-motion'
+import { FiMap, FiBookOpen, FiList, FiFileText, FiPieChart, FiLayers, FiMic, FiVideo, FiCpu, FiDatabase, FiZap, FiGlobe, FiShare2, FiGrid, FiInfo } from 'react-icons/fi'
 
 // Protected route component for user account and settings pages
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, isLoading } = useAuth();
 
   // Only protect user-specific pages after loading completes
@@ -216,13 +217,14 @@ function AppContent() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isAgentSectionOpen, handleClickOutside]);
-  const { language } = useLanguage()
-  const { user, isAuthenticated } = useAuth()
+  // const { language } = useLanguage()
+  // const { user, isAuthenticated } = useAuth()
+  // const [isMenuOpen, setIsMenuOpen] = useState(false)
   const navigate = useNavigate()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [showPopup, setShowPopup] = useState(false)
   const [popupTitle, setPopupTitle] = useState('')
   const [popupContent, setPopupContent] = useState('')
+  const [popupBody, setPopupBody] = useState<React.ReactNode | null>(null)
   const [isExploreModelsOpen, setIsExploreModelsOpen] = useState(false)
   const [isLearnMoreOpen, setIsLearnMoreOpen] = useState(false)
   const [isSubscriptionOpen, setIsSubscriptionOpen] = useState(false)
@@ -232,12 +234,52 @@ function AppContent() {
   const [progress, setProgress] = useState(0)
   const progressRef = useRef(0)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const mktvozScrollRef = useRef<HTMLDivElement>(null)
+  const [mktvozActiveIndex, setMktvozActiveIndex] = useState(0)
+  const [isMktvozPaused, setIsMktvozPaused] = useState(false)
+  const mktvozContainerVariants = {
+    hidden: { opacity: 0, y: 24 },
+    show: { opacity: 1, y: 0, transition: { delay: 0.05, staggerChildren: 0.08 } }
+  }
+  const mktvozItemVariants = {
+    hidden: { opacity: 0, y: 14 },
+    show: { opacity: 1, y: 0 }
+  }
+  const mktvozItems = [
+    { icon: <FiMap className="w-5 h-5 text-pink-300" />, title: 'Mindmap', desc: 'Mapas mentales jerárquicos' },
+    { icon: <FiBookOpen className="w-5 h-5 text-pink-300" />, title: 'Flashcards', desc: 'Tarjetas de estudio' },
+    { icon: <FiList className="w-5 h-5 text-pink-300" />, title: 'Quiz', desc: 'Preguntas de opción múltiple' },
+    { icon: <FiFileText className="w-5 h-5 text-pink-300" />, title: 'Report', desc: 'Resumen ejecutivo' },
+    { icon: <FiPieChart className="w-5 h-5 text-pink-300" />, title: 'Infographic', desc: 'Datos para infografías' },
+    { icon: <FiLayers className="w-5 h-5 text-pink-300" />, title: 'Slides', desc: 'Esquemas de presentación' },
+    { icon: <FiMic className="w-5 h-5 text-pink-300" />, title: 'Audio (Resumen)', desc: 'Guion/audio resumen de tu documento' },
+    { icon: <FiVideo className="w-5 h-5 text-pink-300" />, title: 'Video Overview', desc: 'Video resumen sincronizado' }
+  ]
 
-  const handleProductClick = (title: string, description: string, e?: React.MouseEvent) => {
+  const scrollMktvozToCard = (index: number) => {
+    if (mktvozScrollRef.current) {
+      const container = mktvozScrollRef.current
+      const card = container.children[index] as HTMLElement
+      if (card) {
+        const containerWidth = container.offsetWidth
+        const cardWidth = card.offsetWidth
+        const scrollLeft = card.offsetLeft - (containerWidth / 2) + (cardWidth / 2)
+        container.scrollTo({ left: scrollLeft, behavior: 'smooth' })
+      }
+    }
+  }
+
+  const handleProductClick = (title: string, content: string | React.ReactNode, e?: React.MouseEvent) => {
     e?.preventDefault()
     e?.stopPropagation()
     setPopupTitle(title)
-    setPopupContent(description)
+    if (typeof content === 'string') {
+      setPopupContent(content)
+      setPopupBody(null)
+    } else {
+      setPopupContent('')
+      setPopupBody(content)
+    }
     setShowPopup(true)
   }
 
@@ -273,6 +315,16 @@ function AppContent() {
     return () => clearInterval(interval);
   }, [activeIndex, isPaused]);
 
+  useEffect(() => {
+    if (isMktvozPaused) return
+    const interval = setInterval(() => {
+      const nextIndex = (mktvozActiveIndex + 1) % mktvozItems.length
+      setMktvozActiveIndex(nextIndex)
+      scrollMktvozToCard(nextIndex)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [mktvozActiveIndex, isMktvozPaused])
+
   return (
     <>
       {isGraphEnabled && <NeuralNetworkBackground />}
@@ -295,38 +347,318 @@ function AppContent() {
         <Route path="/" element={
           <div className="min-h-screen bg-theme-gradient">
             <Header variant="default" />
-            {/* <div className="pt-20 pb-20">
+            <motion.section
+              className="pt-40 pb-16 md:pt-24 md:pb-24 relative overflow-hidden"
+              variants={mktvozContainerVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+
               <div className="container mx-auto px-4">
-                <div className="text-center max-w-4xl mx-auto">
-                  <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-violet-200">
-                    Soluciones de Software y Servicios de IA
-                  </h1>
-                  <p className="text-lg md:text-xl text-violet-200 mb-12">
-                    Transformo tus ideas en soluciones tecnológicas de alto impacto: desarrollo web personalizado, software a medida, arquitecturas en la nube escalables e inteligencia artificial avanzada, todo diseñado para impulsar tu negocio hacia el éxito digital del mañana.
-                  </p>
-                  <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <button
-                      onClick={() => navigate('/contact')}
-                      className="px-8 py-4 rounded-full bg-gradient-to-r from-purple-500 to-violet-500 text-white font-semibold hover:from-purple-600 hover:to-violet-600 transition-all"
+                <div className="max-w-6xl mx-auto">
+                  <motion.div className="text-center mb-10" variants={mktvozItemVariants}>
+                    <motion.div className="mx-auto mb-6 w-14 h-14 rounded-2xl bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center shadow-lg" variants={mktvozItemVariants}>
+                      <FiCpu className="w-7 h-7 text-white" />
+                    </motion.div>
+                    <motion.h2 className="text-3xl md:text-5xl font-bold text-white mb-3 bg-clip-text text-transparent bg-gradient-to-r from-pink-300 via-purple-300 to-violet-300" variants={mktvozItemVariants}>
+                      MktVoz: IA Conversacional para Contenidos
+                    </motion.h2>
+                    <motion.p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto" variants={mktvozItemVariants}>
+                      Asistente de voz con IA que entiende tu voz, analiza archivos (PDF, audio, video, imágenes) y genera material de estudio al instante. Gratis y sin registro.
+                    </motion.p>
+                    <motion.div className="mt-6 flex flex-wrap items-center justify-center gap-3" variants={mktvozItemVariants}>
+                      <motion.span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-pink-200" variants={mktvozItemVariants}>RAG-enabled</motion.span>
+                      <motion.span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-purple-200" variants={mktvozItemVariants}>Multimodal</motion.span>
+                      <motion.span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-violet-200" variants={mktvozItemVariants}>Gemini 2.5 Flash Native</motion.span>
+                      <motion.span className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/10 text-teal-200" variants={mktvozItemVariants}>Gratis · Sin registro</motion.span>
+                    </motion.div>
+                    <motion.div className="mt-8 flex items-center justify-center gap-4" variants={mktvozItemVariants}>
+                      <motion.a
+                        href="https://mktvoz.etheroi.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Visitar MktVoz"
+                        className="px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        Visitar MktVoz
+                      </motion.a>
+                    </motion.div>
+                  </motion.div>
+
+                  <div className="grid grid-cols-1 gap-10">
+                    <motion.div
+                      className="bg-white/5 rounded-2xl p-6 border border-white/10"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true }}
                     >
-                      Solicita tu Consulta Gratuita
-                    </button>
+                      <h3 className="text-2xl font-semibold text-white mb-4">Funciones de generación de contenido</h3>
+                      <p className="text-violet-200 mb-4">Basadas en documento del usuario y Gemini 2.5 Flash.</p>
+                      <div className="relative w-full">
+                        <div className="relative">
+                          <div
+                            ref={mktvozScrollRef}
+                            className="mktvoz-carousel flex space-x-4 pb-4 px-2 overflow-x-auto snap-x snap-mandatory"
+                            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                            onMouseEnter={() => setIsMktvozPaused(true)}
+                            onMouseLeave={() => setIsMktvozPaused(false)}
+                          >
+                            {mktvozItems.map((item, idx) => (
+                              <motion.div
+                                key={idx}
+                                className={`flex-shrink-0 w-72 snap-center p-4 rounded-lg bg-purple-900/40 border transition-all ${
+                                  mktvozActiveIndex === idx ? 'border-pink-500/50 shadow-lg shadow-pink-500/20' : 'border-purple-500/30 hover:border-pink-500/30'
+                                }`}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.3 }}
+                                onClick={() => {
+                                  setMktvozActiveIndex(idx)
+                                  scrollMktvozToCard(idx)
+                                }}
+                              >
+                                <div className="flex items-start gap-3">
+                                  <div className="w-9 h-9 rounded-lg bg-purple-600/20 flex items-center justify-center">
+                                    {item.icon}
+                                  </div>
+                                  <div>
+                                    <p className="text-white font-medium">{idx + 1}. {item.title}</p>
+                                    <p className="text-violet-200 text-sm">{item.desc}</p>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            ))}
+                          </div>
+                          
+                          <div className="absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-black/80 to-transparent pointer-events-none"></div>
+                          <div className="absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-black/80 to-transparent pointer-events-none"></div>
+                    </div>
+                        <style>{`.mktvoz-carousel::-webkit-scrollbar{display:none}`}</style>
+                        <div className="mt-3 flex justify-center space-x-2">
+                          {mktvozItems.map((_, i) => (
+                            <button
+                              key={i}
+                              className={`w-2.5 h-2.5 rounded-full ${mktvozActiveIndex === i ? 'bg-pink-400' : 'bg-purple-500/40'}`}
+                              onClick={() => {
+                                setMktvozActiveIndex(i)
+                                scrollMktvozToCard(i)
+                              }}
+                              aria-label={`Ir a la tarjeta ${i + 1}`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
                   </div>
+
+                  <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <motion.div
+                      className="bg-white/5 rounded-2xl p-6 border border-white/10"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-lg bg-pink-600/20 flex items-center justify-center">
+                          <FiLayers className="w-6 h-6 text-pink-300" />
+                        </div>
+                        <h3 className="text-2xl font-semibold text-white">Agente de Voz RAG (Multimodal)</h3>
+                      </div>
+                      <p className="text-violet-200 mb-4">Sube clases, papers, videos o grabaciones y activa las 8 funciones mágicas para estudiar mejor.</p>
+                      <div className="grid grid-cols-4 gap-2">
+                        {['PDF', 'Audio', 'Video', 'Imágenes'].map((k, i) => (
+                          <div key={i} className="px-3 py-2 rounded-lg bg-white/5 border border-white/10 text-center text-sm text-violet-200">{k}</div>
+                        ))}
+                      </div>
+                      <div className="mt-6 flex flex-wrap gap-3">
+                        <button
+                          onClick={(e) => handleProductClick('¿Qué es RAG?', 'RAG (Generación Aumentada por Recuperación) combina búsqueda semántica con generación. Primero indexa tu documento en embeddings, recupera los fragmentos más relevantes según tu consulta o voz, los añade al contexto del modelo y genera respuestas precisas y verificables. Beneficios: más contexto, menor alucinación y mejor fidelidad al material fuente. En MktVoz, RAG alimenta funciones como Mindmap, Flashcards, Quiz, Report, Infographic, Slides, Audio y Video Overview para producir resultados basados en tu archivo.', e)}
+                          className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/15 hover:border-pink-500/50 transition-all text-sm flex items-center gap-2"
+                          aria-label="Aprender sobre RAG"
+                        >
+                          <FiInfo className="w-4 h-4" />
+                          Aprender sobre RAG
+                        </button>
+                        <button
+                          onClick={(e) => handleProductClick('Agente Gemini', (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                              <div className="space-y-6">
+                                <div className="bg-white/5 p-5 rounded-xl border border-white/10">
+                                  <div className="flex items-center gap-3 mb-4 text-cyan-300">
+                                    <FiZap className="w-6 h-6" />
+                                    <h3 className="text-lg font-bold">Capabilities</h3>
+                                  </div>
+                                  <ul className="space-y-2 text-sm text-violet-100">
+                                    <li className="flex items-start gap-2"><span className="text-cyan-400">•</span> Audio-to-Audio nativo (sin paso intermedio de texto).</li>
+                                    <li className="flex items-start gap-2"><span className="text-cyan-400">•</span> Latencia ultra baja (~500ms de respuesta).</li>
+                                    <li className="flex items-start gap-2"><span className="text-cyan-400">•</span> Detección de emoción y tono en la voz del usuario.</li>
+                                    <li className="flex items-start gap-2"><span className="text-cyan-400">•</span> Conversación interrumpible (Full Duplex).</li>
+                                  </ul>
+                                </div>
+                                <div className="bg-white/5 p-5 rounded-xl border border-white/10">
+                                  <div className="flex items-center gap-3 mb-4 text-purple-300">
+                                    <FiCpu className="w-6 h-6" />
+                                    <h3 className="text-lg font-bold">Technical Specs</h3>
+                                  </div>
+                                  <div className="grid grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                      <div className="text-violet-300 text-xs uppercase">Model Name</div>
+                                      <div className="font-mono text-violet-100">gemini-2.5-flash-native</div>
+                                    </div>
+                                    <div>
+                                      <div className="text-violet-300 text-xs uppercase">Context Window</div>
+                                      <div className="font-mono text-violet-100">1,000,000 Tokens</div>
+                                    </div>
+                                    <div>
+                                      <div className="text-violet-300 text-xs uppercase">Audio Input</div>
+                                      <div className="font-mono text-violet-100">16kHz PCM</div>
+                                    </div>
+                                    <div>
+                                      <div className="text-violet-300 text-xs uppercase">Audio Output</div>
+                                      <div className="font-mono text-violet-100">24kHz PCM</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="space-y-6">
+                                <div className="bg-white/5 p-5 rounded-xl border border-white/10">
+                                  <div className="flex items-center gap-3 mb-4 text-emerald-300">
+                                    <FiGlobe className="w-6 h-6" />
+                                    <h3 className="text-lg font-bold">Best Use Cases</h3>
+                                  </div>
+                                  <p className="text-sm text-violet-200 mb-4">Optimizado para interacción natural y de alta velocidad:</p>
+                                  <div className="flex flex-wrap gap-2">
+                                    {['Customer Support','Roleplay Training','Real-time Translation','Interview Practice','Voice Commerce'].map((t) => (
+                                      <span key={t} className="px-3 py-1 bg-white/10 rounded-full text-xs text-violet-100 border border-white/10">{t}</span>
+                                    ))}
+                                  </div>
+                                </div>
+                                <div className="p-4 bg-yellow-900/30 border border-yellow-700/40 rounded-lg">
+                                  <h4 className="text-yellow-400 font-bold mb-2 flex items-center gap-2">
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                    Limitations
+                                  </h4>
+                                  <p className="text-xs text-violet-200">En preview. Puede alucinar ocasionalmente. Verifica información crítica. La cuota de generación de audio es limitada por proyecto.</p>
+                                </div>
+                              </div>
+                            </div>
+                          ), e)}
+                          className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/15 hover:border-purple-500/50 transition-all text-sm flex items-center gap-2"
+                          aria-label="Agente Gemini"
+                        >
+                          <FiInfo className="w-4 h-4" />
+                          Agente Gemini
+                        </button>
+                        <button
+                          onClick={(e) => handleProductClick('Multimodal', (
+                            <div className="space-y-4 text-violet-100">
+                              <p>Sube PDF, Excel, Docs y otros formatos. Se procesan, se trocean en segmentos, se embeben y se guardan en una base de datos vectorial. Luego el LLM consulta y recupera fragmentos relevantes para responder con contexto.</p>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                                  <h4 className="text-white font-semibold mb-2">Ingesta</h4>
+                                  <ul className="space-y-2 text-sm">
+                                    <li>Extracción: PDF.js, parsers de Office, OCR para imágenes.</li>
+                                    <li>Normalización y limpieza de texto.</li>
+                                    <li>Chunking por tokens/frases con ventana deslizante.</li>
+                                    <li>Embeddings (vectorización) para cada chunk.</li>
+                                    <li>Almacenamiento en índice vectorial (FAISS/PGVector/Pinecone).</li>
+                                  </ul>
+                                </div>
+                                <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                                  <h4 className="text-white font-semibold mb-2">Consulta</h4>
+                                  <ul className="space-y-2 text-sm">
+                                    <li>Entrada por voz → STT → texto (cuando aplica).</li>
+                                    <li>Vectorización de la consulta y búsqueda top‑k (cosine/inner‑product).</li>
+                                    <li>Re‑ranking y filtrado semántico/por metadatos.</li>
+                                    <li>Augmentación del contexto al prompt del LLM.</li>
+                                    <li>Generación con citas/fragmentos para mayor fidelidad.</li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <p className="text-sm">Este pipeline reduce alucinaciones y mejora precisión al mantener el vínculo con el material fuente. Ideal para estudiar, preparar presentaciones y crear resúmenes verificables.</p>
+                            </div>
+                          ), e)}
+                          className="px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/15 hover:border-emerald-500/50 transition-all text-sm flex items-center gap-2"
+                          aria-label="Multimodal"
+                        >
+                          <FiInfo className="w-4 h-4" />
+                          Multimodal
+                        </button>
+                      </div>
+                    </motion.div>
+
+                    <motion.div
+                      className="bg-white/5 rounded-2xl p-6 border border-white/10"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-lg bg-teal-600/20 flex items-center justify-center">
+                          <FiMic className="w-6 h-6 text-teal-300" />
+                        </div>
+                        <h3 className="text-2xl font-semibold text-white">Agente de Voz Tradicional</h3>
+                      </div>
+                      <div className="flex items-center gap-2 mb-4 text-violet-200">
+                        <FiGlobe className="w-5 h-5" />
+                        <span>Idiomas: ES · EN · FR · DE · PT</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3 text-violet-200">
+                        <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg p-3"><FiGrid className="w-5 h-5" /><span>Historial profesional</span></div>
+                        <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg p-3"><FiShare2 className="w-5 h-5" /><span>Compartir conversación por URL</span></div>
+                        <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg p-3"><FiCpu className="w-5 h-5" /><span>Personalidad ajustable</span></div>
+                        <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg p-3"><FiMic className="w-5 h-5" /><span>Voces realistas</span></div>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  <motion.div
+                    className="mt-10 bg-white/5 rounded-2xl p-6 border border-white/10"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <h3 className="text-2xl font-semibold text-white mb-4">Evolución de las funciones</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex items-start gap-3">
+                        <FiCpu className="w-5 h-5 text-pink-400" />
+                        <span className="text-violet-200">Actualizaciones de los modelos de IA de Google Gemini.</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <FiFileText className="w-5 h-5 text-pink-400" />
+                        <span className="text-violet-200">Cambios en los prompts enviados a los modelos.</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <FiLayers className="w-5 h-5 text-pink-400" />
+                        <span className="text-violet-200">Mejoras en procesamiento de entrada, extracción de PDFs.</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <FiBookOpen className="w-5 h-5 text-pink-400" />
+                        <span className="text-violet-200">Actualizaciones de dependencias externas como PDF.js.</span>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
-            </div>
-    */}
+            </motion.section>
 
-            {/* Hero Section with AI Introduction */}
             <motion.section 
-              className="py-16 md:py-24 relative overflow-hidden"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-teal-950/50 via-blue-900/40 to-emerald-900/30 border-t border-white/10"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               {/* Decorative Background Elements */}
               <div className="absolute inset-0 overflow-hidden -z-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-900/10 via-purple-900/10 to-pink-900/10"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-800/15 via-cyan-800/10 to-indigo-800/15"></div>
                 {[...Array(20)].map((_, i) => (
                   <motion.div
                     key={i}
@@ -351,22 +683,31 @@ function AppContent() {
               </div>
 
               <div className="container mx-auto px-4 text-center">
+                <motion.div 
+                  className="mx-auto mb-6 w-14 h-14 rounded-2xl bg-gradient-to-tr from-lime-400 via-emerald-500 to-green-700 flex items-center justify-center shadow-lg"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  <FiZap className="w-7 h-7 text-white" />
+                </motion.div>
                 <motion.h2 
                   className="text-3xl md:text-5xl font-bold text-white mb-6"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
+                  viewport={{ once: true }}
                 >
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-blue-400 to-purple-400">
-                    DeepMCPAgent: Potencia tu IA
-                  </span>
+                  <span className="text-white">DeepMCPAgent: Potencia tu IA</span>
                 </motion.h2>
                 
                 <motion.p 
                   className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-12"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
+                  viewport={{ once: true }}
                 >
                   DeepMCPAgent es una plataforma de IA avanzada que utiliza el protocolo MCP (Model-Controller-Presenter) para ofrecer interacciones fluidas con modelos de lenguaje. Experimenta el futuro de la IA conversacional con 3,800 tokens gratuitos.
                 </motion.p>
@@ -375,8 +716,9 @@ function AppContent() {
                 <motion.div 
                   className="flex flex-col sm:flex-row justify-center gap-6 mt-12"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
+                  viewport={{ once: true }}
                 >
                   <div className="group relative">
                     <motion.button
@@ -412,8 +754,9 @@ function AppContent() {
                 <motion.p 
                   className="text-sm text-gray-400 mt-6"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.6 }}
+                  viewport={{ once: true }}
                 >
                   Haz clic en cualquiera de los botones para comenzar tu viaje con IA
                 </motion.p>
@@ -1083,8 +1426,8 @@ function AppContent() {
 
             {/* Popup */}
             {showPopup && (
-              <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={() => setShowPopup(false)}>
-                <div className="bg-gradient-to-br from-purple-900/90 to-violet-900/90 backdrop-blur-lg rounded-2xl p-8 max-w-md w-full border border-purple-500/30 shadow-2xl" onClick={e => e.stopPropagation()}>
+              <div className="fixed inset-0 bg-black/70 flex items-start md:items-center justify-center z-50 pt-20 md:p-4 overflow-y-auto min-h-screen py-4" onClick={() => setShowPopup(false)}>
+                <div className="bg-gradient-to-br from-purple-900/90 to-violet-900/90 backdrop-blur-lg rounded-2xl p-8 pt-16 md:pt-8 max-w-4xl w-full border border-purple-500/30 shadow-2xl" onClick={e => e.stopPropagation()}>
                   <div className="flex justify-between items-center mb-6">
                     <h3 className="text-2xl font-bold text-white">{popupTitle}</h3>
                     <button
@@ -1097,7 +1440,11 @@ function AppContent() {
                       </svg>
                     </button>
                   </div>
-                  <p className="text-violet-100 mb-6">{popupContent}</p>
+                  {popupBody ? (
+                    <div className="text-violet-100 mb-6">{popupBody}</div>
+                  ) : (
+                    <p className="text-violet-100 mb-6">{popupContent}</p>
+                  )}
                   <div className="flex justify-end">
                     <button
                       onClick={() => setShowPopup(false)}
@@ -1343,7 +1690,7 @@ function AppContent() {
                         onUpdate={(latest) => {
                           // Update progress based on current width
                           if (!isPaused) {
-                            const currentProgress = parseFloat(latest.width) || 0;
+                            const currentProgress = parseFloat(String(latest.width)) || 0;
                             progressRef.current = currentProgress;
                             setProgress(currentProgress);
                           }

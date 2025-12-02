@@ -8,8 +8,8 @@ export const ComingSoonPopup = ({ isOpen, onClose, platform }: { isOpen: boolean
 
   // Close popup when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (popupRef.current && !popupRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
         onClose();
       }
     };
@@ -96,7 +96,7 @@ export const ComingSoonPopup = ({ isOpen, onClose, platform }: { isOpen: boolean
 const DeepMCPAgentSection = () => {
   const [popup, setPopup] = useState({ isOpen: false, platform: '' });
 
-  const openPopup = (platform) => {
+  const openPopup = (platform: string) => {
     setPopup({ isOpen: true, platform });
   };
 
