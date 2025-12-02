@@ -125,7 +125,7 @@ export default function ChatWithAuth({
               transition={{ duration: 0.3 }}
               className={`p-4 rounded-xl max-w-[85%] ${message.role === 'user' ? 'bg-violet-600 bg-opacity-20 ml-auto' : 'bg-white bg-opacity-5 mr-auto'}`}
             >
-              <p className="text-white whitespace-pre-wrap">{message.content}</p>
+              <div className="text-white whitespace-pre-wrap">{message.content}</div>
             </motion.div>
           ))}
         </AnimatePresence>

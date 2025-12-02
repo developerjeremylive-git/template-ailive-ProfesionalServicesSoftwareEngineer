@@ -189,7 +189,7 @@ export default function AnimatedFooter() {
                   </motion.button>
                 </div>
                 {error && (
-                  <p className="mt-2 text-sm text-red-400">{error}</p>
+                  <div className="mt-2 text-sm text-red-400">{error}</div>
                 )}
               </div>
               

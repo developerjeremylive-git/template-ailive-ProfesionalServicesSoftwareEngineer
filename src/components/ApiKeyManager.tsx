@@ -182,7 +182,7 @@ const ApiKeyManager: React.FC<ApiKeyManagerProps> = ({
     return (
       <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 mb-6">
         <h3 className="text-lg font-medium mb-2">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-400 mb-4">{description}</p>
+        <div className="text-gray-600 dark:text-gray-400 mb-4">{description}</div>
         <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/20 border border-amber-500/30 text-amber-200 p-4 rounded-xl shadow-inner transform hover:scale-[1.02] transition-all duration-300">
           <div className="flex items-center gap-3">
             <svg className="w-6 h-6 text-amber-400 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -204,7 +204,7 @@ const ApiKeyManager: React.FC<ApiKeyManagerProps> = ({
         <h3 className="text-lg font-medium">{title}</h3>
       </div>
       <div className="p-5">
-        <p className="text-gray-400 mb-6">{description}</p>
+        <div className="text-gray-400 mb-6">{description}</div>
         <div className="relative space-y-4">
           <div className="flex items-center space-x-4">
             <div className="relative flex-1">

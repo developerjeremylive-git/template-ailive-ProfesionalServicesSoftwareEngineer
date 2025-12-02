@@ -127,7 +127,7 @@ console.log(JSON.stringify(laptops, null, 2));`
                       : 'bg-white bg-opacity-10 mr-auto max-w-[80%]'
                   }`}
                 >
-                  <p className="text-violet-100 whitespace-pre-line">{message.content}</p>
+                  <div className="text-violet-100 whitespace-pre-line">{message.content}</div>
                 </div>
               ))}
             </div>
@@ -163,7 +163,7 @@ console.log(JSON.stringify(laptops, null, 2));`
                       : 'bg-white bg-opacity-10 mr-auto max-w-[80%]'
                   }`}
                 >
-                  <p className="text-violet-100 whitespace-pre-line">{message.content}</p>
+                  <div className="text-violet-100 whitespace-pre-line">{message.content}</div>
                   {message.code && (
                     <div className="mt-3 p-3 bg-gray-900 rounded-lg overflow-x-auto">
                       <pre className="text-violet-100 text-sm">
@@ -217,8 +217,10 @@ console.log(JSON.stringify(laptops, null, 2));`
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <motion.div
-            className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6 border border-purple-500 border-opacity-20"
-            whileHover={{ y: -5 }}
+            className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6 border border-purple-500 border-opacity-20 will-change-transform"
+            whileHover={{ y: -2 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            style={{ transform: 'translateZ(0)' }}
           >
             <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white mb-4">
               <FiGlobe className="w-6 h-6" />
@@ -238,8 +240,10 @@ console.log(JSON.stringify(laptops, null, 2));`
           </motion.div>
           
           <motion.div
-            className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6 border border-purple-500 border-opacity-20"
-            whileHover={{ y: -5 }}
+            className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6 border border-purple-500 border-opacity-20 will-change-transform"
+            whileHover={{ y: -2 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            style={{ transform: 'translateZ(0)' }}
           >
             <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center text-white mb-4">
               <FiCode className="w-6 h-6" />
@@ -319,9 +323,11 @@ console.log(JSON.stringify(laptops, null, 2));`
               href={space.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6 hover:bg-opacity-10 transition-all border border-transparent hover:border-purple-500 border-opacity-50"
-              whileHover={{ y: -5, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="bg-white bg-opacity-5 backdrop-blur-sm rounded-xl p-6 hover:bg-opacity-10 transition-all border border-transparent hover:border-purple-500 border-opacity-50 will-change-transform"
+              whileHover={{ y: -2, scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              style={{ transform: 'translateZ(0)' }}
             >
               <div className="flex items-start justify-between mb-4">
                 <h3 className="text-xl font-semibold text-white">

@@ -51,7 +51,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
             </span>
           )}
         </div>
-        <p className="text-violet-200 mb-4 text-sm">{description}</p>
+        <div className="text-violet-200 mb-4 text-sm">{description}</div>
       </>
     );
 

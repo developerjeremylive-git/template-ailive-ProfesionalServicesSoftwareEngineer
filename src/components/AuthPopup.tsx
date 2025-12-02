@@ -98,7 +98,7 @@ export default function AuthPopup({ triggerReason, onAuthComplete }: AuthPopupPr
             </svg>
           </div>
           <h3 class="text-2xl font-bold text-white mb-4">${title}</h3>
-          <p class="text-violet-200 mb-6">${message}</p>
+          <div class="text-violet-200 mb-6">${message}</div>
           <button class="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl font-medium shadow-lg shadow-purple-500/30 hover:shadow-pink-500/30 transition-all duration-300 hover:scale-105">${t('got_it')}</button>
         </div>
       </div>

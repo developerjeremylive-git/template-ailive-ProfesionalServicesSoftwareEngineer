@@ -265,7 +265,7 @@ export default function TestimonialsSection() {
 												/>
 											))}
 										</div>
-										<p className="text-violet-200 mb-8 line-clamp-3 flex-grow">{t(testimonial.textKey)}</p>
+										<div className="text-violet-200 mb-8 line-clamp-3 flex-grow">{t(testimonial.textKey)}</div>
 										<div className="grid grid-cols-3 gap-2 mt-auto">
 											{Object.entries(testimonial.metrics).map(([key, value]) => (
 												<div
@@ -379,9 +379,9 @@ export default function TestimonialsSection() {
 							</div>
 
 							<div className="mb-8 bg-purple-500/10 rounded-xl p-6">
-								<p className="text-lg text-violet-200 leading-relaxed italic">
-									"{t(selectedTestimonial.textKey)}"
-								</p>
+								<div className="text-lg text-violet-200 leading-relaxed italic">
+											"{t(selectedTestimonial.textKey)}"
+										</div>
 							</div>
 
 							<div className={`${isDarkTheme ? 'bg-gray-800' : 'bg-purple-800'} bg-opacity-50 rounded-xl p-6 mb-8`}>

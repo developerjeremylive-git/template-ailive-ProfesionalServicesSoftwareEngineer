@@ -46,7 +46,7 @@ const GPTDemo = () => {
 			</button>
 			{response && (
 				<div className="p-4 rounded-xl bg-white bg-opacity-5">
-					<p className="text-violet-200">{response}</p>
+					<div className="text-violet-200">{response}</div>
 				</div>
 			)}
 		</div>
@@ -88,7 +88,7 @@ const ClaudeDemo = () => {
 								: 'bg-white bg-opacity-5 mr-auto max-w-[80%]'
 								}`}
 						>
-							<p className="text-violet-200">{message}</p>
+							<div className="text-violet-200">{message}</div>
 						</div>
 					))}
 				</div>
@@ -181,7 +181,7 @@ const LlamaDemo = () => {
 			</button>
 			{response && (
 				<div className="p-4 rounded-xl bg-white bg-opacity-5">
-					<p className="text-violet-200">{response}</p>
+					<div className="text-violet-200">{response}</div>
 				</div>
 			)}
 		</div>
@@ -267,7 +267,7 @@ const SpeechDemo = () => {
 			</button>
 			{transcript && (
 				<div className="p-4 rounded-xl bg-white bg-opacity-5">
-					<p className="text-violet-200">{transcript}</p>
+					<div className="text-violet-200">{transcript}</div>
 				</div>
 			)}
 		</div>
@@ -517,7 +517,7 @@ const DeepSeekDemo = () => {
 			</button>
 			{error && (
 				<div className="p-4 rounded-xl bg-red-500 bg-opacity-10 border border-red-500">
-					<p className="text-red-400">{error}</p>
+					<div className="text-red-400">{error}</div>
 				</div>
 			)}
 			{/* <div className="space-y-4">

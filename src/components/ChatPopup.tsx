@@ -147,7 +147,7 @@ export default function ChatPopup({
                                         <FiUser className="w-3 h-3 text-white" />
                                     </div>
                                     <div className="group relative">
-                                        <p
+                                        <div
                                             className="text-sm text-violet-100 line-clamp-2 hover:opacity-75  transition-opacity cursor-pointer"
                                             onClick={() => {
                                                 lastMessageRef.current?.scrollIntoView({
@@ -157,11 +157,11 @@ export default function ChatPopup({
                                             }}
                                         >
                                             {lastUserMessage}
-                                        </p>
+                                        </div>
                                         {isHovering && (
                                             <div className="absolute left-0 top-full z-30 mt-0 p-4 bg-violet-900/95 backdrop-blur-sm rounded-xl border border-violet-500/20 max-w-[600px] max-h-[300px]  overflow-y-auto custom-scrollbar whitespace-pre-wrap break-words shadow-xl overflow-hidden"
                                             style={{ marginLeft: '-44px' }}>
-                                                <p className="text-sm text-violet-100">{lastUserMessage}</p>
+                                                <div className="text-sm text-violet-100">{lastUserMessage}</div>
                                             </div>
                                         )}
                                     </div>
@@ -234,7 +234,7 @@ export default function ChatPopup({
                                                                     : 'bg-purple-700 bg-opacity-20 text-white'
                                                                     }`}
                                                             >
-                                                                <p className="whitespace-pre-wrap">{message.content}</p>
+                                                                <div className="whitespace-pre-wrap">{message.content}</div>
                                                             </div>
                                                             <div
                                                                 className={`flex items-center text-xs text-violet-300 space-x-2 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
@@ -272,7 +272,7 @@ export default function ChatPopup({
                                                         <div className="space-y-1">
                                                             <div className="p-4 rounded-2xl bg-purple-700 bg-opacity-20 text-white">
                                                                 {streamingContent ? (
-                                                                    <p className="whitespace-pre-wrap">{streamingContent}</p>
+                                                                    <div className="whitespace-pre-wrap">{streamingContent}</div>
                                                                 ) : (
                                                                     <div className="flex items-center space-x-2">
                                                                         <div className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />

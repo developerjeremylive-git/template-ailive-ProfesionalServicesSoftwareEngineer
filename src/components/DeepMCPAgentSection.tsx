@@ -310,7 +310,7 @@ const DeepMCPAgentSection: React.FC = () => {
                     className="flex space-x-6 pb-8 -mx-4 px-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pt-4"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                   >
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence>
                       {features.map((feature, index) => (
                         <motion.div
                           key={index}

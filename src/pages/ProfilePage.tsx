@@ -211,7 +211,7 @@ export default function ProfilePage() {
                             />
                           </div>
                           {usernameError && (
-                            <p className="mt-2 text-red-400 text-sm">{usernameError}</p>
+                            <div className="mt-2 text-red-400 text-sm">{usernameError}</div>
                           )}
                         </div>
                         {/*    <div>
@@ -236,7 +236,7 @@ export default function ProfilePage() {
                             />
                           </div>
                           {emailError && (
-                            <p className="mt-2 text-red-400 text-sm">{emailError}</p>
+                            <div className="mt-2 text-red-400 text-sm">{emailError}</div>
                           )}
                         </div>
                         <div>
@@ -261,7 +261,7 @@ export default function ProfilePage() {
                             />
                           </div>
                           {phoneError && (
-                            <p className="mt-2 text-red-400 text-sm">{phoneError}</p>
+                            <div className="mt-2 text-red-400 text-sm">{phoneError}</div>
                           )}
                         </div>
                      

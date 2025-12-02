@@ -167,7 +167,7 @@ const SubscriptionSuccessPage: React.FC = () => {
                 <FiCreditCard className="w-8 h-8 text-red-300" />
               </div>
               <h2 className="text-2xl font-bold text-white mb-4">{t('subscription_error')}</h2>
-              <p className="text-violet-200 mb-6">{error}</p>
+              <div className="text-violet-200 mb-6">{error}</div>
               <button
                 onClick={() => navigate('/pricing')}
                 className="bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-6 rounded-full transition-colors"

@@ -1117,14 +1117,14 @@ function AppContent() {
                         "La verdadera revolución de la IA no está en modelos individuales, sino en sistemas que integran múltiples capacidades de IA de manera coherente y productiva."
                       </p>
                       
-                      <p>La arquitectura de etherOI se basa en microservicios escalables que implementan:
+                      <div>La arquitectura de etherOI se basa en microservicios escalables que implementan:
                         <ul className="list-disc list-inside mt-2 space-y-1">
                           <li>Modelos de lenguaje entrenados con RLHF (Reinforcement Learning from Human Feedback)</li>
                           <li>Redes neuronales profundas para procesamiento de lenguaje natural</li>
                           <li>Sistemas de RAG (Retrieval-Augmented Generation) para precisión en datos</li>
                           <li>Pipelines de MLOps para despliegue continuo de modelos</li>
                         </ul>
-                      </p>
+                      </div>
                     </motion.div>
                     <motion.div
                       className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-10 w-full"
@@ -1443,7 +1443,7 @@ function AppContent() {
                   {popupBody ? (
                     <div className="text-violet-100 mb-6">{popupBody}</div>
                   ) : (
-                    <p className="text-violet-100 mb-6">{popupContent}</p>
+                    <div className="text-violet-100 mb-6">{popupContent}</div>
                   )}
                   <div className="flex justify-end">
                     <button
@@ -1471,8 +1471,8 @@ function AppContent() {
                       className="flex space-x-6 pb-8 -mx-4 px-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pt-4"
                       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
-                      <AnimatePresence mode="wait">
-                        {[
+                      <AnimatePresence>
+                      {[
                           {
                             id: 1,
                             icon: '🧠',
