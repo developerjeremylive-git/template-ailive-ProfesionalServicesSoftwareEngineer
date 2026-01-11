@@ -137,11 +137,33 @@ async function getPayPalAccessToken(): Promise<string> {
 const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL;
 const supabaseKey = (import.meta as any).env.VITE_SUPABASE_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
-  throw new Error('Missing VITE_SUPABASE_URL or VITE_SUPABASE_KEY environment variables.');
+// Create a mock client for demo purposes if environment variables are missing
+export let supabase;
+if (supabaseUrl && supabaseKey) {
+  supabase = createClient(supabaseUrl, supabaseKey);
+} else {
+  // Mock client for demo purposes
+  console.warn('Missing Supabase environment variables. Using mock client for demo.');
+  supabase = {
+    auth: {
+      onAuthStateChange: (callback: any) => {
+        // Return a no-op cleanup function
+        return () => {};
+      },
+      signInWithPassword: async () => ({ data: null, error: new Error('Not implemented in demo') }),
+      signUp: async () => ({ data: null, error: new Error('Not implemented in demo') }),
+      signOut: async () => ({ error: null }),
+      resetPasswordForEmail: async () => ({ error: null }),
+      updateUser: async () => ({ data: null, error: new Error('Not implemented in demo') })
+    },
+    from: () => ({
+      select: () => ({ data: [], error: null }),
+      insert: () => ({ data: [], error: null }),
+      update: () => ({ data: [], error: null }),
+      delete: () => ({ data: [], error: null })
+    })
+  } as any;
 }
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
