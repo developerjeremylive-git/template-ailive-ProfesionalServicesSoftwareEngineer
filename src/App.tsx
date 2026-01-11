@@ -1432,6 +1432,113 @@ function AppContent() {
               </div>
             )}
 
+            {/* AI Products Section */}
+            <section className="py-16 bg-black/30">
+              <div className="container mx-auto px-4">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold text-white mb-4">
+                    Productos de IA
+                  </h2>
+                  <p className="text-violet-200 max-w-2xl mx-auto">
+                    Descubre nuestras soluciones de IA impulsadas por la última tecnología
+                  </p>
+                </div>
+                
+                <div className="flex flex-col md:flex-row gap-6 justify-center">
+                  <button
+                    onClick={() => handleProductClick(
+                      'PDF AI Translate',
+                      <div className="text-violet-100 space-y-4">
+                        <p>Una aplicación de React Native y Node.js/TypeScript que traduce documentos PDF del inglés al español utilizando inteligencia artificial.</p>
+                        
+                        <h3 className="text-xl font-semibold text-white mt-6 mb-3">Características:</h3>
+                        <ul className="list-disc pl-6 space-y-2">
+                          <li>Sube PDFs de hasta 50MB</li>
+                          <li>Extracción de texto de cada página usando el modelo multimodal de Gemini</li>
+                          <li>Traducción automática usando modelos de IA gratuitos de Pollination.ai</li>
+                          <li>Generación de PDF traducido con formato preservado</li>
+                          <li>Interfaz moderna y fácil de usar en React Native</li>
+                          <li>Seguimiento de progreso en tiempo real</li>
+                        </ul>
+                        
+                        <h3 className="text-xl font-semibold text-white mt-6 mb-3">Tecnologías:</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="bg-gray-900/50 p-4 rounded-lg">
+                            <h4 className="font-medium text-white">Backend:</h4>
+                            <p className="text-sm">Node.js, TypeScript, Express, Google Generative AI, Pollination.ai, pdf-lib, Poppler</p>
+                          </div>
+                          <div className="bg-gray-900/50 p-4 rounded-lg">
+                            <h4 className="font-medium text-white">Frontend:</h4>
+                            <p className="text-sm">React Native, Expo, TypeScript</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-center mt-8">
+                          <a
+                            href="https://pdfaitranslate.etheroi.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+                          >
+                            Visitar PDF AI Translate
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    <span>📄</span>
+                    <span>PDF AI Translate</span>
+                  </button>
+                  
+                  <button
+                    onClick={() => handleProductClick(
+                      'LiveAITranslate',
+                      <div className="text-violet-100 space-y-4">
+                        <p>LiveAITranslate es un estudio de traducción de código abierto de alto rendimiento, diseñado para ofrecer una experiencia de traducción en tiempo real potenciada por Inteligencia Artificial generativa.</p>
+                        
+                        <h3 className="text-xl font-semibold text-white mt-6 mb-3">Arquitectura Técnica:</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="bg-gray-900/50 p-4 rounded-lg">
+                            <h4 className="font-medium text-white">Frontend:</h4>
+                            <p className="text-sm">React 18+, Vite, Tailwind CSS, Shadcn UI, Framer Motion</p>
+                          </div>
+                          <div className="bg-gray-900/50 p-4 rounded-lg">
+                            <h4 className="font-medium text-white">Backend:</h4>
+                            <p className="text-sm">Cloudflare Workers AI Edge, Server-Sent Events (SSE)</p>
+                          </div>
+                        </div>
+                        
+                        <h3 className="text-xl font-semibold text-white mt-6 mb-3">Capacidades de IA:</h3>
+                        <ul className="list-disc pl-6 space-y-2">
+                          <li>Traducción Semántica con contextualización profunda</li>
+                          <li>Linguistic Insights con explicaciones gramaticales</li>
+                          <li>Toolbox Lingüístico con sinónimos y análisis de formalidad</li>
+                          <li>Audio & Voice Intelligence con Smart Voice Styles</li>
+                          <li>Sistema de Gamificación para aprendizaje de idiomas</li>
+                        </ul>
+                        
+                        <div className="flex justify-center mt-8">
+                          <a
+                            href="https://liveaitranslate.etheroi.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+                          >
+                            Visitar LiveAITranslate
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                    className="px-8 py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    <span>🌊</span>
+                    <span>LiveAITranslate</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
             {/* Features Carousel */}
             <section className="py-20">
               <div className="container mx-auto px-4">
