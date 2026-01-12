@@ -151,7 +151,7 @@ export default function ContactPage() {
 								<div className="grid gap-6">
 									{[
 										{ icon: FiMail, label: t('contact_email_label'), value: 'developerjeremylive@gmail.com', href: 'mailto:developerjeremylive@gmail.com', color: 'from-blue-500/20 to-cyan-500/20' },
-										{ icon: FiPhone, label: t('contact_phone_label'), value: '+506 8888-8888', href: 'tel:+50688888888', color: 'from-purple-500/20 to-pink-500/20' },
+										{ icon: FiPhone, label: t('contact_phone_label'), value: '+506 8395-3467', href: 'tel:+50683953467', color: 'from-purple-500/20 to-pink-500/20' },
 										{ icon: FiClock, label: t('contact_hours_label'), value: t('contact_hours_value'), color: 'from-orange-500/20 to-yellow-500/20' }
 									].map((item, idx) => (
 										<motion.div 
