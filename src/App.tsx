@@ -347,6 +347,440 @@ function AppContent() {
         <Route path="/" element={
           <div className="min-h-screen bg-theme-gradient">
             <Header variant="default" />
+            
+            {/* Mission & Vision Section */}
+            <motion.section
+              className="pt-20 pb-16 relative overflow-hidden"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div className="container mx-auto px-4">
+                <motion.div 
+                  className="max-w-5xl mx-auto bg-gradient-to-br from-purple-900/40 to-violet-900/40 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-purple-500/30 shadow-xl"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.h2 
+                    className="text-3xl md:text-4xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-violet-300"
+                    initial={{ opacity: 0, y: -10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    💻 Ingeniero de Software GenAI | Diseñando Soluciones de IA Escalables para Empresas Globales 💻
+                  </motion.h2>
+                  
+                  <motion.div 
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: {
+                        opacity: 1,
+                        transition: {
+                          staggerChildren: 0.15
+                        }
+                      }
+                    }}
+                  >
+                    <div>
+                      <motion.h3 
+                        className="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+                        variants={{
+                          hidden: { opacity: 0, x: -20 },
+                          visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+                        }}
+                      >
+                        <span className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center">
+                          <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                          </svg>
+                        </span>
+                        Perfil Profesional
+                      </motion.h3>
+                      <motion.p 
+                        className="text-violet-200 leading-relaxed mb-4"
+                        variants={{
+                          hidden: { opacity: 0, x: -20 },
+                          visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.1 } }
+                        }}
+                      >
+                        Computer Engineering 8yrs | Computer Science | AI-Assisted Coding | Generative Artificial Intelligence Engineer | Machine & Deep Learning Engineer | Deep Neural Networks | Data Scientist | MCP/Agent Skills | C, R, Python
+                      </motion.p>
+                      
+                      <motion.h3 
+                        className="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+                        variants={{
+                          hidden: { opacity: 0, x: -20 },
+                          visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.2 } }
+                        }}
+                      >
+                        <span className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center">
+                          <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                          </svg>
+                        </span>
+                        Educación
+                      </motion.h3>
+                      <motion.p 
+                        className="text-violet-200 leading-relaxed"
+                        variants={{
+                          hidden: { opacity: 0, x: -20 },
+                          visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.3 } }
+                        }}
+                      >
+                        • Licenciatura en Ingeniería en Computadores por el TEC de Costa Rica: Fuerte base en Machine Learning, Deep Leaning, Modelos de IA, Predicciones de Modelos de IA Entrenados, AIOps, Big Data, Arquitectura de Software, Análisis de Algoritmos, Estructura de Datos, DBA, Diseño de UI/UX de Sistemas y Desarrollo Cross-Platform como Ingeniería de Software.
+                      </motion.p>
+                    </div>
+                    
+                    <div>
+                      <motion.h3 
+                        className="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+                        variants={{
+                          hidden: { opacity: 0, x: 20 },
+                          visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+                        }}
+                      >
+                        <span className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center">
+                          <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </span>
+                        Logros Recientes
+                      </motion.h3>
+                      <motion.ul 
+                        className="list-disc pl-6 space-y-3 text-violet-200"
+                        variants={{
+                          hidden: { opacity: 0, x: 20 },
+                          visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.1 } }
+                        }}
+                      >
+                        <li>Desarrollé una plataforma de Multi-Agent-as-a-Service (MAaaS) de vanguardia utilizando la arquitectura serverless de Cloudflare y Durable Objects.</li>
+                        <li>Construí servidores MCP personalizados y soluciones Gradio para crear APIs potentes y funciones MCP.</li>
+                        <li>Especializado en el entrenamiento y ajuste fino de Agentes LLM, incluyendo modelos multimodales como Gemma 3n con capacidades de visión.</li>
+                        <li>Experto en la implementación de soluciones de Machine Learning rentables y la escala de flujos de trabajo de AI de código abierto.</li>
+                      </motion.ul>
+                    </div>
+                  </motion.div>
+                  
+                  <motion.h3 
+                    className="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    viewport={{ once: true }}
+                  >
+                    <span className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </span>
+                    Expertise Principal
+                  </motion.h3>
+                  <motion.div 
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: {
+                        opacity: 1,
+                        transition: {
+                          staggerChildren: 0.1
+                        }
+                      }
+                    }}
+                  >
+                    {[
+                      { title: 'Desarrollo Backend', desc: 'Python, Node.js/TypeScript, C#/.NET, Java, lógica server-side escalable.' },
+                      { title: 'Ingeniería AI/ML', desc: 'Entrenamiento, ajuste fino e implementación de LLMs, soluciones AI multimodales.' },
+                      { title: 'Plataformas Cloud', desc: 'AWS, Azure, Google Cloud, Cloudflare, arquitecturas serverless.' },
+                      { title: 'API & Integración', desc: 'APIs RESTful, GraphQL, WebSockets, OAuth 2.0, JWT.' }
+                    ].map((item, index) => (
+                      <motion.div 
+                        key={index}
+                        className="bg-purple-900/30 p-4 rounded-xl border border-purple-500/20"
+                        variants={{
+                          hidden: { opacity: 0, scale: 0.95 },
+                          visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } }
+                        }}
+                        whileHover={{ scale: 1.02, borderColor: 'rgba(168, 85, 247, 0.5)' }}
+                      >
+                        <h4 className="font-medium text-white mb-2">{item.title}</h4>
+                        <p className="text-sm text-violet-200">{item.desc}</p>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                  
+                  <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </span>
+                    Logros Clave
+                  </h3>
+                  <ul className="list-disc pl-6 space-y-2 text-violet-200 mb-8">
+                    <li>Arquitecturas de Microservicios Escalables: Mejoré el rendimiento de aplicaciones en un 40% bajo carga alta.</li>
+                    <li>Sistemas Basados en AI y Datos: Implementé modelos de IA, mejorando la toma de decisiones para empresas globales.</li>
+                    <li>Sistemas de Pago y Plataformas en Tiempo Real: Desarrollé pasarelas de pago seguras y plataformas de datos en tiempo real.</li>
+                    <li>Migración y Optimización en la Nube: Reduje costos de infraestructura en un 25%, mejorando la escalabilidad.</li>
+                  </ul>
+                  
+                  {/* Contact Button */}
+                  <motion.div 
+                    className="flex justify-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                  >
+                    <motion.a
+                      href="/contact"
+                      className="px-10 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      <span>Contáctame</span>
+                    </motion.a>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </motion.section>
+            
+            {/* AI Products Section */}
+            <section className="py-20 relative overflow-hidden">
+              {/* Background gradient with animated particles */}
+              <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-black/40 to-violet-900/20 z-0">
+                {[...Array(20)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-2 h-2 bg-purple-500/30 rounded-full"
+                    initial={{
+                      x: Math.random() * window.innerWidth,
+                      y: Math.random() * window.innerHeight,
+                      scale: Math.random() * 0.5 + 0.5,
+                    }}
+                    animate={{
+                      y: [null, Math.random() * -300 - 100],
+                      opacity: [0.7, 0],
+                    }}
+                    transition={{
+                      duration: Math.random() * 3 + 2,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  />
+                ))}
+              </div>
+              
+              <div className="container mx-auto px-4 relative z-10">
+                <motion.div 
+                  className="text-center mb-16"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="inline-block mb-4">
+                    <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center shadow-lg">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-violet-300">
+                    Productos de IA
+                  </h2>
+                  <p className="text-lg md:text-xl text-violet-200 max-w-3xl mx-auto leading-relaxed">
+                    Descubre nuestras soluciones de IA impulsadas por la última tecnología, diseñadas para transformar tu experiencia digital
+                  </p>
+                </motion.div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                  {/* PDF AI Translate Button */}
+                  <motion.button
+                    onClick={() => handleProductClick(
+                      'PDF AI Translate',
+                      <div className="space-y-6">
+                        <p className="text-lg text-violet-100 leading-relaxed">
+                          Una aplicación de React Native y Node.js/TypeScript que traduce documentos PDF del inglés al español utilizando inteligencia artificial avanzada.
+                        </p>
+                        
+                        <div>
+                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                              </svg>
+                            </span>
+                            Características
+                          </h3>
+                          <ul className="list-disc pl-8 space-y-3">
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Sube PDFs de hasta 50MB</li>
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Extracción de texto de cada página usando el modelo multimodal de Gemini</li>
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Traducción automática usando modelos de IA gratuitos de Pollination.ai</li>
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Generación de PDF traducido con formato preservado</li>
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Interfaz moderna y fácil de usar en React Native</li>
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Seguimiento de progreso en tiempo real</li>
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                            </span>
+                            Tecnologías
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 p-5 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all">
+                              <h4 className="font-medium text-white mb-2 text-lg">Backend:</h4>
+                              <p className="text-sm text-violet-200">Node.js, TypeScript, Express, Google Generative AI, Pollination.ai, pdf-lib, Poppler</p>
+                            </div>
+                            <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 p-5 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all">
+                              <h4 className="font-medium text-white mb-2 text-lg">Frontend:</h4>
+                              <p className="text-sm text-violet-200">React Native, Expo, TypeScript</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-center mt-8">
+                          <motion.a
+                            href="https://pdfaitranslate.etheroi.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-10 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <span>Visitar PDF AI Translate</span>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </motion.a>
+                        </div>
+                      </div>
+                    )}
+                    className="group relative px-10 py-8 bg-gradient-to-br from-blue-600 to-purple-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-blue-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative z-10">
+                      <div className="text-5xl mb-4">📄</div>
+                      <h3 className="text-2xl font-bold mb-3">PDF AI Translate</h3>
+                      <p className="text-blue-100 mb-4">Traduce documentos PDF con inteligencia artificial avanzada</p>
+                      <div className="flex items-center gap-2 text-sm text-blue-200">
+                        <span className="px-3 py-1 rounded-full bg-white/10">React Native</span>
+                        <span className="px-3 py-1 rounded-full bg-white/10">Gemini AI</span>
+                      </div>
+                    </div>
+                  </motion.button>
+                  
+                  {/* LiveAITranslate Button */}
+                  <motion.button
+                    onClick={() => handleProductClick(
+                      'LiveAITranslate',
+                      <div className="space-y-6">
+                        <p className="text-lg text-violet-100 leading-relaxed">
+                          LiveAITranslate es un estudio de traducción de código abierto de alto rendimiento, diseñado para ofrecer una experiencia de traducción en tiempo real potenciada por Inteligencia Artificial generativa.
+                        </p>
+                        
+                        <div>
+                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center">
+                              <svg className="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                              </svg>
+                            </span>
+                            Arquitectura Técnica
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="bg-gradient-to-br from-pink-900/30 to-purple-900/30 p-5 rounded-xl border border-pink-500/20 hover:border-pink-500/40 transition-all">
+                              <h4 className="font-medium text-white mb-2 text-lg">Frontend:</h4>
+                              <p className="text-sm text-violet-200">React 18+, Vite, Tailwind CSS, Shadcn UI, Framer Motion</p>
+                            </div>
+                            <div className="bg-gradient-to-br from-pink-900/30 to-purple-900/30 p-5 rounded-xl border border-pink-500/20 hover:border-pink-500/40 transition-all">
+                              <h4 className="font-medium text-white mb-2 text-lg">Backend:</h4>
+                              <p className="text-sm text-violet-200">Cloudflare Workers AI Edge, Server-Sent Events (SSE)</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center">
+                              <svg className="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                              </svg>
+                            </span>
+                            Capacidades de IA
+                          </h3>
+                          <ul className="list-disc pl-8 space-y-3">
+                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Traducción Semántica con contextualización profunda</li>
+                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Linguistic Insights con explicaciones gramaticales</li>
+                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Toolbox Lingüístico con sinónimos y análisis de formalidad</li>
+                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Audio & Voice Intelligence con Smart Voice Styles</li>
+                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Sistema de Gamificación para aprendizaje de idiomas</li>
+                          </ul>
+                        </div>
+                        
+                        <div className="flex justify-center mt-8">
+                          <motion.a
+                            href="https://liveaitranslate.etheroi.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-10 py-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            <span>Visitar LiveAITranslate</span>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </motion.a>
+                        </div>
+                      </div>
+                    )}
+                    className="group relative px-10 py-8 bg-gradient-to-br from-pink-600 to-purple-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500/0 to-pink-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative z-10">
+                      <div className="text-5xl mb-4">🌊</div>
+                      <h3 className="text-2xl font-bold mb-3">LiveAITranslate</h3>
+                      <p className="text-pink-100 mb-4">Traducción en tiempo real con IA generativa</p>
+                      <div className="flex items-center gap-2 text-sm text-pink-200">
+                        <span className="px-3 py-1 rounded-full bg-white/10">React</span>
+                        <span className="px-3 py-1 rounded-full bg-white/10">Cloudflare AI</span>
+                      </div>
+                    </div>
+                  </motion.button>
+                </div>
+              </div>
+            </section>
+            
             <motion.section
               className="pt-40 pb-16 md:pt-24 md:pb-24 relative overflow-hidden"
             >
@@ -1468,229 +1902,6 @@ function AppContent() {
                 </motion.div>
               </motion.div>
             )}
-
-            {/* AI Products Section */}
-            <section className="py-20 relative overflow-hidden">
-              {/* Background gradient with animated particles */}
-              <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-black/40 to-violet-900/20 z-0">
-                {[...Array(20)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-2 h-2 bg-purple-500/30 rounded-full"
-                    initial={{
-                      x: Math.random() * window.innerWidth,
-                      y: Math.random() * window.innerHeight,
-                      scale: Math.random() * 0.5 + 0.5,
-                    }}
-                    animate={{
-                      y: [null, Math.random() * -300 - 100],
-                      opacity: [0.7, 0],
-                    }}
-                    transition={{
-                      duration: Math.random() * 3 + 2,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                  />
-                ))}
-              </div>
-              
-              <div className="container mx-auto px-4 relative z-10">
-                <motion.div 
-                  className="text-center mb-16"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="inline-block mb-4">
-                    <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center shadow-lg">
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-violet-300">
-                    Productos de IA
-                  </h2>
-                  <p className="text-lg md:text-xl text-violet-200 max-w-3xl mx-auto leading-relaxed">
-                    Descubre nuestras soluciones de IA impulsadas por la última tecnología, diseñadas para transformar tu experiencia digital
-                  </p>
-                </motion.div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                  {/* PDF AI Translate Button */}
-                  <motion.button
-                    onClick={() => handleProductClick(
-                      'PDF AI Translate',
-                      <div className="space-y-6">
-                        <p className="text-lg text-violet-100 leading-relaxed">
-                          Una aplicación de React Native y Node.js/TypeScript que traduce documentos PDF del inglés al español utilizando inteligencia artificial avanzada.
-                        </p>
-                        
-                        <div>
-                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                            <span className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
-                              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                              </svg>
-                            </span>
-                            Características
-                          </h3>
-                          <ul className="list-disc pl-8 space-y-3">
-                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Sube PDFs de hasta 50MB</li>
-                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Extracción de texto de cada página usando el modelo multimodal de Gemini</li>
-                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Traducción automática usando modelos de IA gratuitos de Pollination.ai</li>
-                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Generación de PDF traducido con formato preservado</li>
-                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Interfaz moderna y fácil de usar en React Native</li>
-                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Seguimiento de progreso en tiempo real</li>
-                          </ul>
-                        </div>
-                        
-                        <div>
-                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                            <span className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
-                              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                              </svg>
-                            </span>
-                            Tecnologías
-                          </h3>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 p-5 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all">
-                              <h4 className="font-medium text-white mb-2 text-lg">Backend:</h4>
-                              <p className="text-sm text-violet-200">Node.js, TypeScript, Express, Google Generative AI, Pollination.ai, pdf-lib, Poppler</p>
-                            </div>
-                            <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 p-5 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all">
-                              <h4 className="font-medium text-white mb-2 text-lg">Frontend:</h4>
-                              <p className="text-sm text-violet-200">React Native, Expo, TypeScript</p>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex justify-center mt-8">
-                          <motion.a
-                            href="https://pdfaitranslate.etheroi.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-10 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            <span>Visitar PDF AI Translate</span>
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                          </motion.a>
-                        </div>
-                      </div>
-                    )}
-                    className="group relative px-10 py-8 bg-gradient-to-br from-blue-600 to-purple-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-blue-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative z-10">
-                      <div className="text-5xl mb-4">📄</div>
-                      <h3 className="text-2xl font-bold mb-3">PDF AI Translate</h3>
-                      <p className="text-blue-100 mb-4">Traduce documentos PDF con inteligencia artificial avanzada</p>
-                      <div className="flex items-center gap-2 text-sm text-blue-200">
-                        <span className="px-3 py-1 rounded-full bg-white/10">React Native</span>
-                        <span className="px-3 py-1 rounded-full bg-white/10">Gemini AI</span>
-                      </div>
-                    </div>
-                  </motion.button>
-                  
-                  {/* LiveAITranslate Button */}
-                  <motion.button
-                    onClick={() => handleProductClick(
-                      'LiveAITranslate',
-                      <div className="space-y-6">
-                        <p className="text-lg text-violet-100 leading-relaxed">
-                          LiveAITranslate es un estudio de traducción de código abierto de alto rendimiento, diseñado para ofrecer una experiencia de traducción en tiempo real potenciada por Inteligencia Artificial generativa.
-                        </p>
-                        
-                        <div>
-                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                            <span className="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center">
-                              <svg className="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                              </svg>
-                            </span>
-                            Arquitectura Técnica
-                          </h3>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="bg-gradient-to-br from-pink-900/30 to-purple-900/30 p-5 rounded-xl border border-pink-500/20 hover:border-pink-500/40 transition-all">
-                              <h4 className="font-medium text-white mb-2 text-lg">Frontend:</h4>
-                              <p className="text-sm text-violet-200">React 18+, Vite, Tailwind CSS, Shadcn UI, Framer Motion</p>
-                            </div>
-                            <div className="bg-gradient-to-br from-pink-900/30 to-purple-900/30 p-5 rounded-xl border border-pink-500/20 hover:border-pink-500/40 transition-all">
-                              <h4 className="font-medium text-white mb-2 text-lg">Backend:</h4>
-                              <p className="text-sm text-violet-200">Cloudflare Workers AI Edge, Server-Sent Events (SSE)</p>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div>
-                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                            <span className="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center">
-                              <svg className="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                              </svg>
-                            </span>
-                            Capacidades de IA
-                          </h3>
-                          <ul className="list-disc pl-8 space-y-3">
-                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Traducción Semántica con contextualización profunda</li>
-                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Linguistic Insights con explicaciones gramaticales</li>
-                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Toolbox Lingüístico con sinónimos y análisis de formalidad</li>
-                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Audio & Voice Intelligence con Smart Voice Styles</li>
-                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Sistema de Gamificación para aprendizaje de idiomas</li>
-                          </ul>
-                        </div>
-                        
-                        <div className="flex justify-center mt-8">
-                          <motion.a
-                            href="https://liveaitranslate.etheroi.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-10 py-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            <span>Visitar LiveAITranslate</span>
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                          </motion.a>
-                        </div>
-                      </div>
-                    )}
-                    className="group relative px-10 py-8 bg-gradient-to-br from-pink-600 to-purple-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500/0 to-pink-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative z-10">
-                      <div className="text-5xl mb-4">🌊</div>
-                      <h3 className="text-2xl font-bold mb-3">LiveAITranslate</h3>
-                      <p className="text-pink-100 mb-4">Traducción en tiempo real con IA generativa</p>
-                      <div className="flex items-center gap-2 text-sm text-pink-200">
-                        <span className="px-3 py-1 rounded-full bg-white/10">React</span>
-                        <span className="px-3 py-1 rounded-full bg-white/10">Cloudflare AI</span>
-                      </div>
-                    </div>
-                  </motion.button>
-                </div>
-              </div>
-            </section>
 
             {/* Features Carousel */}
             <section className="py-20">
