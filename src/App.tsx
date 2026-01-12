@@ -348,215 +348,264 @@ function AppContent() {
           <div className="min-h-screen bg-theme-gradient">
             <Header variant="default" />
             
-            {/* Mission & Vision Section */}
+            {/* Hero Section */}
             <motion.section
-              className="pt-20 pb-16 relative overflow-hidden"
+              className="pt-32 pb-20 relative overflow-hidden min-h-[90vh] flex items-center"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="container mx-auto px-4">
-                <motion.div 
-                  className="max-w-5xl mx-auto bg-gradient-to-br from-purple-900/40 to-violet-900/40 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-purple-500/30 shadow-xl"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                >
-                  <motion.h2 
-                    className="text-3xl md:text-4xl font-bold text-white mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-violet-300"
-                    initial={{ opacity: 0, y: -10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                  >
-                    💻 Ingeniero de Software GenAI | Diseñando Soluciones de IA Escalables para Empresas Globales 💻
-                  </motion.h2>
+              <div className="container mx-auto px-4 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                   
-                  <motion.div 
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8"
-                    initial="hidden"
-                    whileInView="visible"
+                  {/* Left Content */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    variants={{
-                      hidden: { opacity: 0 },
-                      visible: {
-                        opacity: 1,
-                        transition: {
-                          staggerChildren: 0.15
-                        }
-                      }
-                    }}
+                    className="space-y-8"
                   >
-                    <div>
-                      <motion.h3 
-                        className="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-                        variants={{
-                          hidden: { opacity: 0, x: -20 },
-                          visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
-                        }}
-                      >
-                        <span className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center">
-                          <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                          </svg>
-                        </span>
-                        Perfil Profesional
-                      </motion.h3>
-                      <motion.p 
-                        className="text-violet-200 leading-relaxed mb-4"
-                        variants={{
-                          hidden: { opacity: 0, x: -20 },
-                          visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.1 } }
-                        }}
-                      >
-                        Computer Engineering 8yrs | Computer Science | AI-Assisted Coding | Generative Artificial Intelligence Engineer | Machine & Deep Learning Engineer | Deep Neural Networks | Data Scientist | MCP/Agent Skills | C, R, Python
-                      </motion.p>
-                      
-                      <motion.h3 
-                        className="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-                        variants={{
-                          hidden: { opacity: 0, x: -20 },
-                          visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.2 } }
-                        }}
-                      >
-                        <span className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center">
-                          <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                          </svg>
-                        </span>
-                        Educación
-                      </motion.h3>
-                      <motion.p 
-                        className="text-violet-200 leading-relaxed"
-                        variants={{
-                          hidden: { opacity: 0, x: -20 },
-                          visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.3 } }
-                        }}
-                      >
-                        • Licenciatura en Ingeniería en Computadores por el TEC de Costa Rica: Fuerte base en Machine Learning, Deep Leaning, Modelos de IA, Predicciones de Modelos de IA Entrenados, AIOps, Big Data, Arquitectura de Software, Análisis de Algoritmos, Estructura de Datos, DBA, Diseño de UI/UX de Sistemas y Desarrollo Cross-Platform como Ingeniería de Software.
-                      </motion.p>
-                    </div>
-                    
-                    <div>
-                      <motion.h3 
-                        className="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-                        variants={{
-                          hidden: { opacity: 0, x: 20 },
-                          visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
-                        }}
-                      >
-                        <span className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center">
-                          <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        </span>
-                        Logros Recientes
-                      </motion.h3>
-                      <motion.ul 
-                        className="list-disc pl-6 space-y-3 text-violet-200"
-                        variants={{
-                          hidden: { opacity: 0, x: 20 },
-                          visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.1 } }
-                        }}
-                      >
-                        <li>Desarrollé una plataforma de Multi-Agent-as-a-Service (MAaaS) de vanguardia utilizando la arquitectura serverless de Cloudflare y Durable Objects.</li>
-                        <li>Construí servidores MCP personalizados y soluciones Gradio para crear APIs potentes y funciones MCP.</li>
-                        <li>Especializado en el entrenamiento y ajuste fino de Agentes LLM, incluyendo modelos multimodales como Gemma 3n con capacidades de visión.</li>
-                        <li>Experto en la implementación de soluciones de Machine Learning rentables y la escala de flujos de trabajo de AI de código abierto.</li>
-                      </motion.ul>
-                    </div>
-                  </motion.div>
-                  
-                  <motion.h3 
-                    className="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    viewport={{ once: true }}
-                  >
-                    <span className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center">
-                      <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </span>
-                    Expertise Principal
-                  </motion.h3>
-                  <motion.div 
-                    className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={{
-                      hidden: { opacity: 0 },
-                      visible: {
-                        opacity: 1,
-                        transition: {
-                          staggerChildren: 0.1
-                        }
-                      }
-                    }}
-                  >
-                    {[
-                      { title: 'Desarrollo Backend', desc: 'Python, Node.js/TypeScript, C#/.NET, Java, lógica server-side escalable.' },
-                      { title: 'Ingeniería AI/ML', desc: 'Entrenamiento, ajuste fino e implementación de LLMs, soluciones AI multimodales.' },
-                      { title: 'Plataformas Cloud', desc: 'AWS, Azure, Google Cloud, Cloudflare, arquitecturas serverless.' },
-                      { title: 'API & Integración', desc: 'APIs RESTful, GraphQL, WebSockets, OAuth 2.0, JWT.' }
-                    ].map((item, index) => (
+                    <div className="space-y-4">
                       <motion.div 
-                        key={index}
-                        className="bg-purple-900/30 p-4 rounded-xl border border-purple-500/20"
-                        variants={{
-                          hidden: { opacity: 0, scale: 0.95 },
-                          visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } }
-                        }}
-                        whileHover={{ scale: 1.02, borderColor: 'rgba(168, 85, 247, 0.5)' }}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-sm font-medium mb-4"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
                       >
-                        <h4 className="font-medium text-white mb-2">{item.title}</h4>
-                        <p className="text-sm text-violet-200">{item.desc}</p>
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                        </span>
+                        Disponible para nuevos proyectos de IA
                       </motion.div>
-                    ))}
+
+                      <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight">
+                        Ingeniero de <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-violet-400">
+                          Software GenAI
+                        </span>
+                      </h1>
+
+                      <p className="text-xl text-violet-200/80 leading-relaxed max-w-xl">
+                        Diseño e implemento soluciones de IA escalables y arquitecturas Multi-Agent (MAaaS) para empresas globales, combinando 8 años de experiencia en ingeniería de software con lo último en modelos de lenguaje.
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-4 pt-4">
+                      <motion.a
+                        href="/contact"
+                        className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-purple-500/30 transition-all duration-300 flex items-center gap-2"
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        Hablemos de tu proyecto
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </motion.a>
+                      <motion.a
+                        href="/ai-services"
+                        className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-2xl border border-white/10 backdrop-blur-sm transition-all duration-300"
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        Ver Servicios
+                      </motion.a>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/5">
+                      <div>
+                        <div className="text-2xl font-bold text-white">8+</div>
+                        <div className="text-sm text-violet-300/60 font-medium">Años de Exp.</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-white">15+</div>
+                        <div className="text-sm text-violet-300/60 font-medium">Proyectos IA</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-white">MAaaS</div>
+                        <div className="text-sm text-violet-300/60 font-medium">Especialista</div>
+                      </div>
+                      <div>
+                        <div className="text-2xl font-bold text-white">Cloud</div>
+                        <div className="text-sm text-violet-300/60 font-medium">Arquitecto</div>
+                      </div>
+                    </div>
                   </motion.div>
-                  
-                  <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-purple-500/20 flex items-center justify-center">
-                      <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </span>
-                    Logros Clave
-                  </h3>
-                  <ul className="list-disc pl-6 space-y-2 text-violet-200 mb-8">
-                    <li>Arquitecturas de Microservicios Escalables: Mejoré el rendimiento de aplicaciones en un 40% bajo carga alta.</li>
-                    <li>Sistemas Basados en AI y Datos: Implementé modelos de IA, mejorando la toma de decisiones para empresas globales.</li>
-                    <li>Sistemas de Pago y Plataformas en Tiempo Real: Desarrollé pasarelas de pago seguras y plataformas de datos en tiempo real.</li>
-                    <li>Migración y Optimización en la Nube: Reduje costos de infraestructura en un 25%, mejorando la escalabilidad.</li>
-                  </ul>
-                  
-                  {/* Contact Button */}
-                  <motion.div 
-                    className="flex justify-center"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
+
+                  {/* Right Visual */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
                     viewport={{ once: true }}
+                    className="relative flex justify-center lg:justify-end"
                   >
-                    <motion.a
-                      href="/contact"
-                      className="px-10 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      <span>Contáctame</span>
-                    </motion.a>
+                    {/* Background glow effects */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] -z-10 animate-pulse"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-pink-600/10 rounded-full blur-[80px] -z-10 delay-700 animate-pulse"></div>
+                    
+                    <div className="relative p-3 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-[40px] backdrop-blur-md border border-white/10 shadow-2xl group">
+                      <div className="relative rounded-[32px] overflow-hidden">
+                        <ProfileImage size="lg" showUpload={false} />
+                      </div>
+                      
+                      {/* Floating Info Cards */}
+                      <motion.div 
+                        className="absolute -top-6 -left-12 bg-purple-900/40 backdrop-blur-xl p-4 rounded-2xl border border-purple-500/30 shadow-xl"
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-purple-500/30 flex items-center justify-center">
+                            <FiCpu className="text-purple-300" />
+                          </div>
+                          <div>
+                            <div className="text-[10px] uppercase tracking-wider text-violet-300/60 font-bold">Expertise</div>
+                            <div className="text-sm font-bold text-white">LLM Fine-tuning</div>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                      <motion.div 
+                        className="absolute -bottom-6 -right-8 bg-violet-900/40 backdrop-blur-xl p-4 rounded-2xl border border-violet-500/30 shadow-xl"
+                        animate={{ y: [0, 10, 0] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-pink-500/30 flex items-center justify-center">
+                            <FiLayers className="text-pink-300" />
+                          </div>
+                          <div>
+                            <div className="text-[10px] uppercase tracking-wider text-violet-300/60 font-bold">Arquitectura</div>
+                            <div className="text-sm font-bold text-white">Multi-Agent</div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
                   </motion.div>
-                </motion.div>
+
+                </div>
               </div>
             </motion.section>
+
+            {/* Experience & Skills Section */}
+            <section className="py-24 relative overflow-hidden bg-white/5 backdrop-blur-sm">
+              <div className="container mx-auto px-4 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                  
+                  {/* Left: About & Education */}
+                  <div className="lg:col-span-2 space-y-12">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true }}
+                    >
+                      <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+                        <span className="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center text-sm">01</span>
+                        Perfil Profesional
+                      </h2>
+                      <div className="bg-purple-900/20 rounded-3xl p-8 border border-purple-500/10">
+                        <p className="text-lg text-violet-200 leading-relaxed mb-6">
+                          Ingeniero de Computadores con una sólida base técnica y más de 8 años impulsando la innovación tecnológica. Especializado en el ciclo de vida completo de la IA, desde el entrenamiento de modelos hasta su despliegue en arquitecturas cloud escalables.
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {['Python', 'TypeScript', 'LLMs', 'MLOps', 'Cloudflare', 'AWS', 'React Native'].map(skill => (
+                            <span key={skill} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-violet-300 font-medium">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+                        <span className="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center text-sm">02</span>
+                        Educación
+                      </h2>
+                      <div className="bg-purple-900/20 rounded-3xl p-8 border border-purple-500/10">
+                        <h3 className="text-xl font-bold text-white mb-2">Ingeniería en Computadores</h3>
+                        <div className="text-purple-400 font-medium mb-4 text-sm">TEC de Costa Rica</div>
+                        <p className="text-violet-200/70 text-sm leading-relaxed">
+                          Especialización profunda en Machine Learning, Deep Learning, Arquitectura de Software, y Big Data. Formación integral en el diseño de sistemas complejos y algoritmos de alto rendimiento.
+                        </p>
+                      </div>
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+                        <span className="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center text-sm">03</span>
+                        Logros Clave
+                      </h2>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {[
+                          { title: 'Optimización de Rendimiento', desc: 'Mejoré el rendimiento de aplicaciones en un 40% bajo carga alta mediante arquitecturas de microservicios.' },
+                          { title: 'IA Empresarial', desc: 'Implementé modelos de IA que mejoraron la toma de decisiones estratégicas para empresas globales.' },
+                          { title: 'Sistemas en Tiempo Real', desc: 'Desarrollé pasarelas de pago seguras y plataformas de datos en tiempo real de alta disponibilidad.' },
+                          { title: 'Eficiencia Cloud', desc: 'Reduje costos de infraestructura en un 25% optimizando la escalabilidad en la nube.' }
+                        ].map((logro, idx) => (
+                          <div key={idx} className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                            <h4 className="font-bold text-white mb-2">{logro.title}</h4>
+                            <p className="text-sm text-violet-300/60 leading-relaxed">{logro.desc}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Right: Expertise Grid */}
+                  <div className="space-y-8">
+                    <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+                      <span className="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center text-sm">04</span>
+                      Expertise
+                    </h2>
+                    <div className="grid grid-cols-1 gap-4">
+                      {[
+                        { title: 'Backend', desc: 'Node.js, Python, C#, Java', icon: <FiDatabase /> },
+                        { title: 'AI/ML', desc: 'LLMs, Fine-tuning, RAG', icon: <FiCpu /> },
+                        { title: 'Cloud', desc: 'AWS, Cloudflare, Azure', icon: <FiGlobe /> },
+                        { title: 'Integración', desc: 'APIs, GraphQL, WebSockets', icon: <FiZap /> }
+                      ].map((item, index) => (
+                        <motion.div 
+                          key={index}
+                          className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-purple-500/30 transition-all group"
+                          initial={{ opacity: 0, x: 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-xl text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-all">
+                              {item.icon}
+                            </div>
+                            <div>
+                              <h4 className="font-bold text-white">{item.title}</h4>
+                              <p className="text-sm text-violet-300/60">{item.desc}</p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+
             
             {/* AI Products Section */}
             <section className="py-20 relative overflow-hidden">
@@ -1118,7 +1167,7 @@ function AppContent() {
                   transition={{ delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  DeepMCPAgent es una plataforma de IA avanzada que utiliza el protocolo MCP (Model-Controller-Presenter) para ofrecer interacciones fluidas con modelos de lenguaje. Experimenta el futuro de la IA conversacional con 3,800 tokens gratuitos.
+                  DeepMCPAgent es una plataforma de IA avanzada que utiliza el protocolo MCP (Model-Controller-Protocol) para ofrecer interacciones fluidas con modelos de lenguaje. Experimenta el futuro de la IA conversacional con 3,800 tokens gratuitos.
                 </motion.p>
 
                 {/* Action Buttons */}
