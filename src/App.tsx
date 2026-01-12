@@ -1401,140 +1401,293 @@ function AppContent() {
 
             {/* Popup */}
             {showPopup && (
-              <div className="fixed inset-0 bg-black/70 flex items-start md:items-center justify-center z-50 pt-20 md:p-4 overflow-y-auto min-h-screen py-4" onClick={() => setShowPopup(false)}>
-                <div className="bg-gradient-to-br from-purple-900/90 to-violet-900/90 backdrop-blur-lg rounded-2xl p-8 pt-16 md:pt-8 max-w-4xl w-full border border-purple-500/30 shadow-2xl" onClick={e => e.stopPropagation()}>
-                  <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-2xl font-bold text-white">{popupTitle}</h3>
+              <motion.div 
+                className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-start md:items-center justify-center z-50 pt-20 md:p-4 overflow-y-auto min-h-screen py-4" 
+                onClick={() => setShowPopup(false)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div 
+                  className="bg-gradient-to-br from-purple-900/95 to-violet-900/95 backdrop-blur-xl rounded-3xl p-8 md:p-12 max-w-4xl w-full border border-purple-500/40 shadow-2xl shadow-purple-500/20 relative overflow-hidden"
+                  onClick={e => e.stopPropagation()}
+                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                >
+                  {/* Decorative background elements */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                  <div className="absolute bottom-0 left-0 w-80 h-80 bg-pink-600/20 rounded-full blur-3xl -ml-40 -mb-40"></div>
+                  
+                  {/* Header */}
+                  <div className="flex justify-between items-start mb-8 relative z-10">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-3xl font-bold text-white">{popupTitle}</h3>
+                    </div>
                     <button
                       onClick={() => setShowPopup(false)}
-                      className="text-violet-300 hover:text-white transition-colors"
+                      className="group p-3 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300"
                       aria-label="Cerrar"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-violet-300 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </button>
                   </div>
-                  {popupBody ? (
-                    <div className="text-violet-100 mb-6">{popupBody}</div>
-                  ) : (
-                    <div className="text-violet-100 mb-6">{popupContent}</div>
-                  )}
-                  <div className="flex justify-end">
-                    <button
-                      onClick={() => setShowPopup(false)}
-                      className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
-                    >
-                      Entendido
-                    </button>
+                  
+                  {/* Content */}
+                  <div className="relative z-10 overflow-y-auto max-h-[70vh] pr-2">
+                    {popupBody ? (
+                      <div className="text-violet-100 space-y-8">{popupBody}</div>
+                    ) : (
+                      <div className="text-violet-100 text-lg leading-relaxed">{popupContent}</div>
+                    )}
                   </div>
-                </div>
-              </div>
+                  
+                  {/* Footer */}
+                  <div className="flex justify-end mt-8 relative z-10">
+                    <motion.button
+                      onClick={() => setShowPopup(false)}
+                      className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span>Cerrar</span>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </motion.button>
+                  </div>
+                </motion.div>
+              </motion.div>
             )}
 
             {/* AI Products Section */}
-            <section className="py-16 bg-black/30">
-              <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold text-white mb-4">
+            <section className="py-20 relative overflow-hidden">
+              {/* Background gradient with animated particles */}
+              <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-black/40 to-violet-900/20 z-0">
+                {[...Array(20)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-2 h-2 bg-purple-500/30 rounded-full"
+                    initial={{
+                      x: Math.random() * window.innerWidth,
+                      y: Math.random() * window.innerHeight,
+                      scale: Math.random() * 0.5 + 0.5,
+                    }}
+                    animate={{
+                      y: [null, Math.random() * -300 - 100],
+                      opacity: [0.7, 0],
+                    }}
+                    transition={{
+                      duration: Math.random() * 3 + 2,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  />
+                ))}
+              </div>
+              
+              <div className="container mx-auto px-4 relative z-10">
+                <motion.div 
+                  className="text-center mb-16"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="inline-block mb-4">
+                    <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center shadow-lg">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-violet-300">
                     Productos de IA
                   </h2>
-                  <p className="text-violet-200 max-w-2xl mx-auto">
-                    Descubre nuestras soluciones de IA impulsadas por la última tecnología
+                  <p className="text-lg md:text-xl text-violet-200 max-w-3xl mx-auto leading-relaxed">
+                    Descubre nuestras soluciones de IA impulsadas por la última tecnología, diseñadas para transformar tu experiencia digital
                   </p>
-                </div>
+                </motion.div>
                 
-                <div className="flex flex-col md:flex-row gap-6 justify-center">
-                  <button
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                  {/* PDF AI Translate Button */}
+                  <motion.button
                     onClick={() => handleProductClick(
                       'PDF AI Translate',
-                      <div className="text-violet-100 space-y-4">
-                        <p>Una aplicación de React Native y Node.js/TypeScript que traduce documentos PDF del inglés al español utilizando inteligencia artificial.</p>
+                      <div className="space-y-6">
+                        <p className="text-lg text-violet-100 leading-relaxed">
+                          Una aplicación de React Native y Node.js/TypeScript que traduce documentos PDF del inglés al español utilizando inteligencia artificial avanzada.
+                        </p>
                         
-                        <h3 className="text-xl font-semibold text-white mt-6 mb-3">Características:</h3>
-                        <ul className="list-disc pl-6 space-y-2">
-                          <li>Sube PDFs de hasta 50MB</li>
-                          <li>Extracción de texto de cada página usando el modelo multimodal de Gemini</li>
-                          <li>Traducción automática usando modelos de IA gratuitos de Pollination.ai</li>
-                          <li>Generación de PDF traducido con formato preservado</li>
-                          <li>Interfaz moderna y fácil de usar en React Native</li>
-                          <li>Seguimiento de progreso en tiempo real</li>
-                        </ul>
+                        <div>
+                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                              </svg>
+                            </span>
+                            Características
+                          </h3>
+                          <ul className="list-disc pl-8 space-y-3">
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Sube PDFs de hasta 50MB</li>
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Extracción de texto de cada página usando el modelo multimodal de Gemini</li>
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Traducción automática usando modelos de IA gratuitos de Pollination.ai</li>
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Generación de PDF traducido con formato preservado</li>
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Interfaz moderna y fácil de usar en React Native</li>
+                            <li className="text-violet-200 hover:text-blue-400 transition-colors">Seguimiento de progreso en tiempo real</li>
+                          </ul>
+                        </div>
                         
-                        <h3 className="text-xl font-semibold text-white mt-6 mb-3">Tecnologías:</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="bg-gray-900/50 p-4 rounded-lg">
-                            <h4 className="font-medium text-white">Backend:</h4>
-                            <p className="text-sm">Node.js, TypeScript, Express, Google Generative AI, Pollination.ai, pdf-lib, Poppler</p>
-                          </div>
-                          <div className="bg-gray-900/50 p-4 rounded-lg">
-                            <h4 className="font-medium text-white">Frontend:</h4>
-                            <p className="text-sm">React Native, Expo, TypeScript</p>
+                        <div>
+                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                            </span>
+                            Tecnologías
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 p-5 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all">
+                              <h4 className="font-medium text-white mb-2 text-lg">Backend:</h4>
+                              <p className="text-sm text-violet-200">Node.js, TypeScript, Express, Google Generative AI, Pollination.ai, pdf-lib, Poppler</p>
+                            </div>
+                            <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 p-5 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all">
+                              <h4 className="font-medium text-white mb-2 text-lg">Frontend:</h4>
+                              <p className="text-sm text-violet-200">React Native, Expo, TypeScript</p>
+                            </div>
                           </div>
                         </div>
                         
                         <div className="flex justify-center mt-8">
-                          <a
+                          <motion.a
                             href="https://pdfaitranslate.etheroi.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+                            className="px-10 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.98 }}
                           >
-                            Visitar PDF AI Translate
-                          </a>
+                            <span>Visitar PDF AI Translate</span>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </motion.a>
                         </div>
                       </div>
                     )}
-                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                    className="group relative px-10 py-8 bg-gradient-to-br from-blue-600 to-purple-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -5 }}
                   >
-                    <span>📄</span>
-                    <span>PDF AI Translate</span>
-                  </button>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-blue-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative z-10">
+                      <div className="text-5xl mb-4">📄</div>
+                      <h3 className="text-2xl font-bold mb-3">PDF AI Translate</h3>
+                      <p className="text-blue-100 mb-4">Traduce documentos PDF con inteligencia artificial avanzada</p>
+                      <div className="flex items-center gap-2 text-sm text-blue-200">
+                        <span className="px-3 py-1 rounded-full bg-white/10">React Native</span>
+                        <span className="px-3 py-1 rounded-full bg-white/10">Gemini AI</span>
+                      </div>
+                    </div>
+                  </motion.button>
                   
-                  <button
+                  {/* LiveAITranslate Button */}
+                  <motion.button
                     onClick={() => handleProductClick(
                       'LiveAITranslate',
-                      <div className="text-violet-100 space-y-4">
-                        <p>LiveAITranslate es un estudio de traducción de código abierto de alto rendimiento, diseñado para ofrecer una experiencia de traducción en tiempo real potenciada por Inteligencia Artificial generativa.</p>
+                      <div className="space-y-6">
+                        <p className="text-lg text-violet-100 leading-relaxed">
+                          LiveAITranslate es un estudio de traducción de código abierto de alto rendimiento, diseñado para ofrecer una experiencia de traducción en tiempo real potenciada por Inteligencia Artificial generativa.
+                        </p>
                         
-                        <h3 className="text-xl font-semibold text-white mt-6 mb-3">Arquitectura Técnica:</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="bg-gray-900/50 p-4 rounded-lg">
-                            <h4 className="font-medium text-white">Frontend:</h4>
-                            <p className="text-sm">React 18+, Vite, Tailwind CSS, Shadcn UI, Framer Motion</p>
-                          </div>
-                          <div className="bg-gray-900/50 p-4 rounded-lg">
-                            <h4 className="font-medium text-white">Backend:</h4>
-                            <p className="text-sm">Cloudflare Workers AI Edge, Server-Sent Events (SSE)</p>
+                        <div>
+                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center">
+                              <svg className="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                              </svg>
+                            </span>
+                            Arquitectura Técnica
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="bg-gradient-to-br from-pink-900/30 to-purple-900/30 p-5 rounded-xl border border-pink-500/20 hover:border-pink-500/40 transition-all">
+                              <h4 className="font-medium text-white mb-2 text-lg">Frontend:</h4>
+                              <p className="text-sm text-violet-200">React 18+, Vite, Tailwind CSS, Shadcn UI, Framer Motion</p>
+                            </div>
+                            <div className="bg-gradient-to-br from-pink-900/30 to-purple-900/30 p-5 rounded-xl border border-pink-500/20 hover:border-pink-500/40 transition-all">
+                              <h4 className="font-medium text-white mb-2 text-lg">Backend:</h4>
+                              <p className="text-sm text-violet-200">Cloudflare Workers AI Edge, Server-Sent Events (SSE)</p>
+                            </div>
                           </div>
                         </div>
                         
-                        <h3 className="text-xl font-semibold text-white mt-6 mb-3">Capacidades de IA:</h3>
-                        <ul className="list-disc pl-6 space-y-2">
-                          <li>Traducción Semántica con contextualización profunda</li>
-                          <li>Linguistic Insights con explicaciones gramaticales</li>
-                          <li>Toolbox Lingüístico con sinónimos y análisis de formalidad</li>
-                          <li>Audio & Voice Intelligence con Smart Voice Styles</li>
-                          <li>Sistema de Gamificación para aprendizaje de idiomas</li>
-                        </ul>
+                        <div>
+                          <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
+                            <span className="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center">
+                              <svg className="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                              </svg>
+                            </span>
+                            Capacidades de IA
+                          </h3>
+                          <ul className="list-disc pl-8 space-y-3">
+                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Traducción Semántica con contextualización profunda</li>
+                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Linguistic Insights con explicaciones gramaticales</li>
+                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Toolbox Lingüístico con sinónimos y análisis de formalidad</li>
+                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Audio & Voice Intelligence con Smart Voice Styles</li>
+                            <li className="text-violet-200 hover:text-pink-400 transition-colors">Sistema de Gamificación para aprendizaje de idiomas</li>
+                          </ul>
+                        </div>
                         
                         <div className="flex justify-center mt-8">
-                          <a
+                          <motion.a
                             href="https://liveaitranslate.etheroi.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+                            className="px-10 py-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.98 }}
                           >
-                            Visitar LiveAITranslate
-                          </a>
+                            <span>Visitar LiveAITranslate</span>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </motion.a>
                         </div>
                       </div>
                     )}
-                    className="px-8 py-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                    className="group relative px-10 py-8 bg-gradient-to-br from-pink-600 to-purple-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -5 }}
                   >
-                    <span>🌊</span>
-                    <span>LiveAITranslate</span>
-                  </button>
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500/0 to-pink-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative z-10">
+                      <div className="text-5xl mb-4">🌊</div>
+                      <h3 className="text-2xl font-bold mb-3">LiveAITranslate</h3>
+                      <p className="text-pink-100 mb-4">Traducción en tiempo real con IA generativa</p>
+                      <div className="flex items-center gap-2 text-sm text-pink-200">
+                        <span className="px-3 py-1 rounded-full bg-white/10">React</span>
+                        <span className="px-3 py-1 rounded-full bg-white/10">Cloudflare AI</span>
+                      </div>
+                    </div>
+                  </motion.button>
                 </div>
               </div>
             </section>
