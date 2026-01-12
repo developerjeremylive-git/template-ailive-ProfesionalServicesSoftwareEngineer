@@ -154,7 +154,8 @@ if (supabaseUrl && supabaseKey) {
       signUp: async () => ({ data: null, error: new Error('Not implemented in demo') }),
       signOut: async () => ({ error: null }),
       resetPasswordForEmail: async () => ({ error: null }),
-      updateUser: async () => ({ data: null, error: new Error('Not implemented in demo') })
+      updateUser: async () => ({ data: null, error: new Error('Not implemented in demo') }),
+      getSession: async () => ({ data: { session: null }, error: null })
     },
     from: () => ({
       select: () => ({ data: [], error: null }),
