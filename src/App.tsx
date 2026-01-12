@@ -510,7 +510,7 @@ function AppContent() {
                       </h2>
                       <div className="bg-purple-900/20 rounded-3xl p-8 border border-purple-500/10">
                         <p className="text-lg text-violet-200 leading-relaxed mb-6">
-                          Ingeniero de Computadores con una sólida base técnica y más de 8 años impulsando la innovación tecnológica. Especializado en el ciclo de vida completo de la IA, desde el entrenamiento de modelos hasta su despliegue en arquitecturas cloud escalables.
+                          Ingeniero en Computación con una sólida base técnica y más de 8 años impulsando la innovación tecnológica. Especializado en el ciclo de vida completo de la IA, desde el entrenamiento de modelos hasta su despliegue en arquitecturas cloud escalables.
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {['Python', 'TypeScript', 'LLMs', 'MLOps', 'Cloudflare', 'AWS', 'React Native'].map(skill => (
@@ -533,7 +533,7 @@ function AppContent() {
                         Educación
                       </h2>
                       <div className="bg-purple-900/20 rounded-3xl p-8 border border-purple-500/10">
-                        <h3 className="text-xl font-bold text-white mb-2">Ingeniería en Computadores</h3>
+                        <h3 className="text-xl font-bold text-white mb-2">Ingeniería en Computación</h3>
                         <div className="text-purple-400 font-medium mb-4 text-sm">TEC de Costa Rica</div>
                         <p className="text-violet-200/70 text-sm leading-relaxed">
                           Especialización profunda en Machine Learning, Deep Learning, Arquitectura de Software, y Big Data. Formación integral en el diseño de sistemas complejos y algoritmos de alto rendimiento.

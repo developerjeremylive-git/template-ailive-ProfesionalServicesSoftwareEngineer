@@ -350,6 +350,21 @@ export default function Header({ variant = 'default' }: HeaderProps) {
                             )}
                           </div>
                         </motion.button>
+
+                        {/* Language Toggle */}
+                        <motion.button
+                          onClick={() => setLanguage(currentLanguage === 'en' ? 'es' : 'en')}
+                          className="w-full flex items-center justify-between px-5 py-3 text-sm text-[var(--theme-text-primary)] hover:bg-purple-500/10 transition-all duration-300 border-t border-purple-500/10"
+                          whileHover={{ x: 4 }}
+                        >
+                          <span className="font-medium">{t('language')}</span>
+                          <div className="flex items-center gap-2">
+                            <FiGlobe className="w-4 h-4 text-purple-400" />
+                            <span className="text-xs font-bold uppercase text-purple-500">
+                              {currentLanguage}
+                            </span>
+                          </div>
+                        </motion.button>
                       </motion.div>
                     )}
                   </AnimatePresence>
