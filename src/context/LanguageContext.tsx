@@ -244,7 +244,7 @@ const translations = {
 		'contact_company': 'Company Name',
 		'contact_placeholder_company': 'Tech Solutions Inc.',
 		'contact_phone': 'Phone Number',
-		'contact_placeholder_phone': '+1 (555) 000-0000',
+
 		'contact_services_interest': 'Services of Interest',
 		'service_web': 'Web Development',
 		'service_ai': 'AI Solutions',
@@ -709,22 +709,8 @@ const translations = {
 		'contact_form_name': 'Name',
 		'contact_form_email': 'Email',
 		'contact_company_name': 'Company Name',
-		'contact_phone': 'Phone Number',
 		'contact_model': 'AI Model of Interest',
-		'contact_message': 'Message',
-		'contact_submit': 'Send Message',
-		'contact_placeholder_name': 'Enter your name',
-		'contact_placeholder_email': 'Enter your email',
-		'contact_placeholder_company': 'Enter your company name',
-		'contact_placeholder_phone': '+1 (555) 000-0000',
-		'contact_placeholder_message': 'Enter your message',
 		'contact_select_model': 'Select a model',
-
-		// Contact Additional Info
-		'contact_email_label': 'Email',
-		'contact_phone_label': 'Phone',
-		'contact_hours_label': 'Office Hours',
-		'contact_hours_value': 'Mon-Fri, 9am-6pm EST',
 		'multiple_models': 'Multiple Models',
 
 		// Model Specifications
@@ -878,9 +864,6 @@ const translations = {
 		'credit_card': 'Credit Card',
 		'secure_payment': 'Secure Payment',
 		'premium_features': 'Premium Features',
-		'contact_name': 'Name',
-		'contact_company': 'Company',
-		'contact_email': 'Email',
 		'deepseek_demo_response': 'This is a simulated response from DeepSeek-R1-Distill-Qwen-32B. In a real implementation, this would be connected to the actual API.',
 	},
 	es: {
@@ -917,9 +900,6 @@ const translations = {
 		'terms_privacy_2': 'Debes tener los derechos necesarios sobre cualquier dato que me envíes',
 		'terms_privacy_3': 'Puedo recopilar datos de uso y análisis para mejorar mis servicios',
 		'terms_privacy_4': 'Se aplican mis políticas de retención de datos a toda la información que recopilo',
-		'contact_email': 'Correo Electrónico',
-		'contact_company': 'Empresa',
-		'contact_name': 'Nombre',
 		'premium_features': 'Características Premium',
 		'secure_payment': 'Pago Seguro',
 		'credit_card': 'Tarjeta de Crédito',
@@ -1242,8 +1222,8 @@ const translations = {
 		'contact_placeholder_email': 'juan@ejemplo.com',
 		'contact_company': 'Nombre de la Empresa',
 		'contact_placeholder_company': 'Tech Solutions Inc.',
-		'contact_phone': 'Número de Teléfono',
-		'contact_placeholder_phone': '+1 (555) 000-0000',
+
+
 		'contact_services_interest': 'Servicios de Interés',
 		'service_web': 'Desarrollo Web',
 		'service_ai': 'Soluciones de IA',
@@ -1251,7 +1231,7 @@ const translations = {
 		'service_consulting': 'Consultoría Técnica',
 		'contact_message': 'Tu Mensaje',
 		'contact_placeholder_message': 'Cuéntame sobre los objetivos de tu proyecto...',
-		'contact_submit': 'Enviar Mensaje',
+
 		'contact_success_message': '¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.',
 		'contact_page_name': 'Nombre',
 		'contact_page_email': 'Correo',
@@ -1644,22 +1624,18 @@ const translations = {
 		'contact_form_name': 'Nombre',
 		'contact_form_email': 'Correo',
 		'contact_company_name': 'Nombre de la Empresa',
-		'contact_phone': 'Número de Teléfono',
+
 		'contact_model': 'Modelo de IA de Interés',
-		'contact_message': 'Mensaje',
-		'contact_submit': 'Enviar Mensaje',
-		'contact_placeholder_name': 'Ingresa tu nombre',
-		'contact_placeholder_email': 'Ingresa tu correo electrónico',
-		'contact_placeholder_company': 'Ingresa el nombre de tu empresa',
-		'contact_placeholder_phone': '+1 (555) 000-0000',
-		'contact_placeholder_message': 'Ingresa tu mensaje',
+
+
+
+
+
+
+
 		'contact_select_model': 'Selecciona un modelo',
 
-		// Información Adicional de Contacto
-		'contact_email_label': 'Correo',
-		'contact_phone_label': 'Teléfono',
-		'contact_hours_label': 'Horario de Oficina',
-		'contact_hours_value': 'Lun-Vie, 9am-6pm EST',
+
 		'multiple_models': 'Múltiples Modelos',
 
 		// Stable Diffusion

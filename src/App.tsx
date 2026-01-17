@@ -709,14 +709,14 @@ function AppContent() {
                         
                         <div className="flex justify-center mt-8">
                           <motion.a
-                            href="https://pdfaitranslate.etheroi.com/"
+                            href="https://jeremylive.netlify.app/contact"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-10 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-3"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.98 }}
                           >
-                            <span>Visitar PDF AI Translate</span>
+                            <span>Solicitar Demo</span>
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
